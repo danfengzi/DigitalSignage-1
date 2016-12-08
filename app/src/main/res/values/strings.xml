@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DigitalSignage</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="api_key">033170a68482dadcb32d8ca0cd98c9f1</string>
+    <string name="undergroud_key">68f861256e25308c</string>
+</resources>

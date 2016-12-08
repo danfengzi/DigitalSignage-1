@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <fragment android:name="signage.digital.com.digitalsignage.FragmentEvent"
+              android:id="@+id/headlines_fragment"
+              android:layout_weight="1"
+              android:layout_width="0dp"
+              android:layout_height="match_parent" />
+
+    <fragment android:name="signage.digital.com.digitalsignage.FragmentWeather"
+              android:id="@+id/article_fragment"
+              android:layout_weight="2"
+              android:layout_width="0dp"
+              android:layout_height="match_parent" />
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_below="@+id/imageView"
+        android:layout_above="@+id/banners">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list"
+            android:background="#2E3152"
+            android:layout_below="@+id/imageView"
+            android:layout_weight="1.11"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:layout_below="@+id/imageView"
+        android:layout_above="@+id/banners">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list1"
+            android:background="#2E3152"
+            android:layout_below="@+id/imageView"
+            />
+    </LinearLayout>
+
+    <AdapterViewFlipper
+        android:layout_width="match_parent"
+        android:id="@+id/banners"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#2E3152"
+        android:layout_height="300dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/header"
+        android:scaleType="center"
+        android:background="#2E3152"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+</LinearLayout>

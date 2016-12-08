@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "990343580564",
+    "firebase_url": "https://digitalsignage-a824c.firebaseio.com",
+    "project_id": "digitalsignage-a824c",
+    "storage_bucket": "digitalsignage-a824c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:990343580564:android:66febea9fd387c2d",
+        "android_client_info": {
+          "package_name": "signage.digital.com.digitalsignage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "990343580564-b54gm865080mu08h3qc6uecubasdtr2n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "signage.digital.com.digitalsignage",
+            "certificate_hash": "8E8881D3E0480B8034B6D038766492D91E83485B"
+          }
+        },
+        {
+          "client_id": "990343580564-1tliqaruheeq8jj49tbpp9f3e64ifdi5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJJcBGgVaPqfviuPylXRftm56yeVMeagA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "990343580564-1tliqaruheeq8jj49tbpp9f3e64ifdi5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

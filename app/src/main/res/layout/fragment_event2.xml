@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <fragment android:name="signage.digital.com.digitalsignage.SubFragEvent"
+              android:id="@+id/event_frag"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
+    <fragment android:name="signage.digital.com.digitalsignage.SubFragWeather"
+              android:id="@+id/weather_frag"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
+    <fragment android:name="signage.digital.com.digitalsignage.SubFragBanner"
+              android:id="@+id/banner_frag"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content" />
+
+</LinearLayout>
