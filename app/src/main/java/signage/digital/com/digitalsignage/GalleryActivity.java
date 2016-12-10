@@ -11,6 +11,8 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
+import signage.digital.com.digitalsignage.adapter.ItemGalleryAdapter;
+
 public class GalleryActivity extends BaseActivity {
     // LogCat tag
     private static final String TAG = "--->>>";

@@ -3,8 +3,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-    >
+              android:layout_height="wrap_content"
+                android:padding="16dp">
 
     <TextView
         android:text="TextView"
@@ -14,17 +14,9 @@
         android:textSize="24sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/temp"
-        android:gravity="center_vertical"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/icon"
-        android:layout_alignStart="@+id/temp"/>
+        android:gravity="center_vertical"
+        android:layout_alignBottom="@+id/temp"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:text="TextView"
@@ -32,80 +24,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/temp"
         android:textSize="30sp"
-        android:layout_below="@+id/icon"
+        android:textColor="@android:color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/icon"/>
+
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        app:srcCompat="@drawable/unknown"
+        android:id="@+id/icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/temp"
         android:layout_alignParentEnd="true"/>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/temp"
-        android:layout_alignParentStart="true">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="3"
-            android:layout_columnWeight="1"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/icon0"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/temp0"
-                android:textSize="18sp"
-                android:layout_alignBottom="@+id/city"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/icon1"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/temp1"
-                android:textSize="18sp"
-                android:layout_alignBottom="@+id/city"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout><LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/icon2"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/temp2"
-            android:textSize="18sp"
-            android:layout_alignBottom="@+id/city"
-            android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
-    </GridLayout>
 
 
 </RelativeLayout>

@@ -12,6 +12,9 @@ public class CurrentObservation {
     @SerializedName("display_location")
     DisplayObservation display;
 
+    @SerializedName("observation_location")
+    ObservationLocation location;
+
     @SerializedName("weather")
     String weather;
 
@@ -39,8 +42,15 @@ public class CurrentObservation {
     @SerializedName("icon_url")
     String icon_url;
 
+    @SerializedName("icon")
+    String icon;
+
     public DisplayObservation getDisplay() {
         return display;
+    }
+
+    public ObservationLocation getLocation() {
+        return location;
     }
 
     public String getWeather() {
@@ -78,4 +88,9 @@ public class CurrentObservation {
     public String getIcon_url() {
         return icon_url;
     }
+
+    public String getIcon() {
+        return icon;
+    }
+
 }

@@ -9,6 +9,9 @@ import android.view.View;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import signage.digital.com.digitalsignage.fragment.FragmentAdv;
+import signage.digital.com.digitalsignage.fragment.FragmentEvent;
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -48,7 +51,7 @@ public class PlayActivity extends BaseActivity {
             currentFrag = 2;
         }
 
-        final long period = 500*60;
+        final long period = 10000*60;
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {

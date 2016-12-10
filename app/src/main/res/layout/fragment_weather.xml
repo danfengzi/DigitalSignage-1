@@ -4,9 +4,8 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="signage.digital.com.digitalsignage.FragmentWeather"
+              tools:context="signage.digital.com.digitalsignage.fragment.FragmentWeather"
     >
-
 
     <ListView
         android:layout_width="match_parent"

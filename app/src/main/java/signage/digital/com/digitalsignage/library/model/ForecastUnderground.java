@@ -7,13 +7,13 @@ import com.google.gson.annotations.SerializedName;
  * Created by fung.lam on 02/09/2015.
  * for openweathermap webservice call
  */
-public class ForecastResponseModel {
+public class ForecastUnderground {
 
-    @SerializedName("city")
-    Forecast forecastRecord;
+    @SerializedName("forecast")
+    Forecast forecast;
 
-    public Forecast getWeatherRecord() {
-        return forecastRecord;
+    public Forecast getForecast() {
+        return forecast;
     }
 
 }
