@@ -46,6 +46,15 @@ public class FragBannerConfig extends BaseFragment {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+    }
+
+    public void onPause(){
+        super.onPause();
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -58,15 +67,6 @@ public class FragBannerConfig extends BaseFragment {
                 }
             }
         }
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-    }
-
-    public void onPause(){
-        super.onPause();
     }
 
     @Override
@@ -93,7 +93,7 @@ public class FragBannerConfig extends BaseFragment {
                 adb.setIcon(android.R.drawable.ic_dialog_alert);
                 adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        MyApp.getInstance().getProfile().getFlyers().remove(i);
+                        MyApp.getInstance().getProfile().getBanners().remove(i);
                     }
                 });
                 adb.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

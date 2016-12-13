@@ -2,7 +2,6 @@ package signage.digital.com.digitalsignage.library.network;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -21,10 +20,7 @@ import java.util.Map;
  */
 public class CustomGsonObjectRequest<T> extends GsonRequest<T> {
 
-    //    private final Gson gson = new GsonBuilder()
-//            .setDateFormat("yyyy/MM/dd HH:mm:ss aa").create();
     private final Gson gson = super.getGson();
-    //    private final Class<T> clazz;
     private final Type mTypeToken;
 
     /**
@@ -40,7 +36,6 @@ public class CustomGsonObjectRequest<T> extends GsonRequest<T> {
     public CustomGsonObjectRequest(int method, @NonNull String url, @NonNull Type typeToken, @Nullable Map<String, String> formData, @NonNull Response.Listener<T> listener, @NonNull Response.ErrorListener errorListener) {
         super(method, url, formData, listener, errorListener);
         mTypeToken = typeToken;
-
     }
 
     @Override
@@ -49,18 +44,6 @@ public class CustomGsonObjectRequest<T> extends GsonRequest<T> {
             String json = new String(
                     response.data,
                     HttpHeaderParser.parseCharset(response.headers));
-
-            Log.d(TAG, json);
-
-//            String formattedJson = StringEscapeUtils.unescapeJson(json);
-//            if (formattedJson.startsWith("\"")) {
-//                formattedJson = formattedJson.substring(1, formattedJson.length() - 1);
-//                if (formattedJson.startsWith("[")) {
-//                    formattedJson = formattedJson.substring(1, formattedJson.length() - 1);
-//                }
-//            }
-//
-//            Log.d("Gson", formattedJson);
 
             return Response.success((T) gson.fromJson(json, mTypeToken),
                     HttpHeaderParser.parseCacheHeaders(response));

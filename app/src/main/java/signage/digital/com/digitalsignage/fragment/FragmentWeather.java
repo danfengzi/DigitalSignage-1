@@ -2,24 +2,13 @@ package signage.digital.com.digitalsignage.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
-
-import java.util.ArrayList;
-
-import signage.digital.com.digitalsignage.OpenWeatherMapApiHelper;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
-import signage.digital.com.digitalsignage.library.model.Forecast;
-import signage.digital.com.digitalsignage.library.model.WeatherUnderground;
 
 public class FragmentWeather extends Fragment {
     private String cityId;
@@ -29,40 +18,41 @@ public class FragmentWeather extends Fragment {
     }
 
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_weather, container, false);
-        final View header = inflater.inflate(R.layout.item_weather_full, null);
-        final ListView list = (ListView)view.findViewById(R.id.list);
+        LinearLayout w = (LinearLayout) view.findViewById(R.id.weather);
 
-        ArrayList<Forecast> array = new ArrayList<Forecast>();
-        OpenWeatherMapApiHelper helper = new OpenWeatherMapApiHelper(getContext());
-        //config.ApiKey = "68f861256e25308c"; //undeground
-        helper.getWeather(-22.9865956,-43.2086082, new Listener<WeatherUnderground>(){
-            @Override
-            public void onResponse(WeatherUnderground response) {
-                WeatherView header = new WeatherView(getContext());
-                header.setWeather(response);
-                list.addHeaderView(header);
-                Log.d("------", "tempc "+response.getCurrentWeather().getTemp_c());
-            }
-        }, new ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("------", "erro "+error.getMessage());
+        WeatherView rio = new WeatherView(getContext());
+        rio.getWeatherUnderground("Rio de Janeiro", -22.9865956,-43.2086082, "BR");
 
-            }
-        });
+        WeatherView sp = new WeatherView(getContext());
+        sp.getWeatherUnderground("São Paulo", -23.5810818,-46.6692446, "BR");
+
+        WeatherView df = new WeatherView(getContext());
+        df.getWeatherUnderground("Brasília", -15.7915718,-47.8928274, "BR");
+
+        WeatherView ny = new WeatherView(getContext());
+        ny.getWeatherUnderground("New York", 40.76688,-73.9782681, "BR");
+
+        WeatherView ba = new WeatherView(getContext());
+        ba.getWeatherUnderground("Buenos Aires", -34.5951784,-58.4242234, "BR");
+
+        WeatherView pr = new WeatherView(getContext());
+        pr.getWeatherUnderground("Paris", 48.8610227,2.3430481, "BR");
+
+        w.addView(rio);
+        w.addView(sp);
+        w.addView(df);
+        w.addView(ba);
+        w.addView(ny);
+        w.addView(pr);
 
         return view;
     }
 
-    private void initHeader(WeatherUnderground r, View v){
-
-        TextView city = (TextView)v.findViewById(R.id.city);
-        city.setText(r.getCurrentWeather().getDisplay().getCity());
-    }
 
    @Override
     public void onStart() {

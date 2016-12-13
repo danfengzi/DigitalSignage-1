@@ -10,11 +10,17 @@ public class ForecastDay {
     @SerializedName("low")
     Temperature low;
 
+    @SerializedName("date")
+    ForecastDate date;
+
     @SerializedName("icon")
     String icon;
 
     @SerializedName("avehumidity")
     int avehumidity;
+
+    @SerializedName("pop")
+    int pop;
 
     public Temperature getHigh() {
         return high;
@@ -30,5 +36,13 @@ public class ForecastDay {
 
     public int getAvehumidity() {
         return avehumidity;
+    }
+
+    public ForecastDate getDate() {
+        return date;
+    }
+
+    public int getPop() {
+        return pop;
     }
 }

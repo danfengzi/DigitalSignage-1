@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:padding="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/city"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/white"
+        android:layout_above="@+id/temp"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/temp"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/icon"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
+
+    <ImageView
+        android:layout_width="128px"
+        android:layout_height="128px"
+        app:srcCompat="@drawable/unknown"
+        android:id="@+id/icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/temp"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/city"
+        android:layout_alignParentStart="true"
+        android:id="@+id/condition"
+        android:layout_toStartOf="@+id/temp"
+        android:textColor="@android:color/white"
+        android:paddingRight="16dp"
+        android:textSize="24sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center"
+        android:id="@+id/header">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/day"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+
+        <Space
+            android:layout_height="128px"
+            android:layout_width="128px"/>
+
+        <TextView
+            android:text="Máx/High:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/max"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/icon"
+            android:gravity="center"/>
+        <TextView
+            android:text="Min/Low:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/min"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/icon"
+            android:gravity="center"/>
+        <TextView
+            android:text="Chuva/Rain:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pop"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/icon"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/days"
+        android:gravity="center_horizontal"
+        android:paddingTop="16dp"
+        android:layout_toEndOf="@+id/linearLayout"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentStart="false">
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -65,9 +65,8 @@ public class ItemImagesAdapter extends BaseAdapter {
         else {
             mHolder = (ImagesViewHolder) v.getTag();
         }
-        Glide.with(context)
+        Picasso.with(context)
                 .load(paths.get(i))
-                .dontAnimate()
                 .into(mHolder.image);
         return v;
     }

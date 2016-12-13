@@ -7,8 +7,11 @@
               tools:context="signage.digital.com.digitalsignage.fragment.FragmentWeather"
     >
 
-    <ListView
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list"/>
+        android:id="@+id/weather">
+    </LinearLayout>
 </LinearLayout>

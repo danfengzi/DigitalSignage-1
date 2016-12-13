@@ -11,31 +11,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/city"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:gravity="center_vertical"
         android:layout_alignBottom="@+id/temp"
         android:textColor="@android:color/white"/>
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/temp"
-        android:textSize="30sp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/icon"/>
-
-    <ImageView
-        android:layout_width="128px"
-        android:layout_height="128px"
-        app:srcCompat="@drawable/unknown"
-        android:id="@+id/icon"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/temp"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/city"
+        android:id="@+id/days">
+    </LinearLayout>
 
 
 </RelativeLayout>

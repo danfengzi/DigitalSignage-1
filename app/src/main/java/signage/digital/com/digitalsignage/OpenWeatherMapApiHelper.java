@@ -23,22 +23,17 @@ import signage.digital.com.digitalsignage.library.network.CustomGsonObjectReques
  * API Helper for Open Weather Map API
  */
 public class OpenWeatherMapApiHelper {
-    //http://api.wunderground.com/api/68f861256e25308c/geolookup/q/37.776289,-122.395234.json
-    private static final String HOST = "http://api.wunderground.com/api/";
-    private static final String GET_WEATHER_ENDPOINT = "/conditions/q/";
-    private static final String GET_FORECAST_ENDPOINT = "/forecast/q/";
 
+    private static final String HOST = "http://api.wunderground.com/api/";
+    private static final String GET_WEATHER_ENDPOINT = "/conditions/lang:%s/q/";
+    private static final String GET_FORECAST_ENDPOINT = "/forecast/lang:%s/q/";
     private RequestQueue mRequestQueue;
     private String mAppId;
 
 
-//    public OpenWeatherMapApiHelper(@NonNull RequestQueue requestQueue) {
-//        mRequestQueue = requestQueue;
-//    }
 
     public OpenWeatherMapApiHelper(@NonNull Context context){
         mRequestQueue = Volley.newRequestQueue(context);
-//        mAppId = context.getResources().getString(R.string.api_key);
         mAppId = context.getResources().getString(R.string.undergroud_key);
     }
 
@@ -47,7 +42,6 @@ public class OpenWeatherMapApiHelper {
         mAppId = appId;
     }
 
-    //convert the map of params to "key1=value1&key2=value2" style
     private static String toUrlParams(@NonNull Map<String, Object> params) {
         StringBuilder sb = new StringBuilder();
         for (String key : params.keySet()) {
@@ -69,30 +63,50 @@ public class OpenWeatherMapApiHelper {
      * @param errorListener what to do if failed
      * @return volley request
      */
-    public Request getWeather(double latitude, double longitude, @NonNull Response.Listener<WeatherUnderground> listener, @NonNull Response.ErrorListener errorListener) {
+    public Request getWeather(double latitude, double longitude, @NonNull Response.Listener<WeatherUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
 
-        String url = HOST + mAppId + GET_WEATHER_ENDPOINT + latitude +","+ longitude+".json";
+        String url = HOST + mAppId + String.format(GET_WEATHER_ENDPOINT, lg) + latitude +","+ longitude+".json";
 
-        Type type = new TypeToken<WeatherUnderground>() {
-        }.getType();
+        Type type = new TypeToken<WeatherUnderground>() {  }.getType();
 
-        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET,
-                url, type, null, listener, errorListener);
+        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
 
         return mRequestQueue.add(gsonReq);
 
     }
 
-    public Request getForecast(double latitude, double longitude, @NonNull Response.Listener<ForecastUnderground> listener, @NonNull Response.ErrorListener errorListener) {
+    public Request getForecast(double latitude, double longitude, @NonNull Response.Listener<ForecastUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
 
-        String url = HOST + mAppId + GET_FORECAST_ENDPOINT + latitude +","+ longitude+".json";
+        String url = HOST + mAppId + String.format(GET_FORECAST_ENDPOINT, lg)  + latitude +","+ longitude+".json";
 
-        Type type = new TypeToken<ForecastUnderground>() {
-        }.getType();
+        Type type = new TypeToken<ForecastUnderground>() {   }.getType();
 
-        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET,
-                url, type, null, listener, errorListener);
+        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
 
         return mRequestQueue.add(gsonReq);
     }
+
+    public Request getWeather(String country, String city, @NonNull Response.Listener<WeatherUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
+
+        String url = HOST + mAppId + String.format(GET_WEATHER_ENDPOINT, lg) + country +"/"+ city.replace(' ','_')+".json";
+
+        Type type = new TypeToken<WeatherUnderground>() {  }.getType();
+
+        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
+
+        return mRequestQueue.add(gsonReq);
+
+    }
+
+    public Request getForecast(String country, String city, @NonNull Response.Listener<ForecastUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
+
+        String url = HOST + mAppId + String.format(GET_FORECAST_ENDPOINT, lg) + country +"/"+ city.replace(' ','_')+".json";
+
+        Type type = new TypeToken<ForecastUnderground>() {   }.getType();
+
+        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
+
+        return mRequestQueue.add(gsonReq);
+    }
+
 }

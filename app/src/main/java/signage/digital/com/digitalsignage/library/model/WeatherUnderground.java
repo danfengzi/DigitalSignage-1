@@ -12,8 +12,17 @@ public class WeatherUnderground {
     @SerializedName("current_observation")
     CurrentObservation response;
 
+    ForecastUnderground forecast;
+
     public CurrentObservation getCurrentWeather() {
         return response;
     }
 
+    public ForecastUnderground getForecast() {
+        return forecast;
+    }
+
+    public void setForecast(ForecastUnderground forecast) {
+        this.forecast = forecast;
+    }
 }

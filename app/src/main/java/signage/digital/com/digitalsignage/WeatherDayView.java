@@ -8,9 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import signage.digital.com.digitalsignage.library.model.ForecastDay;
-import signage.digital.com.digitalsignage.library.model.WeatherUnderground;
-
-import static signage.digital.com.digitalsignage.R.id.city;
 
 /**
  * Created by Alexandre on 09/12/2016.
@@ -19,7 +16,9 @@ import static signage.digital.com.digitalsignage.R.id.city;
 public class WeatherDayView extends RelativeLayout {
     private View rootView;
     private TextView day;
-    private TextView temp;
+    private TextView max;
+    private TextView min;
+    private TextView pop;
     private ImageView icon;
     private Context context;
     public WeatherDayView(Context context) {
@@ -43,14 +42,18 @@ public class WeatherDayView extends RelativeLayout {
     private void init(Context context) {
         rootView = inflate(context, R.layout.weatherday, this);
         day = (TextView) rootView.findViewById(R.id.day);
-        temp = (TextView) rootView.findViewById(R.id.temp);
+        max = (TextView) rootView.findViewById(R.id.max);
+        min = (TextView) rootView.findViewById(R.id.min);
+        pop = (TextView) rootView.findViewById(R.id.pop);
         icon = (ImageView) rootView.findViewById(R.id.icon);
     }
 
-    public void setWeather(ForecastDay w){
-        day.setText(w.);
-        temp.setText(w.getCurrentWeather().getTemp_c()+"C/"+w.getCurrentWeather().getTemp_f()+"F");
-        icon.setImageResource(getResources().getIdentifier(w.getCurrentWeather().getIcon(), "drawable", context.getPackageName()));
-
+    public void setForecast(ForecastDay w){
+        day.setText(w.getDate().getWeekday_short());
+        max.setText(""+w.getHigh().getCelsius()+"c");
+        min.setText(""+w.getLow().getCelsius()+"c");
+        pop.setText(w.getPop()+"%");
+        icon.setImageResource(getResources().getIdentifier(w.getIcon(), "drawable", context.getPackageName()));
     }
+
 }
