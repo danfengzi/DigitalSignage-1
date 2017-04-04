@@ -33,11 +33,6 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
 
     protected static final String PROTOCOL_CHARSET = "utf-8";
 
-    /**
-     * Content type for request.
-     */
-//    private static final String PROTOCOL_CONTENT_TYPE =
-//            String.format("text/plain; charset=%s", PROTOCOL_CHARSET);
 
     private static final String PROTOCOL_CONTENT_TYPE =
             String.format("application/x-www-form-urlencoded");
@@ -50,15 +45,8 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
     }
 
     private final Gson gson = new GsonBuilder()
-//            .setDateFormat("M/d/yyyy h:mm:ss aa")
             .registerTypeAdapter(Date.class, new DateSerializer())
-//            .registerTypeAdapter(Boolean.class, new BooleanSerializer())
-//            .registerTypeAdapter(boolean.class, new BooleanSerializer())
             .create();
-    //    private final Class<T> clazz;
-//    private final Response.Listener<T> mListener;
-//    private final Map<String, String> mFormData;
-
 
     /**
      * Make a request and return a parsed object
@@ -70,11 +58,6 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
                        @NonNull Response.Listener<T> listener, @NonNull Response.ErrorListener errorListener) {
         super(method, url, getFormDataString(formData), listener, errorListener);
 
-//        this.mListener = listener;
-//        this.mFormData = formData;
-
-
-//        Log.d(TAG, "formData: " + formData.toString());
     }
 
     /**
@@ -86,21 +69,8 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
     public GsonRequest(int method, @NonNull String url, @Nullable String formData,
                        @NonNull Response.Listener<T> listener, @NonNull Response.ErrorListener errorListener) {
 
-
         super(method, url, formData, listener, errorListener);
-
-//        this.mListener = listener;
-//        this.mFormData = formData;
-
-
-//        Log.d(TAG, "formData: " + formData.toString());
     }
-
-
-//    @Override
-//    protected void deliverResponse(T response) {
-//        mListener.onResponse(response);
-//    }
 
     @Override
     protected abstract Response<T> parseNetworkResponse(NetworkResponse response);
@@ -120,24 +90,9 @@ public abstract class GsonRequest<T> extends JsonRequest<T> {
             }
 
             return params.toString().substring(1);
-        }else {
+        } else {
             return null;
         }
-
-
-
-//        try {
-//            String encodedBody = URLEncoder.encode(body, "utf-8");
-//
-//            Log.d(TAG, "getBody(): " + encodedBody);
-//
-//
-//            return encodedBody;
-//        } catch (UnsupportedEncodingException uee) {
-//            Log.wtf("Volley", String.format("Unsupported Encoding while trying to get the bytes of %s using %s",
-//                    body, PROTOCOL_CHARSET));
-//            return null;
-//        }
     }
 
 

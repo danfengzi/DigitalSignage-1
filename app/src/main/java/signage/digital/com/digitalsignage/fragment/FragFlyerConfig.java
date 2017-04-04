@@ -1,11 +1,14 @@
 package signage.digital.com.digitalsignage.fragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -30,7 +33,6 @@ import com.google.firebase.storage.UploadTask.TaskSnapshot;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import signage.digital.com.digitalsignage.GalleryActivity;
 import signage.digital.com.digitalsignage.MyApp;
 import signage.digital.com.digitalsignage.Profile;
 import signage.digital.com.digitalsignage.R;
@@ -63,15 +65,33 @@ public class FragFlyerConfig extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                String path = data.getStringExtra("path");
-                File imgFile = new File(path);
-                if (imgFile.exists()) {
-                    saveImage(imgFile.getAbsolutePath(), 1);
+                Uri selectedImageUri = data.getData();
+                if (selectedImageUri != null) {
+                    String path = getRealPathFromURI(getContext(), selectedImageUri);
+                    //String path = data.getStringExtra("path");
+                    File imgFile = new File(path);
+                    if (imgFile.exists()) {
+                        saveImage(imgFile.getAbsolutePath(), 1);
+                    }
                 }
             }
         }
     }
 
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,8 +110,13 @@ public class FragFlyerConfig extends BaseFragment {
         addImage.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), GalleryActivity.class);
-                startActivityForResult(intent, 1);
+                Intent photoPickerIntent = new Intent(
+                        Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, 1);
+                //Intent intent = new Intent(getContext(), GalleryActivity.class);
+                //startActivityForResult(intent, 1);
             }
         });
 

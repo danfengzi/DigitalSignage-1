@@ -24,11 +24,13 @@
 
     <ViewFlipper
         android:layout_width="match_parent"
-        android:id="@+id/flipper"
+        android:id="@+id/banners"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="#2E3152"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_centerVertical="false"
+        android:measureAllChildren="false"/>
 
-
-</RelativeLayout>
+    </RelativeLayout>

@@ -37,32 +37,23 @@ public class CalendarService {
         if(cCalendar.getCount() == 1) {
             cCalendar.moveToFirst();
             id = cCalendar.getInt(0);
-            Log.d("Digital-->>","cursor ID "+id);
         }
 
         final Cursor cursor = contentResolver.query(Uri.parse("content://com.android.calendar/events"),
-                new String[]{Events.CALENDAR_ID, Events.TITLE, Events.DESCRIPTION, Events.EVENT_LOCATION },
+                new String[]{Events.CALENDAR_ID, Events.TITLE, Events.DESCRIPTION, Events.EVENT_LOCATION, Events.DTSTART, Events.DTEND },
                 null, null, null);
-
-        //HashSet<String> calendarIds = getCalenderIds(cursor);
-        //HashMap<String, List<CalendarEvent>> eventMap = new HashMap<String, List<CalendarEvent>>();
 
         Uri.Builder builder = Uri.parse("content://com.android.calendar/instances/when").buildUpon();
         long now = new Date().getTime();
 
-//      ContentUris.appendId(builder, now - (DateUtils.DAY_IN_MILLIS * days) - (DateUtils.HOUR_IN_MILLIS * hours));
-//      ContentUris.appendId(builder, now + (DateUtils.DAY_IN_MILLIS * days) + (DateUtils.HOUR_IN_MILLIS * hours));
         ContentUris.appendId(builder, now);
         ContentUris.appendId(builder, now);
 
-        Log.d("Digital-->>","ID "+id);
         Cursor eventCursor = contentResolver.query(builder.build(),
-            new String[]  {Events.TITLE, Events.DESCRIPTION, Events.EVENT_LOCATION}, "calendar_id=" + id,
+            new String[]  {Events.TITLE, Events.DESCRIPTION, Events.EVENT_LOCATION, Events.DTSTART, Events.DTEND}, "calendar_id=" + id,
             null, "startDay ASC, startMinute ASC");
 
-        Log.d("Digital-->>","cursor "+eventCursor.getCount());
         if(eventCursor.getCount()>0) {
-            //List<CalendarEvent> eventList = new ArrayList<CalendarEvent>();
             eventCursor.moveToFirst();
 
             CalendarEvent ce = loadEvent(eventCursor);
@@ -80,13 +71,13 @@ public class CalendarService {
     }
 
     private static CalendarEvent loadEvent(Cursor csr) {
-        return new CalendarEvent(csr.getString(0), csr.getString(2));
+        Log.d("-------","Evento "+csr.getString(0)+" "+csr.getString(2)+" "+csr.getString(3)+" "+csr.getString(4));
+        return new CalendarEvent(csr.getString(0), csr.getString(2), csr.getString(3), csr.getString(4));
     }
 
     private static HashSet<String> getCalenderIds(Cursor cursor) {
         HashSet<String> calendarIds = new HashSet<String>();
         try {
-            Log.d("Digital-->>","cursor ID "+cursor.getCount());
             if(cursor.getCount() > 0) {
 
                 while (cursor.moveToNext()) {

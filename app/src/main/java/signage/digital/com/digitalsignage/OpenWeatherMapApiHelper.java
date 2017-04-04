@@ -3,6 +3,7 @@ package signage.digital.com.digitalsignage;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -14,8 +15,8 @@ import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.Map;
 
-import signage.digital.com.digitalsignage.library.model.ForecastUnderground;
-import signage.digital.com.digitalsignage.library.model.WeatherUnderground;
+import signage.digital.com.digitalsignage.model.ForecastUnderground;
+import signage.digital.com.digitalsignage.model.WeatherUnderground;
 import signage.digital.com.digitalsignage.library.network.CustomGsonObjectRequest;
 
 /**
@@ -70,6 +71,11 @@ public class OpenWeatherMapApiHelper {
         Type type = new TypeToken<WeatherUnderground>() {  }.getType();
 
         CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
+        gsonReq.setShouldCache(false);
+        gsonReq.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         return mRequestQueue.add(gsonReq);
 
@@ -82,31 +88,11 @@ public class OpenWeatherMapApiHelper {
         Type type = new TypeToken<ForecastUnderground>() {   }.getType();
 
         CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
-
+        gsonReq.setShouldCache(false);
+        gsonReq.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         return mRequestQueue.add(gsonReq);
     }
-
-    public Request getWeather(String country, String city, @NonNull Response.Listener<WeatherUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
-
-        String url = HOST + mAppId + String.format(GET_WEATHER_ENDPOINT, lg) + country +"/"+ city.replace(' ','_')+".json";
-
-        Type type = new TypeToken<WeatherUnderground>() {  }.getType();
-
-        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
-
-        return mRequestQueue.add(gsonReq);
-
-    }
-
-    public Request getForecast(String country, String city, @NonNull Response.Listener<ForecastUnderground> listener, @NonNull Response.ErrorListener errorListener, String lg) {
-
-        String url = HOST + mAppId + String.format(GET_FORECAST_ENDPOINT, lg) + country +"/"+ city.replace(' ','_')+".json";
-
-        Type type = new TypeToken<ForecastUnderground>() {   }.getType();
-
-        CustomGsonObjectRequest gsonReq = new CustomGsonObjectRequest<>(Request.Method.GET, url, type, null, listener, errorListener);
-
-        return mRequestQueue.add(gsonReq);
-    }
-
 }

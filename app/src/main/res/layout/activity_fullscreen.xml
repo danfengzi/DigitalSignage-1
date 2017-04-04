@@ -2,15 +2,16 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#0099cc"
               tools:context="signage.digital.com.digitalsignage.PlayActivity"
-              android:id="@+id/main">
+              android:id="@+id/main"
+              android:background="@android:color/white">
 
     <signage.digital.com.digitalsignage.RotatedFrame
         android:id="@+id/contentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1">
+
+        </signage.digital.com.digitalsignage.RotatedFrame>>
 
 </LinearLayout>

@@ -33,7 +33,11 @@ public class CustomGsonObjectRequest<T> extends GsonRequest<T> {
      * @param listener      what to do when success
      * @param errorListener what to do when error
      */
-    public CustomGsonObjectRequest(int method, @NonNull String url, @NonNull Type typeToken, @Nullable Map<String, String> formData, @NonNull Response.Listener<T> listener, @NonNull Response.ErrorListener errorListener) {
+
+    public CustomGsonObjectRequest(int method, @NonNull String url, @NonNull Type typeToken,
+                                   @Nullable Map<String, String> formData,
+                                   @NonNull Response.Listener<T> listener,
+                                   @NonNull Response.ErrorListener errorListener) {
         super(method, url, formData, listener, errorListener);
         mTypeToken = typeToken;
     }
@@ -44,7 +48,6 @@ public class CustomGsonObjectRequest<T> extends GsonRequest<T> {
             String json = new String(
                     response.data,
                     HttpHeaderParser.parseCharset(response.headers));
-
             return Response.success((T) gson.fromJson(json, mTypeToken),
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {

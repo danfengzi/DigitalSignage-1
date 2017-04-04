@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import signage.digital.com.digitalsignage.library.model.ForecastDay;
+import signage.digital.com.digitalsignage.model.ForecastDay;
 
 /**
  * Created by Alexandre on 09/12/2016.
@@ -42,18 +42,19 @@ public class WeatherDayView extends RelativeLayout {
     private void init(Context context) {
         rootView = inflate(context, R.layout.weatherday, this);
         day = (TextView) rootView.findViewById(R.id.day);
-        max = (TextView) rootView.findViewById(R.id.max);
-        min = (TextView) rootView.findViewById(R.id.min);
+        max = (TextView) rootView.findViewById(R.id.temp);
+        //min = (TextView) rootView.findViewById(R.id.min);
         pop = (TextView) rootView.findViewById(R.id.pop);
         icon = (ImageView) rootView.findViewById(R.id.icon);
     }
 
     public void setForecast(ForecastDay w){
         day.setText(w.getDate().getWeekday_short());
-        max.setText(""+w.getHigh().getCelsius()+"c");
-        min.setText(""+w.getLow().getCelsius()+"c");
+        max.setText(""+w.getHigh().getCelsius()+"/"+w.getLow().getCelsius());
+        //min.setText(""+w.getLow().getCelsius()+"c");
         pop.setText(w.getPop()+"%");
         icon.setImageResource(getResources().getIdentifier(w.getIcon(), "drawable", context.getPackageName()));
     }
+
 
 }

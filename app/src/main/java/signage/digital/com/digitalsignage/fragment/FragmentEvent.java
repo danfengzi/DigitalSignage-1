@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,38 +22,75 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.CalendarEvent;
+import signage.digital.com.digitalsignage.CalendarService;
+import signage.digital.com.digitalsignage.MyApp;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
 import signage.digital.com.digitalsignage.adapter.ItemEventsAdapter;
-import signage.digital.com.digitalsignage.adapter.ItemImagesAdapter;
+import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentEvent extends Fragment {
     private ListView list;
     private DatabaseReference myRef;
     private ChildEventListener listener;
     private ViewFlipper flipper;
-    private ItemImagesAdapter adapter;
     private ItemEventsAdapter eventsAdapter;
-    private Runnable runnableCode;
+    private ArrayList<WeatherView> listW;
+    private ArrayList<CalendarEvent> eventos;
+
+    private WeatherView rj;
+    private WeatherView sp;
+    private WeatherView pa;
+    private WeatherView ba;
+
+
+//    public void addWeather(ArrayList<WeatherView> v)//{
+    //    listW = v;
+   // }
+    Handler handler = new Handler();
+
+    Runnable serviceRunnable = new Runnable() {
+        @Override
+        public void run() {
+            eventos = CalendarService.readCalendar(getContext(),1,0, MyApp.getInstance().getProfile().getCalendar_id());
+            handler.postDelayed(this, (1000*60*5));
+            eventsAdapter = new ItemEventsAdapter(getContext(), eventos);
+            list.setAdapter(eventsAdapter);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("----------------onCreate Event");
+
+
+        rj = new WeatherView(getContext(), new City("Rio de Janeiro", -22.9865956, -43.2086082, "BR"));
+        sp = new WeatherView(getContext(), new City("São Paulo", -23.5810818, -46.6692446, "BR"));
+        pa = new WeatherView(getContext(), new City("Porto Alegre", -30.033764,-51.2278398, "BR"));
+        ba = new WeatherView(getContext(), new City("Buenos Aires", -34.5951784,-58.4242234, "BR"));
+
+        listW = new ArrayList<WeatherView>();
+        listW.add(rj);
+        listW.add(sp);
+        listW.add(pa);
+        listW.add(ba);
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-
-        eventsAdapter = new ItemEventsAdapter(getContext(), new ArrayList<CalendarEvent>());
 
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 ImageView v = new ImageView(getContext());
+                v.setScaleType(ScaleType.FIT_END);
                 v.setTag((String)dataSnapshot.getValue());
                 Picasso.with(getContext())
                         .load((String)dataSnapshot.getValue())
                         .into(v);
                 flipper.addView(v);
+                System.out.println("----------------onChildAdded");
             }
 
             @Override
@@ -79,51 +118,31 @@ public class FragmentEvent extends Fragment {
         };
     }
 
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_event, container, false);
-        list = (ListView)view.findViewById(R.id.list);
-        list.setAdapter(eventsAdapter);
+        System.out.println("----------------onCreateView Event");
 
-        flipper = (ViewFlipper)view.findViewById(R.id.flipper);
+        View view =  inflater.inflate(R.layout.fragment_event, container, false);
+
+        list = (ListView)view.findViewById(R.id.list);
+        flipper = (ViewFlipper)view.findViewById(R.id.banners);
+
+        flipper.removeAllViews();
+        for(WeatherView v:listW){
+            flipper.addView(v);
+        }
+
         flipper.setInAnimation(getActivity(), R.anim.view_transition_in_left);
         flipper.setOutAnimation(getActivity(), R.anim.view_transition_out_right);
 
-        final WeatherView rj = new WeatherView(getContext());
-        final WeatherView sp = new WeatherView(getContext());
-        final WeatherView pa = new WeatherView(getContext());
-        final WeatherView ny = new WeatherView(getContext());
-        final WeatherView ba = new WeatherView(getContext());
-        final WeatherView pr = new WeatherView(getContext());
-
-        flipper.addView(rj);
-        flipper.addView(sp);
-        flipper.addView(pa);
-        flipper.addView(ba);
-        flipper.addView(ny);
-        flipper.addView(pr);
-
-        //flipper.setAdapter(adapter);
         flipper.setFlipInterval(15000);
         flipper.setAutoStart(true);
-
-
-        final Handler handler = new Handler();
-        runnableCode = new Runnable() {
-            @Override
-            public void run() {
-                getEvents();
-                rj.getWeatherUnderground("Rio de Janeiro",-22.9865956,-43.2086082, "BR");
-                sp.getWeatherUnderground("São Paulo", -23.5810818,-46.6692446, "BR");
-                pa.getWeatherUnderground("Porto Alegre", -30.033764,-51.2278398, "BR");
-                ny.getWeatherUnderground("New York", 40.76688,-73.9782681, "BR");
-                ba.getWeatherUnderground("Buenos Aires", -34.5951784,-58.4242234, "BR");
-                pr.getWeatherUnderground("Paris", 48.8610227,2.3430481, "BR");
-                handler.postDelayed(runnableCode, 1000*60*10);
-            }
-        };
-        handler.post(runnableCode);
 
         return view;
     }
@@ -132,12 +151,19 @@ public class FragmentEvent extends Fragment {
     public void onResume(){
         super.onResume();
         myRef.child("profile/banners").addChildEventListener(listener);
-
+        startUpdate();
+        for(WeatherView v:listW){
+            v.startUpdate();
+        }
     }
 
     public void onPause(){
         super.onPause();
         myRef.removeEventListener(listener);
+        stopUpdate();
+        for(WeatherView v:listW){
+            v.stopUpdate();
+        }
     }
 
     @Override
@@ -145,7 +171,14 @@ public class FragmentEvent extends Fragment {
         super.onStart();
     }
 
-    private void getEvents(){
-        eventsAdapter.update();
+
+    public void startUpdate(){
+        Log.d("------", "startUpdate");
+        handler.postDelayed(serviceRunnable, 1000);
+    }
+
+    public void stopUpdate(){
+        Log.d("------", "stopUpdate");
+        handler.removeCallbacks(serviceRunnable);
     }
 }

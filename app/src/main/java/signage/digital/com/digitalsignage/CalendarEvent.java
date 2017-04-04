@@ -7,6 +7,8 @@ package signage.digital.com.digitalsignage;
 public class CalendarEvent{
 
     private String title;
+    private String start;
+    private String end;
 
     public String getRoom() {
         return room;
@@ -22,9 +24,11 @@ public class CalendarEvent{
 
     }
 
-    public CalendarEvent(String title, String room) {
+    public CalendarEvent(String title, String room, String start, String end) {
         this.title = title;
         this.room = room;
+        this.start = start;
+        this.end = end;
     }
 
     public String getTitle() {
@@ -35,4 +39,11 @@ public class CalendarEvent{
         this.title = title;
     }
 
+    public String getStart() {
+        return start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
 }

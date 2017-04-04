@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.CalendarEvent;
-import signage.digital.com.digitalsignage.MyApp;
 import signage.digital.com.digitalsignage.R;
 
 /**
@@ -23,8 +22,8 @@ public class ItemEventsAdapter extends BaseAdapter {
     private LayoutInflater inflator;
 
 
-    public void update(){
-        array = MyApp.getInstance().updateEvents();
+    public void update(ArrayList<CalendarEvent> e){
+        this.array = e;
         notifyDataSetChanged();
     }
 
@@ -47,16 +46,14 @@ public class ItemEventsAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         final ItemEventViewHolder mHolder;
         View v = view;
-        if (view == null)
-        {
+        if (view == null){
             mHolder = new ItemEventViewHolder();
             v = inflator.inflate(R.layout.item_event, null);
             mHolder.text1 = (TextView) v.findViewById(R.id.text1);
             mHolder.text2 = (TextView) v.findViewById(R.id.text2);
             v.setTag(mHolder);
         }
-        else
-        {
+        else {
             mHolder = (ItemEventViewHolder) v.getTag();
         }
         mHolder.text1.setText(array.get(i).getTitle());
