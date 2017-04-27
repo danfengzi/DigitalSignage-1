@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import signage.digital.com.digitalsignage.model.ForecastDay;
 
+
 /**
  * Created by Alexandre on 09/12/2016.
  */

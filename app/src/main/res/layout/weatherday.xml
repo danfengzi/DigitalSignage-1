@@ -18,7 +18,7 @@
         />
 
     <ImageView
-        app:srcCompat="@drawable/unknown"
+        app:srcCompat="@drawable/ic_clear"
         android:id="@+id/icon"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/temp"

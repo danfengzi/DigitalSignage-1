@@ -72,7 +72,7 @@
         <ImageView
             android:layout_width="128px"
             android:layout_height="128px"
-            app:srcCompat="@drawable/unknown"
+            app:srcCompat="@drawable/ic_clear"
             android:id="@+id/icon"
             android:layout_weight="1"
             android:adjustViewBounds="false"
