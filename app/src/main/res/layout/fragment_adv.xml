@@ -3,10 +3,9 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-    >
+              android:orientation="vertical">
 
-    <ViewFlipper
+    <AdapterViewFlipper
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/flyers"/>

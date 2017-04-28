@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterViewFlipper;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
@@ -20,13 +21,14 @@ import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
+import signage.digital.com.digitalsignage.adapter.ImageAdapter;
 import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentAdv extends Fragment {
 
     private DatabaseReference myRef;
     private ChildEventListener listener;
-    private ViewFlipper flipper;
+    private AdapterViewFlipper flipper;
     private LinearLayout weather;
     private ArrayList<WeatherView> list;
 
@@ -34,11 +36,12 @@ public class FragmentAdv extends Fragment {
     private WeatherView sp;
     private WeatherView pa;
     private WeatherView ba;
+    private ImageAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("----------------onCreate ADV");
+        System.out.println("----------- onCreate ADV");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         weather = new LinearLayout(getContext());
@@ -58,14 +61,9 @@ public class FragmentAdv extends Fragment {
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                ImageView v = new ImageView(getContext());
-                v.setTag((String)dataSnapshot.getValue());
-                Picasso.with(getContext())
-                        .load((String)dataSnapshot.getValue())
-                        .into(v);
-                flipper.addView(v);
+                adapter.addFile(dataSnapshot.getValue(String.class));
+                //flipper.addView(v);
                 System.out.println("----------------onChildAdded");
-
             }
 
             @Override
@@ -91,10 +89,6 @@ public class FragmentAdv extends Fragment {
             }
         };
     }
-
-    //public void addWeather(ArrayList<WeatherView> v){
-    //    list = v;
-    //}
 
     @Override
     public void onResume(){
@@ -123,23 +117,33 @@ public class FragmentAdv extends Fragment {
         System.out.println("----------------onCreateView ADV");
 
         View view =  inflater.inflate(R.layout.fragment_adv, container, false);
-        flipper = (ViewFlipper)view.findViewById(R.id.flyers);
+        flipper = (AdapterViewFlipper)view.findViewById(R.id.flyers);
         flipper.setInAnimation(getActivity(), R.anim.view_transition_in_left);
         flipper.setOutAnimation(getActivity(), R.anim.view_transition_out_right);
         flipper.setFlipInterval(20000);
         flipper.setAutoStart(true);
 
+        adapter = new ImageAdapter(getContext());
+        flipper.setAdapter(adapter);
+
+
         weather.removeAllViews();
         flipper.removeAllViews();
+
         for(WeatherView v:list){
             weather.addView(v);
         }
+
         ImageView logo = new ImageView(getContext());
         logo.setPadding(48,0,48,0);
         logo.setImageResource(R.drawable.wundergroundlogo);
         weather.addView(logo);
         flipper.addView(weather);
         return view;
+    }
+
+    private void setupViewer(){
+
     }
 
     @Override

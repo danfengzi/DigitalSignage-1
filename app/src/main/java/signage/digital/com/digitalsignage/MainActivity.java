@@ -36,7 +36,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     private Profile profile;
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
-    private StorageReference storageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         MyApp.getInstance().setContext(this);
 
         storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
         mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_main);
@@ -56,20 +54,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         myRef = database.getReference();
         showProgress();
 
-        myRef.child("file").child("update").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println("Inicio da atualizacao: ");
-                boolean update = (boolean)dataSnapshot.getValue();
-                if(update) {
-                    update();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {   }
-        });
-        Log.d("------","Downloads: "+Environment.DIRECTORY_DOWNLOADS);
     }
 
     @Override
@@ -95,48 +79,18 @@ public class MainActivity extends BaseActivity implements OnClickListener{
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInAnonymously:success");
-                        FirebaseUser fuser = mAuth.getCurrentUser();
-                        updateUI(fuser);
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInAnonymously:failure", task.getException());
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-                    }
+                if (task.isSuccessful()) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInAnonymously:success");
+                    FirebaseUser fuser = mAuth.getCurrentUser();
+                    updateUI(fuser);
+                } else {
+                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show();
+                    updateUI(null);
+                }
                 }
             });
-    }
-
-    private void appUpdate(){
-        File file = new File("/mnt/internal_sd/Download/app-release.apk");
-        file.setReadable(true, false);
-        Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        startActivity(intent);
-        finish();
-    }
-
-    private void update(){
-        File localFile =  new File(Environment.DIRECTORY_DOWNLOADS+"/app-release.apk");
-
-        storageRef.child("app/app-release.apk").getFile(localFile).addOnSuccessListener(new OnSuccessListener<TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                System.out.println("Download completo: "+taskSnapshot.getBytesTransferred());
-                myRef.child("file/update").setValue(false);
-                System.out.println("Set to false: ");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                System.out.println("Falha no download: "+exception.getMessage());
-            }
-        });
     }
 
     @Override
