@@ -8,20 +8,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterViewFlipper;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ViewFlipper;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
 import signage.digital.com.digitalsignage.adapter.ImageAdapter;
+import signage.digital.com.digitalsignage.adapter.ImageAdapter2;
 import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentAdv extends Fragment {
@@ -61,7 +60,7 @@ public class FragmentAdv extends Fragment {
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                adapter.addFile(dataSnapshot.getValue(String.class));
+                adapter.addItem(dataSnapshot.getValue(String.class));
                 //flipper.addView(v);
                 System.out.println("----------------onChildAdded");
             }

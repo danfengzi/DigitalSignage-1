@@ -28,6 +28,7 @@ import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
 import signage.digital.com.digitalsignage.adapter.ItemEventsAdapter;
 import signage.digital.com.digitalsignage.model.City;
+import signage.digital.com.digitalsignage.model.Screen;
 
 public class FragmentEvent extends Fragment {
     private ListView list;
@@ -42,17 +43,14 @@ public class FragmentEvent extends Fragment {
     private WeatherView sp;
     private WeatherView pa;
     private WeatherView ba;
+    private Screen screen = MyApp.getInstance().getScreen();
 
-
-//    public void addWeather(ArrayList<WeatherView> v)//{
-    //    listW = v;
-   // }
     Handler handler = new Handler();
 
     Runnable serviceRunnable = new Runnable() {
         @Override
         public void run() {
-            eventos = CalendarService.readCalendar(getContext(),1,0, MyApp.getInstance().getProfile().getCalendar_id());
+            eventos = CalendarService.readCalendar(getContext(),1,0, screen.getCalendar_id());
             handler.postDelayed(this, (1000*60*5));
             eventsAdapter = new ItemEventsAdapter(getContext(), eventos);
             list.setAdapter(eventsAdapter);

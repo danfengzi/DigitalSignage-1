@@ -21,12 +21,14 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 
+import signage.digital.com.digitalsignage.model.Screen;
+
 /**
  * Created by Alexandre on 19/09/2016.
  */
 public class MyApp extends Application {
     private static MyApp ourInstance = new MyApp();
-    private Profile profile;
+    private Screen screen;
     private Context context;
     public static MyApp getInstance() {
         return ourInstance;
@@ -38,14 +40,20 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if(profile==null)
-            profile = new Profile();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference();
+    }
 
+    public Screen getScreen() {
+        return screen;
+    }
+
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
+    public void saveScreen() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        myRef.child("screen").child(screen.getId()).setValue(screen);
     }
 
     public Context getContext() {
@@ -56,33 +64,9 @@ public class MyApp extends Application {
         this.context = context;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        if(profile==null)
-            this.profile = new Profile();
-        this.profile = profile;
-    }
-
     private void downloadFile(String child, String file, OnSuccessListener<FileDownloadTask.TaskSnapshot> listener) {
         File localFile = new File(Environment.DIRECTORY_DOWNLOADS + file);
         storageRef.child(child).getFile(localFile).addOnSuccessListener(listener);
-
-        /*
-                new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                System.out.println("Falha no download: "+exception.getMessage());
-            }
-        });
-    }
-    */
     }
 
     public void checkUpdate(){

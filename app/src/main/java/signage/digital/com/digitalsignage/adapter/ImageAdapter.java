@@ -1,76 +1,85 @@
 package signage.digital.com.digitalsignage.adapter;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.R;
 
 /**
- * Created by everest on 28/04/2017.
+ * Created by Alexandre on 22/07/2016.
  */
+public class ImageAdapter extends BaseAdapter {
 
-public class ImageAdapter extends PagerAdapter {
+    private Context context;
+    private ArrayList<String> paths;
+    private LayoutInflater inflator;
 
-    Context mContext;
-    LayoutInflater mLayoutInflater;
-    ArrayList<String> files = new ArrayList<String>();
-    View v;
-
-    public ImageAdapter(Context context) {
-        mContext = context;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
-
-    public void setFirstView(View v){
-        this.v = v;
-    }
-
-    public void addFile(String file){
-        files.add(file);
+    public void addItem(String url){
+        paths.add(url);
         notifyDataSetChanged();
     }
 
-    public void removeFile(String file){
-        files.remove(file);
+    public void removeItem(String url){
+        paths.remove(url);
+        notifyDataSetChanged();
+    }
+
+    public void setItems(ArrayList<String> array){
+        this.paths = array;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return files.size();
+        return paths.size();
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+    public Object getItem(int i) {
+        return paths.get(i);
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        View itemView;
-        if(position>0) {
-            itemView = mLayoutInflater.inflate(R.layout.layout_image, container, false);
+    public long getItemId(int i) {
+        return i;
+    }
 
-            ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(files.get(position)));
-            container.addView(itemView);
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        final ImagesViewHolder mHolder;
+        View v = view;
+        if (view == null) {
+            mHolder = new ImagesViewHolder();
+            v = inflator.inflate(R.layout.item_gallery, null);
+            mHolder.image = (ImageView) v.findViewById(R.id.item_picture);
+            v.setTag(mHolder);
         }
-        else{
-            itemView = v;
+        else {
+            mHolder = (ImagesViewHolder) v.getTag();
         }
-        return itemView;
+        Picasso.with(context)
+                .load(paths.get(i))
+                .into(mHolder.image);
+        return v;
     }
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout) object);
+
+    public ImageAdapter(Context c){
+        this.context = c;
+        this.paths = new ArrayList<String>();
+        this.inflator= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        notifyDataSetChanged();
+    }
+
+    class ImagesViewHolder{
+        public ImageView image;
     }
 }

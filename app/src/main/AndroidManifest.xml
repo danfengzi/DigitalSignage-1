@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="signage.digital.com.digitalsignage">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
@@ -33,10 +34,6 @@
             android:name=".PlayActivity"
             android:theme="@style/FullscreenTheme"
             android:launchMode="singleInstance">
-        </activity>
-        <activity android:name=".ConfigActivity">
-        </activity>
-        <activity android:name=".GalleryActivity">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

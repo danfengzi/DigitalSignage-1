@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import signage.digital.com.digitalsignage.adapter.ItemEventsAdapter;
 import signage.digital.com.digitalsignage.fragment.FragmentAdv;
 import signage.digital.com.digitalsignage.fragment.FragmentEvent;
+import signage.digital.com.digitalsignage.model.Screen;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -23,12 +24,13 @@ public class PlayActivity extends BaseActivity{
     private ItemEventsAdapter eventsAdapter;
     private FragmentAdv adv;
     private FragmentEvent evt;
+    private Screen screen = MyApp.getInstance().getScreen();
     Handler handler = new Handler();
 
     Runnable serviceRunnable = new Runnable() {
         @Override
         public void run() {
-        updateAgenda(CalendarService.readCalendar(getBaseContext(),1,0, MyApp.getInstance().getProfile().getCalendar_id()));
+        updateAgenda(CalendarService.readCalendar(getBaseContext(),1,0, screen.getCalendar_id()));
         handler.postDelayed(this, (1000*60*5));
         }
     };
@@ -43,7 +45,6 @@ public class PlayActivity extends BaseActivity{
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-
         setContentView(R.layout.activity_fullscreen);
 
         //adv = new FragmentAdv();
@@ -72,13 +73,6 @@ public class PlayActivity extends BaseActivity{
         // TODO Auto-generated method stub
         super.onStart();
         handler.postDelayed(serviceRunnable,5000);
-        //switchFragment(adv,TYPE_ADVERTISING);
-    }
-
-    @Override
-    protected void onResume() {
-        // TODO Auto-generated method stub
-        super.onResume();
     }
 
     @Override
@@ -88,12 +82,6 @@ public class PlayActivity extends BaseActivity{
         handler.removeCallbacks(serviceRunnable);
     }
 
-    @Override
-    public void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-    }
-
     private void switchFragment(Fragment f) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
@@ -101,7 +89,6 @@ public class PlayActivity extends BaseActivity{
         //transaction.addToBackStack(null);
         transaction.commit();
     }
-
 
     public void updateAgenda(ArrayList<CalendarEvent> events) {
         System.out.println("----------------updateAgenda");

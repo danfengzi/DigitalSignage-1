@@ -82,5 +82,4 @@ public class ItemImagesAdapter extends BaseAdapter {
     class ImagesViewHolder{
         public ImageView image;
     }
-
 }
