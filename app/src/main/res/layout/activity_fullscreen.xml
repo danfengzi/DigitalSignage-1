@@ -12,6 +12,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        </signage.digital.com.digitalsignage.RotatedFrame>>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"/>
+
+    </signage.digital.com.digitalsignage.RotatedFrame>>
 
 </LinearLayout>

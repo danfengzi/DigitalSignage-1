@@ -66,6 +66,4 @@ public class City {
     public void setForecast(ForecastUnderground forecast) {
         this.forecast = forecast;
     }
-
-
 }

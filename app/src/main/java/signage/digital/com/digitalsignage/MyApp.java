@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,8 +23,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import signage.digital.com.digitalsignage.model.City;
+import signage.digital.com.digitalsignage.model.ForecastUnderground;
 import signage.digital.com.digitalsignage.model.Screen;
+import signage.digital.com.digitalsignage.model.WeatherUnderground;
 
 /**
  * Created by Alexandre on 19/09/2016.
@@ -30,6 +37,7 @@ public class MyApp extends Application {
     private static MyApp ourInstance = new MyApp();
     private Screen screen;
     private Context context;
+    private ArrayList<City> cities;
     public static MyApp getInstance() {
         return ourInstance;
     }
@@ -37,10 +45,64 @@ public class MyApp extends Application {
     private StorageReference storageRef;
     private DatabaseReference myRef;
 
+    Handler handler = new Handler();
+
+    Runnable serviceRunnable = new Runnable() {
+        @Override
+        public void run() {
+            getWatherData();
+            handler.postDelayed(this, (1000*60*30));
+        }
+    };
+
     @Override
     public void onCreate() {
         super.onCreate();
     }
+
+    public ArrayList<City> getCities(){
+        return cities;
+    }
+
+    public void addCity(City c){
+        if(cities==null)
+            cities = new ArrayList<City>();
+        cities.add(c);
+    }
+
+    public void getWatherData(){
+        for(City c:cities){
+            getWeatherUnderground(c);
+        }
+    }
+
+    public void getWeatherUnderground(final City c){
+
+        final WeatherApi helper = new WeatherApi(context);
+        final Response.ErrorListener error = new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {    }
+        };
+
+        final Response.Listener<ForecastUnderground> l_forecast = new Response.Listener<ForecastUnderground>(){
+            @Override
+            public void onResponse(ForecastUnderground response) {
+                c.setForecast(response);
+            }
+        };
+
+        final Response.Listener<WeatherUnderground> l_weather = new Response.Listener<WeatherUnderground>(){
+            @Override
+            public void onResponse(WeatherUnderground response) {
+                c.setWeather(response);
+            }
+        };
+
+        helper.getWeather(c.getLatitude(), c.getLongitude(), l_weather, error, c.getLang());
+        helper.getForecast(c.getLatitude(), c.getLongitude(), l_forecast, error, c.getLang());
+        Log.d("------", "atualizando "+ c.getCity());
+    }
+
 
     public Screen getScreen() {
         return screen;

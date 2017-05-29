@@ -2,16 +2,21 @@ package signage.digital.com.digitalsignage;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.adapter.ItemEventsAdapter;
+import signage.digital.com.digitalsignage.adapter.ViewPagerAdapter;
 import signage.digital.com.digitalsignage.fragment.FragmentAdv;
 import signage.digital.com.digitalsignage.fragment.FragmentEvent;
+import signage.digital.com.digitalsignage.model.City;
 import signage.digital.com.digitalsignage.model.Screen;
 
 /**
@@ -24,13 +29,14 @@ public class PlayActivity extends BaseActivity{
     private ItemEventsAdapter eventsAdapter;
     private FragmentAdv adv;
     private FragmentEvent evt;
-    private Screen screen = MyApp.getInstance().getScreen();
-    Handler handler = new Handler();
+    private MyApp app;
+    private ViewPager viewPager;
 
+    Handler handler = new Handler();
     Runnable serviceRunnable = new Runnable() {
         @Override
         public void run() {
-        updateAgenda(CalendarService.readCalendar(getBaseContext(),1,0, screen.getCalendar_id()));
+        updateAgenda(CalendarService.readCalendar(getBaseContext(),1,0, app.getScreen().getCalendar_id()));
         handler.postDelayed(this, (1000*60*5));
         }
     };
@@ -47,25 +53,14 @@ public class PlayActivity extends BaseActivity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
         setContentView(R.layout.activity_fullscreen);
 
-        //adv = new FragmentAdv();
-        //adv.addWeather(l);
-        //FragmentManager fm = getSupportFragmentManager();
-        //FragmentTransaction transaction = fm.beginTransaction();
-        //transaction.add(R.id.contentFragment, adv); //Container -> R.id.contentFragment
-        //transaction.commit();
-        //current=1;
+        app = MyApp.getInstance();
+        app.addCity(new City("Rio de Janeiro", -22.9865956, -43.2086082, "BR"));
+        app.addCity(new City("São Paulo", -23.5810818, -46.6692446, "BR"));
+        app.addCity(new City("Porto Alegre", -30.033764,-51.2278398, "BR"));
+        app.addCity(new City("Buenos Aires", -34.5951784,-58.4242234, "BR"));
 
-        //evt.addWeather(l);
+        setupViewPager();
 
-
-//        if (eventSize == 0) {
-  //          getSupportFragmentManager().beginTransaction().add(R.id.contentFragment, adv).commit();
-            //currentFrag = 1;
-    //    } else {
-      //      getSupportFragmentManager().beginTransaction()
-        //            .add(R.id.contentFragment, evt).commit();
-            //currentFrag = 2;
-        //}
     }
 
     @Override
@@ -82,31 +77,22 @@ public class PlayActivity extends BaseActivity{
         handler.removeCallbacks(serviceRunnable);
     }
 
-    private void switchFragment(Fragment f) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.contentFragment, f); //Container -> R.id.contentFragment
-        //transaction.addToBackStack(null);
-        transaction.commit();
+    private void setupViewPager() {
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new FragmentAdv(), "Adv");
+        adapter.addFragment(new FragmentEvent(), "Event");
+        viewPager.setAdapter(adapter);
     }
 
     public void updateAgenda(ArrayList<CalendarEvent> events) {
         System.out.println("----------------updateAgenda");
         if (events.size()>0) {
-            if (current == 1 || current == 0) {
-                evt = new FragmentEvent();
-                switchFragment(evt);
-                current = 2;
-                System.out.println("----------------replace to event");
-            }
+            viewPager.setCurrentItem(1);
         }
         else {
-            if (current == 2 || current == 0) {
-                adv = new FragmentAdv();
-                switchFragment(adv);
-                current = 1;
-                System.out.println("----------------replace to adv");
-            }
+            viewPager.setCurrentItem(0);
         }
     }
 }

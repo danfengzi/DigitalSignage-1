@@ -12,15 +12,6 @@
     tools:context="signage.digital.com.digitalsignage.MainActivity">
 
     <Button
-        android:text="Configuração"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/config"
-        android:layout_alignParentEnd="true"/>
-
-    <Button
         android:text="Play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

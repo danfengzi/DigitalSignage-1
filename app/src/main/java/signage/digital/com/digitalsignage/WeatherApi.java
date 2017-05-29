@@ -23,7 +23,7 @@ import signage.digital.com.digitalsignage.library.network.CustomGsonObjectReques
  * Created by fung.lam on 09/09/2015.
  * API Helper for Open Weather Map API
  */
-public class OpenWeatherMapApiHelper {
+public class WeatherApi {
 
     private static final String HOST = "http://api.wunderground.com/api/";
     private static final String GET_WEATHER_ENDPOINT = "/conditions/lang:%s/q/";
@@ -33,12 +33,12 @@ public class OpenWeatherMapApiHelper {
 
 
 
-    public OpenWeatherMapApiHelper(@NonNull Context context){
+    public WeatherApi(@NonNull Context context){
         mRequestQueue = Volley.newRequestQueue(context);
         mAppId = context.getResources().getString(R.string.undergroud_key);
     }
 
-    public OpenWeatherMapApiHelper(@NonNull RequestQueue requestQueue, @NonNull String appId) {
+    public WeatherApi(@NonNull RequestQueue requestQueue, @NonNull String appId) {
         mRequestQueue = requestQueue;
         mAppId = appId;
     }

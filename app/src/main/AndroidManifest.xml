@@ -47,11 +47,6 @@
             android:name="signage.digital.com.digitalsignage.GlideConfiguration"
             android:value="GlideModule"/>
 
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true">
-        </service>
     </application>
 
 </manifest>

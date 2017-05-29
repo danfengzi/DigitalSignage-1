@@ -5,9 +5,10 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <AdapterViewFlipper
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpageradv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/flyers"/>
+        android:layout_alignParentStart="true"/>
 
 </LinearLayout>

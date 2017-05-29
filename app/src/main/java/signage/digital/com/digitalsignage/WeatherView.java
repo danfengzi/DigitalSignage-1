@@ -33,16 +33,6 @@ public class WeatherView extends RelativeLayout {
     private Context context;
     private City mCity;
 
-    Handler handler = new Handler();
-
-    Runnable serviceRunnable = new Runnable() {
-        @Override
-        public void run() {
-           getWeatherUnderground(mCity);
-           handler.postDelayed(this, (1000*60*30));
-        }
-    };
-
     public WeatherView(Context context, City c) {
         super(context);
         this.mCity = c;
@@ -72,6 +62,11 @@ public class WeatherView extends RelativeLayout {
         city.setText(mCity.getCity());
     }
 
+    public void updateCityView(City c){
+        updateWeather(c.getWeather());
+        updateForecast(c.getForecast());
+    }
+
     public void updateForecast(ForecastUnderground w){
         try {
             condition.setText(w.getForecast().getTxt_forecast().getForecastDay().get(0).getFcttext_metric());
@@ -93,44 +88,5 @@ public class WeatherView extends RelativeLayout {
         } catch (Exception e){
             Log.d("------", "erro "+e.getMessage());
         }
-    }
-
-    public void getWeatherUnderground(City c){
-
-        final OpenWeatherMapApiHelper helper = new OpenWeatherMapApiHelper(context);
-        final ErrorListener error = new ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("------", "erro "+error.getMessage());
-            }
-        };
-
-        final Listener<ForecastUnderground> l_forecast = new Listener<ForecastUnderground>(){
-            @Override
-            public void onResponse(ForecastUnderground response) {
-                updateForecast(response);
-            }
-        };
-
-        final Listener<WeatherUnderground> l_weather = new Listener<WeatherUnderground>(){
-            @Override
-            public void onResponse(WeatherUnderground response) {
-                updateWeather(response);
-            }
-        };
-
-        helper.getWeather(c.getLatitude(), c.getLongitude(), l_weather, error, c.getLang());
-        helper.getForecast(c.getLatitude(), c.getLongitude(), l_forecast, error, c.getLang());
-        Log.d("------", "atualizando "+ c.getCity());
-    }
-
-    public void startUpdate(){
-        Log.d("------", "startUpdate");
-        handler.postDelayed(serviceRunnable, 0);
-    }
-
-    public void stopUpdate(){
-        Log.d("------", "stopUpdate");
-        handler.removeCallbacks(serviceRunnable);
     }
 }

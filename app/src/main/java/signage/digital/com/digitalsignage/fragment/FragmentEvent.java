@@ -159,16 +159,7 @@ public class FragmentEvent extends Fragment {
         super.onPause();
         myRef.removeEventListener(listener);
         stopUpdate();
-        for(WeatherView v:listW){
-            v.stopUpdate();
-        }
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
 
     public void startUpdate(){
         Log.d("------", "startUpdate");
