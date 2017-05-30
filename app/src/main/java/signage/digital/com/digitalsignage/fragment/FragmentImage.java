@@ -28,6 +28,14 @@ import signage.digital.com.digitalsignage.model.City;
 public class FragmentImage extends Fragment {
     private String path;
 
+    static FragmentImage getInstance(String path) {
+        FragmentImage frag = new FragmentImage();
+        Bundle args = new Bundle();
+        args.putString("path", path);
+        frag.setArguments(args);
+        return frag;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

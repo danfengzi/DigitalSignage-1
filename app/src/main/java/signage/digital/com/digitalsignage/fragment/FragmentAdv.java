@@ -33,7 +33,6 @@ public class FragmentAdv extends Fragment {
     private DatabaseReference myRef;
     private ChildEventListener listener;
     private AdapterViewFlipper flipper;
-
     private ImageAdapter adapter;
     private MyApp app;
 
@@ -48,11 +47,7 @@ public class FragmentAdv extends Fragment {
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //adapter.addItem(dataSnapshot.getValue(String.class));
-                Fragment f = new FragmentImage();
-                Bundle b = new Bundle();
-                b.putString("path", dataSnapshot.getValue(String.class));
-                f.setArguments(b);
+                Fragment f = FragmentImage.getInstance(dataSnapshot.getValue(String.class));
                 flipper.addView(f.getView());
                 System.out.println("----------------onChildAdded");
             }
@@ -93,7 +88,7 @@ public class FragmentAdv extends Fragment {
         System.out.println("----------------onCreateView ADV");
 
         View view =  inflater.inflate(R.layout.fragment_adv, container, false);
-        flipper = (AdapterViewFlipper)view.findViewById(R.id.flyers);
+        flipper = (AdapterViewFlipper)view.findViewById(R.id.flipper);
         flipper.setInAnimation(getActivity(), R.anim.view_transition_in_left);
         flipper.setOutAnimation(getActivity(), R.anim.view_transition_out_right);
         flipper.setFlipInterval(20000);
