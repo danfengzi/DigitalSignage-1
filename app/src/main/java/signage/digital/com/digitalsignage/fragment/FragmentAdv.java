@@ -1,6 +1,7 @@
 package signage.digital.com.digitalsignage.fragment;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -12,12 +13,17 @@ import android.widget.AdapterViewFlipper;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import signage.digital.com.digitalsignage.MyApp;
@@ -35,6 +41,8 @@ public class FragmentAdv extends Fragment {
     private AdapterViewFlipper flipper;
     private ImageAdapter adapter;
     private MyApp app;
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,33 +51,42 @@ public class FragmentAdv extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         app = MyApp.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
 
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Fragment f = FragmentImage.getInstance(dataSnapshot.getValue(String.class));
-                flipper.addView(f.getView());
+                downloadFile(dataSnapshot.getValue(String.class));
                 System.out.println("----------------onChildAdded");
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {         }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {        }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {         }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
+            public void onCancelled(DatabaseError databaseError) {        }
         };
     }
 
+
+    private void downloadFile(final String file) {
+        final File localFile = new File(Environment.DIRECTORY_DOWNLOADS + file);
+        storageRef.child("images").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                Fragment f = FragmentImage.getInstance(Environment.DIRECTORY_DOWNLOADS + file);
+                flipper.addView(f.getView());
+
+            }
+        });
+    }
 
     @Override
     public void onResume(){
@@ -104,9 +121,9 @@ public class FragmentAdv extends Fragment {
     }
 
     private void setupViewPager(View v) {
-        ViewPager viewPager = (ViewPager) v.findViewById(R.id.viewpageradv);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(adapter);
+    //    ViewPager viewPager = (ViewPager) v.findViewById(R.id.viewpageradv);
+    //    ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
+    //    viewPager.setAdapter(adapter);
     }
 
 }

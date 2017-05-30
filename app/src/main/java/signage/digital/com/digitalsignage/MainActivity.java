@@ -41,7 +41,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         mAuth = FirebaseAuth.getInstance();
 
         setContentView(R.layout.activity_main);
-        findViewById(R.id.config).setOnClickListener(this);
         findViewById(R.id.play).setOnClickListener(this);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -99,14 +98,16 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     }
 
     private void getProfile(){
-        myRef.child("screen").child(getMac()).addListenerForSingleValueEvent(new ValueEventListener() {
+//        myRef.child("screen").child(getMac()).addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.child("screen").child("00:00:00:00:00:00:00").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 hideProgress();
                 Log.d("------", "data "+dataSnapshot.toString());
                 if(dataSnapshot.getValue(Screen.class)==null) {
                     screen = new Screen();
-                    screen.setId(getMac());
+                    screen.setId("00:00:00:00:00:00:00");
+                    MyApp.getInstance().setScreen(screen);
                     MyApp.getInstance().saveScreen();
                 }
                 else{

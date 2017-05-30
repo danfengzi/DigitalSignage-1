@@ -149,16 +149,11 @@ public class FragmentEvent extends Fragment {
     public void onResume(){
         super.onResume();
         myRef.child("profile/banners").addChildEventListener(listener);
-        startUpdate();
-        for(WeatherView v:listW){
-            v.startUpdate();
-        }
     }
 
     public void onPause(){
         super.onPause();
         myRef.removeEventListener(listener);
-        stopUpdate();
     }
 
     public void startUpdate(){
