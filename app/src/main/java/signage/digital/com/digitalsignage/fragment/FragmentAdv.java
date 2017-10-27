@@ -1,64 +1,62 @@
 package signage.digital.com.digitalsignage.fragment;
 
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterViewFlipper;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import com.google.android.gms.tasks.OnSuccessListener;
+import android.widget.ViewFlipper;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
-
+import java.util.List;
 import signage.digital.com.digitalsignage.MyApp;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
-import signage.digital.com.digitalsignage.adapter.ImageAdapter;
-import signage.digital.com.digitalsignage.adapter.ImageAdapter2;
-import signage.digital.com.digitalsignage.adapter.ViewPagerAdapter;
 import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentAdv extends Fragment {
 
     private DatabaseReference myRef;
     private ChildEventListener listener;
-    private AdapterViewFlipper flipper;
-    private ImageAdapter adapter;
+    private ViewFlipper flipper;
     private MyApp app;
-    private FirebaseStorage storage;
-    private StorageReference storageRef;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println("----------- onCreate ADV");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
         app = MyApp.getInstance();
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
+
 
         listener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                downloadFile(dataSnapshot.getValue(String.class));
-                System.out.println("----------------onChildAdded");
+                //adapter.addFragment(FragmentImage.getInstance(dataSnapshot.));
+                ImageView imageView = new ImageView(getContext());
+                imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                imageView.setScaleType(ImageView.ScaleType.FIT_END);
+                imageView.setTag(dataSnapshot.getValue().toString());
+                Picasso.with(getActivity().getBaseContext())
+                        .load(dataSnapshot.getValue().toString())
+                        .into(imageView);
+                flipper.addView(imageView);
+                //adapter.addItem(imageView);
+                Log.d("-----","datasnapshot: "+dataSnapshot.getValue().toString());
             }
 
             @Override
@@ -75,28 +73,28 @@ public class FragmentAdv extends Fragment {
         };
     }
 
-
-    private void downloadFile(final String file) {
-        final File localFile = new File(Environment.DIRECTORY_DOWNLOADS + file);
-        storageRef.child("images").getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Fragment f = FragmentImage.getInstance(Environment.DIRECTORY_DOWNLOADS + file);
-                flipper.addView(f.getView());
-
-            }
-        });
-    }
-
     @Override
     public void onResume(){
         super.onResume();
-        myRef.child("profile/flyers").addChildEventListener(listener);
+//        myRef.child("profile/flyers").addChildEventListener(listener);
     }
 
     public void onPause(){
         super.onPause();
         myRef.removeEventListener(listener);
+    }
+
+    public static Animation inAnimation() {
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeIn.setDuration(1000);
+        return fadeIn;
+    }
+    public static Animation outAnimation() {
+        Animation fadeOut = new AlphaAnimation(1,0);
+        fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeOut.setDuration(1000);
+        return fadeOut;
     }
 
     @Override
@@ -105,25 +103,16 @@ public class FragmentAdv extends Fragment {
         System.out.println("----------------onCreateView ADV");
 
         View view =  inflater.inflate(R.layout.fragment_adv, container, false);
-        flipper = (AdapterViewFlipper)view.findViewById(R.id.flipper);
-        flipper.setInAnimation(getActivity(), R.anim.view_transition_in_left);
-        flipper.setOutAnimation(getActivity(), R.anim.view_transition_out_right);
+        flipper = (ViewFlipper)view.findViewById(R.id.flipper);
+        flipper.setAnimateFirstView(true);
+        flipper.setInAnimation(inAnimation());
+        flipper.setOutAnimation(outAnimation());
+
         flipper.setFlipInterval(20000);
         flipper.setAutoStart(true);
 
-        FragmentWeather fw = new FragmentWeather();
+        myRef.child("profile/flyers").addChildEventListener(listener);
 
-        flipper.addView(fw.getView());
-        flipper.setAdapter(adapter);
-
-        flipper.removeAllViews();
         return view;
     }
-
-    private void setupViewPager(View v) {
-    //    ViewPager viewPager = (ViewPager) v.findViewById(R.id.viewpageradv);
-    //    ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-    //    viewPager.setAdapter(adapter);
-    }
-
 }

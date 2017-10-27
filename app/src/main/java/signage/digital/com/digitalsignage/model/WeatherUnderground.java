@@ -1,25 +1,40 @@
 package signage.digital.com.digitalsignage.model;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
 import com.google.gson.annotations.SerializedName;
+
+import signage.digital.com.digitalsignage.BR;
 
 
 /**
  * Created by fung.lam on 02/09/2015.
  * for openweathermap webservice call
  */
-public class WeatherUnderground {
+public class WeatherUnderground  extends BaseObservable {
 
     @SerializedName("current_observation")
-    CurrentObservation response = new CurrentObservation();
+    public CurrentObservation currentObservation = new CurrentObservation();
 
-    ForecastUnderground forecast = new ForecastUnderground();
+    public ForecastUnderground forecast = new ForecastUnderground();
 
-    public CurrentObservation getCurrentWeather() {
-        return response;
+    @Bindable
+    public CurrentObservation getCurrentObservation() {
+        return currentObservation;
     }
 
+    @Bindable
     public ForecastUnderground getForecast() {
         return forecast;
     }
 
+
+    public void setResponse(CurrentObservation currentObservation) {
+        this.currentObservation = currentObservation;
+    }
+
+    public void setForecast(ForecastUnderground forecast) {
+        this.forecast = forecast;
+    }
 }

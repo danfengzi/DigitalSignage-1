@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="city"
+            type="signage.digital.com.digitalsignage.model.City"/>
+    </data>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -21,7 +28,7 @@
         android:paddingRight="16dp"
         android:paddingTop="10dp">
     <TextView
-        android:text="TextView"
+        android:text="${city.city}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/city"
@@ -33,16 +40,15 @@
         android:textStyle="normal|bold"/>
 
         <TextView
-            android:layout_width="wrap_content"
+        android:text="${city.condition}"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/city"
         android:layout_alignParentStart="true"
         android:id="@+id/condition"
-
         android:textColor="@android:color/black"
         android:paddingRight="16dp"
         android:textSize="18sp"/>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,12 +58,11 @@
             android:orientation="horizontal"
             android:layout_below="@+id/condition"
             android:layout_toEndOf="@+id/temp"
-            >
+            />
 
-        </LinearLayout>
 
         <TextView
-            android:text="00"
+            android:text="${city.weather.currentObservation.temp_c}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/temp"
@@ -83,3 +88,4 @@
 
 
 </LinearLayout>
+</layout>

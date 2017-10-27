@@ -1,3 +1,9 @@
+<layout>
+    <data>
+        <variable
+            name="cities"
+            type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.model.City&gt;"/>
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,22 +12,12 @@
               android:orientation="vertical"
               tools:context="signage.digital.com.digitalsignage.fragment.FragmentWeather">
 
-    <signage.digital.com.digitalsignage.WeatherView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rj"/>
-    <signage.digital.com.digitalsignage.WeatherView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sp"/>
-    <signage.digital.com.digitalsignage.WeatherView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/pa"/>
-    <signage.digital.com.digitalsignage.WeatherView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ba"/>
+        android:orientation="vertical"
+        app:cities="@{cities}"/>
+
 
     <ImageView
         android:id="@+id/imageView2"
@@ -34,3 +30,4 @@
         app:srcCompat="@drawable/wundergroundlogo" />
 
 </LinearLayout>
+</layout>

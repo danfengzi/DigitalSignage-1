@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<layout >
+    <data>
+        <variable
+            name="forecastdata"
+            type="signage.digital.com.digitalsignage.model.ForecastDay" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
@@ -10,16 +15,14 @@
               android:paddingLeft="16dp">
 
     <TextView
-        android:text="---"
+        android:text="${forecastdata.date.weekday_short}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/day"
-        android:gravity="center"
-        />
+        android:gravity="center"/>
 
     <ImageView
-        app:srcCompat="@drawable/ic_clear"
-        android:id="@+id/icon"
+        android:src="@{forecastdata.icon}"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/temp"
         android:layout_alignParentEnd="true"
@@ -27,7 +30,7 @@
         android:layout_height="96px"/>
 
     <TextView
-        android:text="--"
+        android:text="${forecastdata.high.celcius}/${forecastdata.low.celcius}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/temp"
@@ -37,7 +40,7 @@
         android:gravity="center"/>
 
     <TextView
-        android:text="--"
+        android:text="${forecastdata.pop}%"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pop"
@@ -45,6 +48,5 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/icon"
         android:gravity="center"/>
-
-
 </LinearLayout>
+</layout>

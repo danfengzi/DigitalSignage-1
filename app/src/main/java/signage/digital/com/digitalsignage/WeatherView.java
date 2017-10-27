@@ -62,11 +62,6 @@ public class WeatherView extends RelativeLayout {
         city.setText(mCity.getCity());
     }
 
-    public void updateCityView(City c){
-        updateWeather(c.getWeather());
-        updateForecast(c.getForecast());
-    }
-
     public void updateForecast(ForecastUnderground w){
         try {
             condition.setText(w.getForecast().getTxt_forecast().getForecastDay().get(0).getFcttext_metric());
@@ -83,8 +78,8 @@ public class WeatherView extends RelativeLayout {
 
     public void updateWeather(WeatherUnderground w){
         try{
-            temp.setText(w.getCurrentWeather().getTemp_c()+"c");
-            icon.setImageResource(getResources().getIdentifier(w.getCurrentWeather().getIcon(), "drawable", context.getPackageName()));
+            temp.setText(w.getCurrentObservation().getTemp_c()+"c");
+            icon.setImageResource(getResources().getIdentifier(w.getCurrentObservation().getIcon(), "drawable", context.getPackageName()));
         } catch (Exception e){
             Log.d("------", "erro "+e.getMessage());
         }

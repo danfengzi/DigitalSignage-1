@@ -16,6 +16,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,14 +52,13 @@ public class FragmentImage extends Fragment {
                              Bundle savedInstanceState) {
         System.out.println("----------------onCreateView FragmentImage");
 
-        View view =  inflater.inflate(R.layout.fragment_image, container, false);
-        ImageView image = (ImageView)view.findViewById(R.id.image_fragment);
-        File imgFile = new  File(path);
+        ImageView imageView = new ImageView(getContext());
+        imageView.setScaleType(ImageView.ScaleType.FIT_END);
+        imageView.setTag(path);
+        Picasso.with(getContext())
+                .load(path)
+                .into(imageView);
 
-        if(imgFile.exists()){
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            image.setImageBitmap(myBitmap);
-        }
-        return view;
+        return imageView;
     }
 }

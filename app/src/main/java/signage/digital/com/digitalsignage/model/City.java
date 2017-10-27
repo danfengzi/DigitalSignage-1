@@ -1,69 +1,54 @@
 package signage.digital.com.digitalsignage.model;
 
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
+
+import signage.digital.com.digitalsignage.BR;
+
 /**
  * Created by Alexandre on 25/12/2016.
  */
 
-public class City {
-    private String city;
-    private double latitude;
-    private double longitude;
-    private String lang;
-    private WeatherUnderground weather;
-    private ForecastUnderground forecast;
+public class City  extends BaseObservable {
+    public String city;
+    public WeatherUnderground weather;
+    public ForecastUnderground forecast;
 
-    public City(String city, double latitude, double longitude, String lang) {
+    public City(String city, WeatherUnderground weather, ForecastUnderground forecast) {
         this.city = city;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.lang = lang;
+        this.weather = weather;
+        this.forecast = forecast;
+    }
+    public City() {
     }
 
+    @Bindable
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+        notifyPropertyChanged(BR.city);
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
+    @Bindable
     public WeatherUnderground getWeather() {
         return weather;
     }
 
     public void setWeather(WeatherUnderground weather) {
         this.weather = weather;
+        notifyPropertyChanged(BR.weather);
     }
 
+    @Bindable
     public ForecastUnderground getForecast() {
         return forecast;
     }
 
     public void setForecast(ForecastUnderground forecast) {
         this.forecast = forecast;
+        notifyPropertyChanged(BR.forecast);
     }
 }
