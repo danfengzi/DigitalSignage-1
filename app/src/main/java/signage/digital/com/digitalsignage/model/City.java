@@ -11,44 +11,40 @@ import signage.digital.com.digitalsignage.BR;
 
 public class City  extends BaseObservable {
     public String city;
-    public WeatherUnderground weather;
-    public ForecastUnderground forecast;
+    public WeatherResponse weatherResponse;
+    public ForecastResponse forecastResponse;
 
-    public City(String city, WeatherUnderground weather, ForecastUnderground forecast) {
+    public City(String city, WeatherResponse weatherResponse, ForecastResponse forecastResponse) {
         this.city = city;
-        this.weather = weather;
-        this.forecast = forecast;
+        this.weatherResponse = weatherResponse;
+        this.forecastResponse = forecastResponse;
     }
     public City() {
     }
 
-    @Bindable
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
-        notifyPropertyChanged(BR.city);
     }
 
     @Bindable
-    public WeatherUnderground getWeather() {
-        return weather;
+    public WeatherResponse getWeatherResponse() {
+        return weatherResponse;
     }
 
-    public void setWeather(WeatherUnderground weather) {
-        this.weather = weather;
-        notifyPropertyChanged(BR.weather);
+    public void setWeatherResponse(WeatherResponse weather) {
+        this.weatherResponse = weather;
     }
 
     @Bindable
-    public ForecastUnderground getForecast() {
-        return forecast;
+    public ForecastResponse getForecastResponse() {
+        return forecastResponse;
     }
 
-    public void setForecast(ForecastUnderground forecast) {
-        this.forecast = forecast;
-        notifyPropertyChanged(BR.forecast);
+    public void setForecastResponse(ForecastResponse forecast) {
+        this.forecastResponse = forecastResponse;
     }
 }

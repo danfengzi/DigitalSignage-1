@@ -1,5 +1,7 @@
 package signage.digital.com.digitalsignage.fragment;
 
+import android.databinding.DataBindingUtil;
+import android.databinding.ObservableArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -25,14 +28,18 @@ import java.util.List;
 import signage.digital.com.digitalsignage.MyApp;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.WeatherView;
+import signage.digital.com.digitalsignage.databinding.FragmentEventBinding;
+import signage.digital.com.digitalsignage.databinding.FragmentWeatherBinding;
 import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentAdv extends Fragment {
 
     private DatabaseReference myRef;
-    private ChildEventListener listener;
+    private ValueEventListener listener;
+    private ValueEventListener citylistener;
     private ViewFlipper flipper;
-    private MyApp app;
+    private ObservableArrayList cities = new ObservableArrayList();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,33 +47,37 @@ public class FragmentAdv extends Fragment {
         System.out.println("----------- onCreate ADV");
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
-        app = MyApp.getInstance();
 
-
-        listener = new ChildEventListener() {
+        citylistener = new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //adapter.addFragment(FragmentImage.getInstance(dataSnapshot.));
-                ImageView imageView = new ImageView(getContext());
-                imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                imageView.setScaleType(ImageView.ScaleType.FIT_END);
-                imageView.setTag(dataSnapshot.getValue().toString());
-                Picasso.with(getActivity().getBaseContext())
-                        .load(dataSnapshot.getValue().toString())
-                        .into(imageView);
-                flipper.addView(imageView);
-                //adapter.addItem(imageView);
-                Log.d("-----","datasnapshot: "+dataSnapshot.getValue().toString());
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                cities.clear();
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    System.out.println("datasnapshot:"+data.toString());
+                    //City city = data.getValue(City.class);
+                    //cities.add(city);
+                }
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {         }
+            public void onCancelled(DatabaseError databaseError) {     }
+        };
 
+        listener = new ValueEventListener() {
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {        }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {         }
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                flipper.removeAllViews();
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+                    ImageView imageView = new ImageView(getContext());
+                    imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    imageView.setScaleType(ImageView.ScaleType.FIT_END);
+                    imageView.setTag(dataSnapshot.getValue().toString());
+                    Picasso.with(getActivity().getBaseContext())
+                            .load(dataSnapshot.getValue().toString())
+                            .into(imageView);
+                    flipper.addView(imageView);
+                }
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {        }
@@ -76,12 +87,14 @@ public class FragmentAdv extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
-//        myRef.child("profile/flyers").addChildEventListener(listener);
+        myRef.child("profile/flyers").addValueEventListener(listener);
+        myRef.child("cities").addValueEventListener(citylistener);
     }
 
     public void onPause(){
         super.onPause();
         myRef.removeEventListener(listener);
+        myRef.removeEventListener(citylistener);
     }
 
     public static Animation inAnimation() {
@@ -90,6 +103,7 @@ public class FragmentAdv extends Fragment {
         fadeIn.setDuration(1000);
         return fadeIn;
     }
+
     public static Animation outAnimation() {
         Animation fadeOut = new AlphaAnimation(1,0);
         fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
@@ -111,7 +125,10 @@ public class FragmentAdv extends Fragment {
         flipper.setFlipInterval(20000);
         flipper.setAutoStart(true);
 
-        myRef.child("profile/flyers").addChildEventListener(listener);
+//        FragmentWeatherBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_weather);
+        FragmentWeatherBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather, container, false);
+        binding.setCities(cities);
+        flipper.addView(binding.getRoot());
 
         return view;
     }

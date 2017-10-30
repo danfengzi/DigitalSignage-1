@@ -17,6 +17,9 @@ public class Eventm extends BaseObservable {
         this.location = location;
     }
 
+    public Eventm(){
+    }
+
     @Bindable
     public String getLocation() {
         return location;

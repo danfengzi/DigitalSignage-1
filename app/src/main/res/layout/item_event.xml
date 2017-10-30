@@ -8,16 +8,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#2E3152"
+    >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:textSize="30sp"
         android:textColor="@android:color/white"
-        android:text="${data.description}"/>
+        android:text="@{data.description}"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -26,7 +28,7 @@
         android:textSize="24sp"
         android:textColor="@android:color/white"
         android:textAlignment="viewEnd"
-        android:text="${data.location}"/>
+        android:text="@{data.location}"/>
 
 
 </LinearLayout>

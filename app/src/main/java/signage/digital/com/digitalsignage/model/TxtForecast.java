@@ -11,10 +11,12 @@ import signage.digital.com.digitalsignage.BR;
 
 public class TxtForecast  extends BaseObservable {
 
+    public TxtForecast(){}
+
     @SerializedName("forecastday")
     ArrayList<ForecastTxtDay> forecastday = new ArrayList<ForecastTxtDay>();
 
-    @Bindable public ArrayList<ForecastTxtDay> getForecastDay() {
+    @Bindable public ArrayList<ForecastTxtDay> getForecastday() {
         return forecastday;
     }
 

@@ -70,15 +70,14 @@ public class ListBindingAdapters {
         if (oldEntries == newEntries && oldLayoutId == newLayoutId) {
             return; // nothing has changed
         }
-
         EntryChangeListener listener =
                 ListenerUtil.getListener(viewGroup, R.id.entryListener);
         if (oldEntries != newEntries && listener != null && oldEntries instanceof ObservableList) {
             ((ObservableList)oldEntries).removeOnListChangedCallback(listener);
         }
-
         if (newEntries == null) {
             viewGroup.removeAllViews();
+
         } else {
             if (newEntries instanceof ObservableList) {
                 if (listener == null) {
@@ -224,6 +223,8 @@ public class ListBindingAdapters {
      */
     private static void resetViews(ViewGroup parent, int layoutId,
                                    List entries, int data) {
+        Log.d("----","17");
+
         parent.removeAllViews();
         if (layoutId == 0) {
             return;

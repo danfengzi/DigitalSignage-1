@@ -25,12 +25,10 @@ public class Temperature  extends BaseObservable {
     public void setCelsius(String celsius) {
         this.celsius = celsius;
         notifyPropertyChanged(BR.day);
-
     }
 
     public void setFahrenheit(String fahrenheit) {
         this.fahrenheit = fahrenheit;
         notifyPropertyChanged(BR.fahrenheit);
-
     }
 }

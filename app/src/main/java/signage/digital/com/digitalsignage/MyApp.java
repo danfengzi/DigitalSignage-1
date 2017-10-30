@@ -38,54 +38,8 @@ public class MyApp extends Application {
     private FirebaseStorage storage;
     private StorageReference storageRef;
     private DatabaseReference myRef;
-    private ChildEventListener eventListener;
     private static String TAG="DigitalSignage---> ";
-    private ObservableArrayList events;
 
-
-    public ObservableArrayList getEvents() {
-        if(events.isEmpty())
-            events = new ObservableArrayList();
-        return events;
-    }
-
-    public void setEvents(ObservableArrayList events) {
-        this.events = events;
-    }
-
-    public void addEvent(Eventm event){
-        if(events.isEmpty())
-            events = new ObservableArrayList();
-        this.events.add(event);
-    }
-
-    public void clearEvent(){
-        if(!events.isEmpty())
-            this.events.clear();
-    }
-
-    public void startListener(){
-        eventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d(TAG, s);
-                Log.d(TAG, dataSnapshot.toString());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {            }
-        };
-        myRef.child("events").addChildEventListener(eventListener);
-    }
 
     @Override
     public void onCreate() {

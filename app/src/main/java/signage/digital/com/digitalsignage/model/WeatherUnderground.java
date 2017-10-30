@@ -14,27 +14,30 @@ import signage.digital.com.digitalsignage.BR;
  */
 public class WeatherUnderground  extends BaseObservable {
 
-    @SerializedName("current_observation")
-    public CurrentObservation currentObservation = new CurrentObservation();
+    public WeatherUnderground(){ }
 
-    public ForecastUnderground forecast = new ForecastUnderground();
+    @SerializedName("current_observation")
+    public CurrentObservation current_observation = new CurrentObservation();
+
+    //public ForecastUnderground forecastunderground = new ForecastUnderground();
 
     @Bindable
     public CurrentObservation getCurrentObservation() {
-        return currentObservation;
+        return current_observation;
     }
 
-    @Bindable
-    public ForecastUnderground getForecast() {
-        return forecast;
-    }
+    //@Bindable
+    //public ForecastUnderground getForecast() {
 
-
-    public void setResponse(CurrentObservation currentObservation) {
-        this.currentObservation = currentObservation;
+    public void setCurrent_observation(CurrentObservation current_observation) {
+        this.current_observation = current_observation;
+        notifyPropertyChanged(BR.currentObservation);
     }
+    //    return forecastunderground;
+    //}
 
-    public void setForecast(ForecastUnderground forecast) {
-        this.forecast = forecast;
-    }
+    //public void setForecastunderground(ForecastUnderground forecastunderground) {
+     //   this.forecastunderground = forecastunderground;
+//        notifyPropertyChanged(BR.forecast);
+  //  }
 }

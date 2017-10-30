@@ -5,6 +5,8 @@ import android.databinding.Bindable;
 
 import com.google.gson.annotations.SerializedName;
 
+import signage.digital.com.digitalsignage.BR;
+
 
 /**
  * Created by fung.lam on 02/09/2015.
@@ -12,8 +14,10 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ForecastUnderground  extends BaseObservable {
 
+    public ForecastUnderground(){}
+
     @SerializedName("forecast")
-    Forecast forecast = new Forecast();
+    public Forecast forecast = new Forecast();
 
     @Bindable
     public Forecast getForecast() {
@@ -22,5 +26,6 @@ public class ForecastUnderground  extends BaseObservable {
 
     public void setForecast(Forecast forecast) {
         this.forecast = forecast;
+        notifyPropertyChanged(BR.forecast);
     }
 }

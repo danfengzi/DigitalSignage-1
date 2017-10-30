@@ -72,7 +72,7 @@ public class FragmentWeather extends Fragment {
 
         FragmentWeatherBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_weather);
         binding.setCities(cities);
-        View view =  binding.getRoot().getRootView();
+        View view =  binding.getRoot();
 
         return view;
     }

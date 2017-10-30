@@ -7,27 +7,30 @@ import com.google.gson.annotations.SerializedName;
 
 public class Forecast  extends BaseObservable {
 
-    @SerializedName("simpleforecast")
-    SimpleForecast simpleforecast = new SimpleForecast();
+    private Txt_forecast txt_forecast;
+    private Simpleforecast simpleforecast;
 
-    @SerializedName("txt_forecast")
-    TxtForecast txt_forecast = new TxtForecast();
-
-    @Bindable
-    public SimpleForecast getSimpleForecastday() {
-        return simpleforecast;
-    }
+    public Forecast() {    }
 
     @Bindable
-    public TxtForecast getTxt_forecast() {
+    public Txt_forecast getTxt_forecast ()
+    {
         return txt_forecast;
     }
 
-    public void setSimpleforecast(SimpleForecast simpleforecast) {
-        this.simpleforecast = simpleforecast;
+    public void setTxt_forecast (Txt_forecast txt_forecast)
+    {
+        this.txt_forecast = txt_forecast;
     }
 
-    public void setTxt_forecast(TxtForecast txt_forecast) {
-        this.txt_forecast = txt_forecast;
+    @Bindable
+    public Simpleforecast getSimpleforecast ()
+    {
+        return simpleforecast;
+    }
+
+    public void setSimpleforecast (Simpleforecast simpleforecast)
+    {
+        this.simpleforecast = simpleforecast;
     }
 }

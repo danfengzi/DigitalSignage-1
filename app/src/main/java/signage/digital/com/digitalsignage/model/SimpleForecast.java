@@ -7,17 +7,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import signage.digital.com.digitalsignage.BR;
+
 public class SimpleForecast  extends BaseObservable {
 
     @SerializedName("forecastday")
-    ArrayList<ForecastDay> forecastday = new ArrayList<ForecastDay>();
+    public ArrayList<ForecastDay> forecastday = new ArrayList<ForecastDay>();
 
     @Bindable
-    public ArrayList<ForecastDay> getForecastDay() {
+    public ArrayList<ForecastDay> getForecastday() {
         return forecastday;
     }
 
     public void setForecastday(ArrayList<ForecastDay> forecastday) {
         this.forecastday = forecastday;
+        notifyPropertyChanged(BR.forecastday);
     }
 }

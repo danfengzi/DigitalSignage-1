@@ -64,9 +64,9 @@ public class WeatherView extends RelativeLayout {
 
     public void updateForecast(ForecastUnderground w){
         try {
-            condition.setText(w.getForecast().getTxt_forecast().getForecastDay().get(0).getFcttext_metric());
+            condition.setText(w.getForecast().getTxt_forecast().getForecastday().get(0).getFcttext_metric());
             days.removeAllViews();
-            for (ForecastDay f : w.getForecast().getSimpleForecastday().getForecastDay()) {
+            for (ForecastDay f : w.getForecast().getSimpleForecastday().getForecastday()) {
                 WeatherDayView d = new WeatherDayView(context);
                 d.setForecast(f);
                 days.addView(d);
