@@ -2,17 +2,19 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
  */
 
 public class Response extends BaseObservable{
-    private Features features;
-    private String termsofService;
-    private String version;
+    Features features;
+    String termsofService;
+    String version;
 
-    public Response() {   }
+    public Response() {          Log.d("-----","Response:");
+    }
 
     @Bindable
     public Features getFeatures ()
@@ -22,6 +24,7 @@ public class Response extends BaseObservable{
 
     public void setFeatures (Features features)
     {
+        Log.d("-------","response 1");
         this.features = features;
     }
 
@@ -31,9 +34,10 @@ public class Response extends BaseObservable{
         return termsofService;
     }
 
-    public void setTermsofService (String termsofService)
+    public void setTermsofService (String termsofservice)
     {
-        this.termsofService = termsofService;
+        Log.d("-------","response 2");
+        this.termsofService = termsofservice;
     }
 
     @Bindable
@@ -44,6 +48,7 @@ public class Response extends BaseObservable{
 
     public void setVersion (String version)
     {
+        Log.d("-------","response 3");
         this.version = version;
     }
 

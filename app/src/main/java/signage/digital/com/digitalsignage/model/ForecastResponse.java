@@ -2,16 +2,18 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
  */
 
-class ForecastResponse extends BaseObservable{
-    private Response response;
-    private Forecast forecast;
+public class ForecastResponse extends BaseObservable{
+    Response response;
+    Forecast forecast;
 
-    public ForecastResponse() {
+    public ForecastResponse() {        Log.d("-----","ForecastResponse:");
+
     }
 
     @Bindable
@@ -22,6 +24,7 @@ class ForecastResponse extends BaseObservable{
 
     public void setResponse (Response response)
     {
+        Log.d("-------","forecastresponse 1");
         this.response = response;
     }
 
@@ -33,6 +36,7 @@ class ForecastResponse extends BaseObservable{
 
     public void setForecast (Forecast forecast)
     {
+        Log.d("-------","forecastresponse 1");
         this.forecast = forecast;
     }
 

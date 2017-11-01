@@ -2,15 +2,17 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
 public class Forecast  extends BaseObservable {
 
-    private Txt_forecast txt_forecast;
-    private Simpleforecast simpleforecast;
+    Txt_forecast txt_forecast;
+    Simpleforecast simpleforecast;
 
-    public Forecast() {    }
+    public Forecast() {           Log.d("-----","Forecast:");
+    }
 
     @Bindable
     public Txt_forecast getTxt_forecast ()

@@ -28,11 +28,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import java.util.List;
 
-import signage.digital.com.digitalsignage.model.ForecastDay;
-import signage.digital.com.digitalsignage.model.ForecastUnderground;
 
 /**
  * Contains a BindingAdapter for assigning a list of items to a ViewGroup.

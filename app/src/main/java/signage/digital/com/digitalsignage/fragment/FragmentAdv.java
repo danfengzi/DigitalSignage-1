@@ -36,7 +36,7 @@ public class FragmentAdv extends Fragment {
 
     private DatabaseReference myRef;
     private ValueEventListener listener;
-    private ValueEventListener citylistener;
+    private ChildEventListener citylistener;
     private ViewFlipper flipper;
     private ObservableArrayList cities = new ObservableArrayList();
 
@@ -48,25 +48,38 @@ public class FragmentAdv extends Fragment {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
-        citylistener = new ValueEventListener() {
+        citylistener = new ChildEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                cities.clear();
-                for(DataSnapshot data:dataSnapshot.getChildren()){
-                    System.out.println("datasnapshot:"+data.toString());
-                    //City city = data.getValue(City.class);
-                    //cities.add(city);
-                }
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                System.out.println("datasnapshot:"+dataSnapshot.toString());
+                City city = dataSnapshot.getValue(City.class);
+                cities.add(city);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {     }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
         };
 
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                flipper.removeAllViews();
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     ImageView imageView = new ImageView(getContext());
                     imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -88,7 +101,7 @@ public class FragmentAdv extends Fragment {
     public void onResume(){
         super.onResume();
         myRef.child("profile/flyers").addValueEventListener(listener);
-        myRef.child("cities").addValueEventListener(citylistener);
+        myRef.child("cities").addChildEventListener(citylistener);
     }
 
     public void onPause(){

@@ -2,26 +2,29 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
  */
 
 public class Display_location extends BaseObservable {
-    private String zip;
-    private String magic;
-    private String full;
-    private String elevation;
-    private String state;
-    private String wmo;
-    private String longitude;
-    private String latitude;
-    private String state_name;
-    private String country_iso3166;
-    private String country;
-    private String city;
+    String zip;
+    String magic;
+    String full;
+    String elevation;
+    String state;
+    String wmo;
+    String longitude;
+    String latitude;
+    String state_name;
+    String country_iso3166;
+    String country;
+    String city;
 
     public Display_location() {
+        Log.d("-----","Display Location:");
+
     }
 
     @Bindable

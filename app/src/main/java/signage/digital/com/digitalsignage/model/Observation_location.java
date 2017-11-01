@@ -2,6 +2,7 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -14,16 +15,17 @@ import signage.digital.com.digitalsignage.BR;
  */
 public class Observation_location extends BaseObservable {
 
-    private String full;
-    private String elevation;
-    private String state;
-    private String longitude;
-    private String latitude;
-    private String country_iso3166;
-    private String country;
-    private String city;
+     String full;
+     String elevation;
+     String state;
+     String longitude;
+     String latitude;
+     String country_iso3166;
+     String country;
+     String city;
 
-    public Observation_location() {    }
+    public Observation_location() {          Log.d("-----","Observationlocation:");
+    }
 
     @Bindable
     public String getFull ()

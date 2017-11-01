@@ -15,9 +15,10 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 
 import signage.digital.com.digitalsignage.model.City;
-import signage.digital.com.digitalsignage.model.ForecastDay;
-import signage.digital.com.digitalsignage.model.ForecastUnderground;
-import signage.digital.com.digitalsignage.model.WeatherUnderground;
+import signage.digital.com.digitalsignage.model.ForecastResponse;
+import signage.digital.com.digitalsignage.model.Forecastday;
+import signage.digital.com.digitalsignage.model.Forecasttxtday;
+import signage.digital.com.digitalsignage.model.WeatherResponse;
 
 /**
  * Created by Alexandre on 09/12/2016.
@@ -62,11 +63,11 @@ public class WeatherView extends RelativeLayout {
         city.setText(mCity.getCity());
     }
 
-    public void updateForecast(ForecastUnderground w){
+    public void updateForecast(ForecastResponse w){
         try {
-            condition.setText(w.getForecast().getTxt_forecast().getForecastday().get(0).getFcttext_metric());
+            condition.setText(w.getForecast().getTxt_forecast().getForecastday()[0].getFcttext_metric());
             days.removeAllViews();
-            for (ForecastDay f : w.getForecast().getSimpleForecastday().getForecastday()) {
+            for (Forecastday f : w.getForecast().getSimpleforecast().getForecastday()) {
                 WeatherDayView d = new WeatherDayView(context);
                 d.setForecast(f);
                 days.addView(d);
@@ -76,10 +77,10 @@ public class WeatherView extends RelativeLayout {
         }
     }
 
-    public void updateWeather(WeatherUnderground w){
+    public void updateWeather(WeatherResponse w){
         try{
-            temp.setText(w.getCurrentObservation().getTemp_c()+"c");
-            icon.setImageResource(getResources().getIdentifier(w.getCurrentObservation().getIcon(), "drawable", context.getPackageName()));
+            temp.setText(w.getCurrent_observation().getTemp_c()+"c");
+            icon.setImageResource(getResources().getIdentifier(w.getCurrent_observation().getIcon(), "drawable", context.getPackageName()));
         } catch (Exception e){
             Log.d("------", "erro "+e.getMessage());
         }

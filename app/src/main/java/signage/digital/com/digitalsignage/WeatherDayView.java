@@ -6,8 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import signage.digital.com.digitalsignage.model.ForecastDay;
+import signage.digital.com.digitalsignage.model.Forecastday;
 
 
 /**
@@ -49,7 +48,7 @@ public class WeatherDayView extends RelativeLayout {
         icon = (ImageView) rootView.findViewById(R.id.icon);
     }
 
-    public void setForecast(ForecastDay w){
+    public void setForecast(Forecastday w){
         day.setText(w.getDate().getWeekday_short());
         max.setText(""+w.getHigh().getCelsius()+"/"+w.getLow().getCelsius());
         //min.setText(""+w.getLow().getCelsius()+"c");

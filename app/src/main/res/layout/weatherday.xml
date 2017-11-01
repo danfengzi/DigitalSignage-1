@@ -2,7 +2,7 @@
     <data>
         <variable
             name="forecastdata"
-            type="signage.digital.com.digitalsignage.model.ForecastDay" />
+            type="signage.digital.com.digitalsignage.model.Forecastday" />
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,7 +15,7 @@
               android:paddingLeft="16dp">
 
     <TextView
-        android:text="${forecastdata.date.weekday_short}"
+        android:text="@{forecastdata.date.weekday_short}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/day"
@@ -30,7 +30,7 @@
         android:layout_height="96px"/>
 
     <TextView
-        android:text="${forecastdata.high.celcius}/${forecastdata.low.celcius}"
+        android:text="@{forecastdata.high.celsius}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/temp"
@@ -40,7 +40,7 @@
         android:gravity="center"/>
 
     <TextView
-        android:text="${forecastdata.pop}%"
+        android:text="@{forecastdata.pop}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pop"

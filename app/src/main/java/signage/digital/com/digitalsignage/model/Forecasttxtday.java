@@ -2,35 +2,24 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-
-import com.google.gson.annotations.SerializedName;
+import android.util.Log;
 
 import signage.digital.com.digitalsignage.BR;
 
-public class ForecastTxtDay extends BaseObservable{
+public class Forecasttxtday extends BaseObservable{
 
-    @SerializedName("period")
-    int period = 0;
-
-    @SerializedName("icon")
+    long period = 0;
     String icon = "";
-
-    @SerializedName("title")
     String title = "";
-
-    @SerializedName("fcttext")
     String fcttext = "";
-
-    @SerializedName("fcttext_metric")
     String fcttext_metric = "";
-
-    @SerializedName("pop")
     String pop = "";
 
-
+    public Forecasttxtday() {          Log.d("-----","Forecasttxtday:");
+    }
 
     @Bindable
-    public int getPeriod() {
+    public long getPeriod() {
         return period;
     }
 
@@ -62,37 +51,30 @@ public class ForecastTxtDay extends BaseObservable{
     public void setPeriod(int period) {
         this.period = period;
         notifyPropertyChanged(BR.period);
-
     }
 
     public void setIcon(String icon) {
         this.icon = icon;
         notifyPropertyChanged(BR.icon);
-
     }
 
     public void setTitle(String title) {
         this.title = title;
         notifyPropertyChanged(BR.title);
-
     }
 
     public void setFcttext(String fcttext) {
         this.fcttext = fcttext;
         notifyPropertyChanged(BR.fcttext);
-
     }
 
     public void setFcttext_metric(String fcttext_metric) {
         this.fcttext_metric = fcttext_metric;
         notifyPropertyChanged(BR.fcttext_metric);
-
     }
 
     public void setPop(String pop) {
         this.pop = pop;
         notifyPropertyChanged(BR.pop);
-
     }
-
 }

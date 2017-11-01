@@ -2,6 +2,7 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
@@ -9,10 +10,11 @@ import android.databinding.Bindable;
 
 public class WeatherResponse extends BaseObservable{
 
-    private Response response;
-    private Current_observation current_observation;
+    Response response;
+    Current_observation current_observation;
 
-    public WeatherResponse() {   }
+    public WeatherResponse() {         Log.d("-----","WeatherResponse:");
+    }
 
     @Bindable
     public Response getResponse ()
@@ -22,6 +24,7 @@ public class WeatherResponse extends BaseObservable{
 
     public void setResponse (Response response)
     {
+        Log.d("-------","weather response 1");
         this.response = response;
     }
 
@@ -33,6 +36,7 @@ public class WeatherResponse extends BaseObservable{
 
     public void setCurrent_observation (Current_observation current_observation)
     {
+        Log.d("-------","weather response 2");
         this.current_observation = current_observation;
     }
 }

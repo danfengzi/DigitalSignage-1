@@ -28,7 +28,7 @@
         android:paddingRight="16dp"
         android:paddingTop="10dp">
     <TextView
-        android:text="${city.city}"
+        android:text="@{city.city}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/city"
@@ -40,7 +40,7 @@
         android:textStyle="normal|bold"/>
 
         <TextView
-        android:text="${city.condition}"
+        android:text="@{city.condition}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/city"
@@ -62,7 +62,7 @@
 
 
         <TextView
-            android:text="${city.weather.currentObservation.temp_c}"
+            android:text="@{Double.toString(city.weather.current_observation.temp_c)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/temp"

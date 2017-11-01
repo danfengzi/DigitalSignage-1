@@ -2,6 +2,7 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -12,11 +13,12 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DisplayObservation  extends BaseObservable {
 
-    @SerializedName("full")
-    String full = "";
+    String full;
+    String city;
 
-    @SerializedName("city")
-    String city = "";
+    public DisplayObservation() {
+        Log.d("-----","DisplayObservation:");
+    }
 
     @Bindable
     public String getFull() {

@@ -2,6 +2,7 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
@@ -11,6 +12,10 @@ public class Weather extends BaseObservable{
 
     private Response response;
     private Current_observation current_observation;
+
+    public Weather() {        Log.d("-----","Weather:");
+
+    }
 
     @Bindable
     public Response getResponse ()
