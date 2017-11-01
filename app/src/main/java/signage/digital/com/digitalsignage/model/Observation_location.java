@@ -24,7 +24,7 @@ public class Observation_location extends BaseObservable {
      String country;
      String city;
 
-    public Observation_location() {          Log.d("-----","Observationlocation:");
+    public Observation_location() {
     }
 
     @Bindable

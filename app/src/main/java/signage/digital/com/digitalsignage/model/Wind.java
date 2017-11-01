@@ -14,7 +14,7 @@ class Wind extends BaseObservable{
     int degrees;
     int kph;
 
-    public Wind() {        Log.d("-----","Wind:");
+    public Wind() {
 
     }
 

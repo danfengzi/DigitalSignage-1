@@ -9,35 +9,35 @@ import android.util.Log;
  */
 
 public class Date extends BaseObservable{
-    int min;
+    String min;
     String epoch;
     String tz_short;
     String monthname;
     String weekday_short;
-    int hour;
+    long hour;
     String pretty;
     String monthname_short;
     String isdst;
     String weekday;
     String ampm;
     String tz_long;
-    int yday;
-    int sec;
-    int month;
-    int year;
-    int day;
+    long yday;
+    long sec;
+    long month;
+    long year;
+    long day;
 
     public Date() {
-        Log.d("-----","Date:");
+
     }
 
     @Bindable
-    public int getMin ()
+    public String getMin ()
     {
         return min;
     }
 
-    public void setMin (int min)
+    public void setMin (String min)
     {
         this.min = min;
     }
@@ -87,12 +87,12 @@ public class Date extends BaseObservable{
     }
 
     @Bindable
-    public int getHour ()
+    public long getHour ()
     {
         return hour;
     }
 
-    public void setHour (int hour)
+    public void setHour (long hour)
     {
         this.hour = hour;
     }
@@ -164,56 +164,56 @@ public class Date extends BaseObservable{
     }
 
     @Bindable
-    public int getYday ()
+    public long getYday ()
     {
         return yday;
     }
 
-    public void setYday (int yday)
+    public void setYday (long yday)
     {
         this.yday = yday;
     }
 
     @Bindable
-    public int getSec ()
+    public long getSec ()
     {
         return sec;
     }
 
-    public void setSec (int sec)
+    public void setSec (long sec)
     {
         this.sec = sec;
     }
 
     @Bindable
-    public int getMonth ()
+    public long getMonth ()
     {
         return month;
     }
 
-    public void setMonth (int month)
+    public void setMonth (long month)
     {
         this.month = month;
     }
 
     @Bindable
-    public int getYear ()
+    public long getYear ()
     {
         return year;
     }
 
-    public void setYear (int year)
+    public void setYear (long year)
     {
         this.year = year;
     }
 
     @Bindable
-    public int getDay ()
+    public long getDay ()
     {
         return day;
     }
 
-    public void setDay (int day)
+    public void setDay (long day)
     {
         this.day = day;
     }

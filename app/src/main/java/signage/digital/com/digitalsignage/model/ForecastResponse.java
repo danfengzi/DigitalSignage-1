@@ -12,8 +12,7 @@ public class ForecastResponse extends BaseObservable{
     Response response;
     Forecast forecast;
 
-    public ForecastResponse() {        Log.d("-----","ForecastResponse:");
-
+    public ForecastResponse() {
     }
 
     @Bindable

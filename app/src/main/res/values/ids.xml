@@ -17,6 +17,7 @@
 
 <resources>
     <item type="id" name="entryListener"/>
+    <item type="id" name="bannerListener"/>
     <item type="id" name="forecastdayListener"/>
     <item type="id" name="citiesListener"/>
 </resources>

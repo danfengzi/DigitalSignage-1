@@ -12,8 +12,7 @@ class Snow extends BaseObservable {
     int cm;
     double in;
 
-    public Snow() {        Log.d("-----","Snow:");
-
+    public Snow() {
     }
 
     @Bindable

@@ -13,7 +13,7 @@ public class Features extends BaseObservable{
     private long forecast;
     private long conditions;
 
-    public Features() {           Log.d("-----","Features:");
+    public Features() {
     }
 
     @Bindable

@@ -21,6 +21,7 @@ public class City  extends BaseObservable {
         this.forecast = forecastresponse;
     }
     public City() {
+
     }
 
     @Bindable
@@ -29,7 +30,6 @@ public class City  extends BaseObservable {
     }
 
     public void setCity(String city) {
-        Log.d("-------","city 1");
         this.city = city;
         notifyPropertyChanged(BR.city);
     }
@@ -40,7 +40,6 @@ public class City  extends BaseObservable {
     }
 
     public void setWeather(WeatherResponse weather) {
-        Log.d("-------","city 3");
         this.weather = weather;
     }
 
@@ -50,12 +49,11 @@ public class City  extends BaseObservable {
     }
 
     public void setForecast(ForecastResponse forecast) {
-        Log.d("-------","city 2");
         this.forecast = forecast;
     }
 
     @Bindable
     public String getCondition() {
-        return forecast.forecast.getSimpleforecast().forecastday[0].conditions;
+        return forecast.forecast.getSimpleforecast().forecastday.get(0).conditions;
     }
 }

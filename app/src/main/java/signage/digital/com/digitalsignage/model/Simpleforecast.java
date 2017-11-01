@@ -4,24 +4,25 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Created by everest on 31/10/2017.
  */
 
 public class Simpleforecast extends BaseObservable{
-    Forecastday[] forecastday;
+    List<Forecastday> forecastday;
 
-    public Simpleforecast() {        Log.d("-----","Simpleforecast:");
-
+    public Simpleforecast() {
     }
 
     @Bindable
-    public Forecastday[] getForecastday ()
+    public List<Forecastday> getForecastday ()
     {
         return forecastday;
     }
 
-    public void setForecastday (Forecastday[] forecastday)
+    public void setForecastday (List<Forecastday> forecastday)
     {
         this.forecastday = forecastday;
     }

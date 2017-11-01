@@ -17,7 +17,6 @@ public class DisplayObservation  extends BaseObservable {
     String city;
 
     public DisplayObservation() {
-        Log.d("-----","DisplayObservation:");
     }
 
     @Bindable

@@ -13,7 +13,7 @@ public class WeatherResponse extends BaseObservable{
     Response response;
     Current_observation current_observation;
 
-    public WeatherResponse() {         Log.d("-----","WeatherResponse:");
+    public WeatherResponse() {
     }
 
     @Bindable

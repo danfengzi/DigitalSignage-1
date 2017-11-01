@@ -15,6 +15,7 @@
  */
 package signage.digital.com.digitalsignage;
 
+import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
@@ -60,11 +61,10 @@ public class ListBindingAdapters {
      * The layout, &commat;layout/item for example, must have a single variable named
      * {@code data}.
      */
-    @BindingAdapter({"entries", "layout"})
+    @BindingAdapter({"entries"})
     public static <T> void setEntries(ViewGroup viewGroup,
-                                      List<T> oldEntries, int oldLayoutId,
-                                      List<T> newEntries, int newLayoutId) {
-        if (oldEntries == newEntries && oldLayoutId == newLayoutId) {
+                                      List<T> oldEntries, List<T> newEntries) {
+        if (oldEntries == newEntries) {
             return; // nothing has changed
         }
         EntryChangeListener listener =
@@ -78,51 +78,50 @@ public class ListBindingAdapters {
         } else {
             if (newEntries instanceof ObservableList) {
                 if (listener == null) {
-                    listener = new EntryChangeListener(viewGroup, newLayoutId, BR.data);
+                    listener = new EntryChangeListener(viewGroup, R.layout.item_event, BR.data);
                     ListenerUtil.trackListener(viewGroup, listener,
                             R.id.entryListener);
-                } else {
-                    listener.setLayoutId(newLayoutId);
                 }
                 if (newEntries != oldEntries) {
                     ((ObservableList)newEntries).addOnListChangedCallback(listener);
                 }
             }
-            resetViews(viewGroup, newLayoutId, newEntries, BR.data);
+            resetViews(viewGroup, R.layout.item_event, newEntries, BR.data);
         }
     }
 
-    @BindingAdapter({"android:src"})
-    public static void setImageViewResource(ImageView imageView, int resource) {
-        imageView.setImageResource(resource);
-    }
-
-    @BindingAdapter({"days"})
-    public static <T> void setForecastDay(ViewGroup viewGroup, List<T> oldEntries, List<T> newEntries) {
+    @BindingAdapter({"banners"})
+    public static <T> void setBanners(ViewGroup viewGroup,
+                                      List<T> oldEntries, List<T> newEntries) {
         if (oldEntries == newEntries) {
             return; // nothing has changed
         }
-
-        ForecastDayChangeListener listener = ListenerUtil.getListener(viewGroup, R.id.forecastdayListener);
+        EntryChangeListener listener =
+                ListenerUtil.getListener(viewGroup, R.id.bannerListener);
         if (oldEntries != newEntries && listener != null && oldEntries instanceof ObservableList) {
             ((ObservableList)oldEntries).removeOnListChangedCallback(listener);
         }
-
         if (newEntries == null) {
             viewGroup.removeAllViews();
+
         } else {
             if (newEntries instanceof ObservableList) {
                 if (listener == null) {
-                    listener = new ForecastDayChangeListener(viewGroup, R.layout.weatherday, BR.forecast);
+                    listener = new EntryChangeListener(viewGroup, R.layout.weatherday, BR.banners);
                     ListenerUtil.trackListener(viewGroup, listener,
-                            R.id.forecastdayListener);
+                            R.id.bannerListener);
                 }
                 if (newEntries != oldEntries) {
                     ((ObservableList)newEntries).addOnListChangedCallback(listener);
                 }
             }
-            resetViews(viewGroup, R.layout.weatherday, newEntries, BR.forecast);
+            resetViews(viewGroup, R.layout.weather_current, newEntries, BR.banners);
         }
+    }
+
+    @BindingAdapter({"imageUrl"})
+    public static void setImageViewResource(ImageView imageView, String resource) {
+        imageView.setImageResource(imageView.getResources().getIdentifier(resource, "drawable", imageView.getContext().getPackageName()));
     }
 
     @BindingAdapter({"cities"})
@@ -220,8 +219,6 @@ public class ListBindingAdapters {
      */
     private static void resetViews(ViewGroup parent, int layoutId,
                                    List entries, int data) {
-        Log.d("----","17");
-
         parent.removeAllViews();
         if (layoutId == 0) {
             return;
@@ -334,88 +331,7 @@ public class ListBindingAdapters {
             }
         }
     }
-    private static class ForecastDayChangeListener extends ObservableList.OnListChangedCallback {
-        private final ViewGroup mTarget;
-        private int mLayoutId;
-        private int mData;
 
-        public ForecastDayChangeListener(ViewGroup target, int layoutId, int data) {
-            mTarget = target;
-            mLayoutId = layoutId;
-            mData = data;
-        }
-
-        public void setLayoutId(int layoutId) {
-            mLayoutId = layoutId;
-        }
-
-        @Override
-        public void onChanged(ObservableList observableList) {
-            resetViews(mTarget, mLayoutId, observableList, mData);
-        }
-
-        @Override
-        public void onItemRangeChanged(ObservableList observableList, int start, int count) {
-            if (mLayoutId == 0) {
-                return;
-            }
-            LayoutInflater inflater = (LayoutInflater) mTarget.getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            startTransition(mTarget);
-            final int end = start + count;
-            for (int i = start; i < end; i++) {
-                Object data = observableList.get(i);
-                ViewDataBinding binding = bindLayout(inflater, mTarget, mLayoutId, data, mData);
-                binding.setVariable(BR.forecastdata, observableList.get(i));
-                mTarget.removeViewAt(i);
-                mTarget.addView(binding.getRoot(), i);
-            }
-        }
-
-        @Override
-        public void onItemRangeInserted(ObservableList observableList, int start, int count) {
-            if (mLayoutId == 0) {
-                return;
-            }
-            startTransition(mTarget);
-            final int end = start + count;
-            LayoutInflater inflater = (LayoutInflater) mTarget.getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            for (int i = end - 1; i >= start; i--) {
-                Object entry = observableList.get(i);
-                ViewDataBinding binding =
-                        bindLayout(inflater, mTarget, mLayoutId, entry, mData);
-                mTarget.addView(binding.getRoot(), start);
-            }
-        }
-
-        @Override
-        public void onItemRangeMoved(ObservableList observableList,
-                                     int from, int to, int count) {
-            if (mLayoutId == 0) {
-                return;
-            }
-            startTransition(mTarget);
-            for (int i = 0; i < count; i++) {
-                View view = mTarget.getChildAt(from);
-                mTarget.removeViewAt(from);
-                int destination = (from > to) ? to + i : to;
-                mTarget.addView(view, destination);
-            }
-        }
-
-        @Override
-        public void onItemRangeRemoved(ObservableList observableList,
-                                       int start, int count) {
-            if (mLayoutId == 0) {
-                return;
-            }
-            startTransition(mTarget);
-            for (int i = 0; i < count; i++) {
-                mTarget.removeViewAt(start);
-            }
-        }
-    }
     private static class CityChangeListener extends ObservableList.OnListChangedCallback {
         private final ViewGroup mTarget;
         private int mLayoutId;

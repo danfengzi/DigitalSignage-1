@@ -4,25 +4,27 @@ import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.util.Log;
 
+import java.util.List;
+
 /**
  * Created by everest on 31/10/2017.
  */
 
 public class Txt_forecast extends BaseObservable {
-    Forecasttxtday[] forecasttxtday;
+    List<Forecasttxtday> forecasttxtday;
     String date;
 
-    public Txt_forecast() {        Log.d("-----","Txt_forecast:");
+    public Txt_forecast() {
 
     }
 
     @Bindable
-    public Forecasttxtday[] getForecastday ()
+    public List<Forecasttxtday> getForecastday ()
     {
         return forecasttxtday;
     }
 
-    public void setForecasttxtday (Forecasttxtday[] forecastday)
+    public void setForecasttxtday (List<Forecasttxtday> forecastday)
     {
         this.forecasttxtday = forecastday;
     }

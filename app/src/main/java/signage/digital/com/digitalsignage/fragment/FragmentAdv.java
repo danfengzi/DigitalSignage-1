@@ -12,7 +12,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ViewFlipper;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,15 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-import java.util.ArrayList;
-import java.util.List;
-import signage.digital.com.digitalsignage.MyApp;
+
 import signage.digital.com.digitalsignage.R;
-import signage.digital.com.digitalsignage.WeatherView;
-import signage.digital.com.digitalsignage.databinding.FragmentEventBinding;
 import signage.digital.com.digitalsignage.databinding.FragmentWeatherBinding;
 import signage.digital.com.digitalsignage.model.City;
 
@@ -58,7 +51,8 @@ public class FragmentAdv extends Fragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                cities.set(Integer.valueOf(dataSnapshot.getKey()), dataSnapshot.getValue(City.class));
+                System.out.println("datasnapshot:"+dataSnapshot.toString());
             }
 
             @Override
@@ -86,9 +80,10 @@ public class FragmentAdv extends Fragment {
                     imageView.setScaleType(ImageView.ScaleType.FIT_END);
                     imageView.setTag(dataSnapshot.getValue().toString());
                     Picasso.with(getActivity().getBaseContext())
-                            .load(dataSnapshot.getValue().toString())
+                            .load(data.getValue().toString())
                             .into(imageView);
                     flipper.addView(imageView);
+                    Log.d("-----","URL:"+data.getValue().toString() );
                 }
             }
 

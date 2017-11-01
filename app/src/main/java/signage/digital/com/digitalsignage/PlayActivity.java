@@ -3,22 +3,11 @@ package signage.digital.com.digitalsignage;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.List;
-
-import signage.digital.com.digitalsignage.adapter.ViewPagerAdapter;
 import signage.digital.com.digitalsignage.fragment.FragmentAdv;
 import signage.digital.com.digitalsignage.fragment.FragmentEvent;
-import signage.digital.com.digitalsignage.fragment.FragmentWeather;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -27,7 +16,8 @@ import signage.digital.com.digitalsignage.fragment.FragmentWeather;
 public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalendarChangeListener{
 
     private int numEvents = 0;
-
+    private FragmentAdv frag_adv;
+    private FragmentEvent frag_event;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,16 +32,17 @@ public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalend
 
         setContentView(R.layout.activity_fullscreen2);
 
+        frag_adv = new FragmentAdv();
+        frag_event = new FragmentEvent();
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(new FragmentEvent(),"event");
-        //transaction.add(new FragmentAdv(),"adv");
-        transaction.add(R.id.fragment_container, new FragmentAdv(),"adv");
+        transaction.add(frag_event,"event");
         transaction.commit();
     }
 
-    private void switchFragment(String tag){
+    private void switchFragment(Fragment fragment, String tag){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, getSupportFragmentManager().findFragmentByTag(tag));
+        transaction.replace(R.id.fragment_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -59,10 +50,10 @@ public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalend
     @Override
     public void onCalendarChange(List<Eventm> list) {
         if(list.size()==0) {
-            switchFragment("adv");
+            switchFragment(frag_adv, "adv");
         } else {
             if(list.size()!=numEvents){
-                switchFragment("event");
+                switchFragment(frag_event, "event");
             }
         }
         numEvents = list.size();

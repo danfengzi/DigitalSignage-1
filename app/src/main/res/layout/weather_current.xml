@@ -57,8 +57,172 @@
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:layout_below="@+id/condition"
-            android:layout_toEndOf="@+id/temp"
-            />
+            android:layout_toEndOf="@+id/temp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:paddingLeft="16dp">
+
+            <TextView
+                android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(0).date.weekday_short}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/day"
+                android:gravity="center"/>
+
+            <ImageView
+                app:imageUrl="@{city.forecast.forecast.simpleforecast.forecastday.get(0).icon}"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/temp"
+                android:layout_alignParentEnd="true"
+                android:layout_width="96px"
+                android:layout_height="96px"/>
+
+            <TextView
+                android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(0).low.celsius+'/'+city.forecast.forecast.simpleforecast.forecastday.get(0).high.celsius}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/icon"
+                android:gravity="center"/>
+
+            <TextView
+                android:text="@{Integer.toString(city.forecast.forecast.simpleforecast.forecastday.get(0).pop)+'%'}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pop"
+                android:textSize="18sp"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/icon"
+                android:gravity="center"/>
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(1).date.weekday_short}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"/>
+
+                <ImageView
+                    app:imageUrl="@{city.forecast.forecast.simpleforecast.forecastday.get(1).icon}"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/temp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="96px"
+                    android:layout_height="96px"/>
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(1).low.celsius+'/'+city.forecast.forecast.simpleforecast.forecastday.get(1).high.celsius}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:text="@{Integer.toString(city.forecast.forecast.simpleforecast.forecastday.get(1).pop)+'%'}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(0).date.weekday_short}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"/>
+
+                <ImageView
+                    app:imageUrl="@{city.forecast.forecast.simpleforecast.forecastday.get(2).icon}"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/temp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="96px"
+                    android:layout_height="96px"/>
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(2).low.celsius+'/'+city.forecast.forecast.simpleforecast.forecastday.get(2).high.celsius}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:text="@{Integer.toString(city.forecast.forecast.simpleforecast.forecastday.get(2).pop)+'%'}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:paddingLeft="16dp">
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(3).date.weekday_short}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"/>
+
+                <ImageView
+                    app:imageUrl="@{city.forecast.forecast.simpleforecast.forecastday.get(3).icon}"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/temp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_width="96px"
+                    android:layout_height="96px"/>
+
+                <TextView
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(3).low.celsius+'/'+city.forecast.forecast.simpleforecast.forecastday.get(3).high.celsius}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:text="@{Integer.toString(city.forecast.forecast.simpleforecast.forecastday.get(3).pop)+'%'}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/icon"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <TextView
@@ -77,12 +241,13 @@
         <ImageView
             android:layout_width="128px"
             android:layout_height="128px"
-            app:srcCompat="@drawable/ic_clear"
+            app:imageUrl="@{city.weather.current_observation.icon}"
             android:id="@+id/icon"
             android:layout_weight="1"
             android:adjustViewBounds="false"
             android:layout_below="@+id/condition"
             android:layout_alignParentStart="true"/>
+
 
     </RelativeLayout>
 

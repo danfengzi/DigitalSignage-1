@@ -24,6 +24,7 @@ public class Current_observation  extends BaseObservable {
     Long wind_degrees;
     Long wind_gust_mph;
     Long wind_gust_kph;
+    String icon;
 
     String precip_1hr_metric;
     String precip_today_metric;
@@ -58,7 +59,6 @@ public class Current_observation  extends BaseObservable {
     String windchill_c;
     String pressure_in;
     String pressure_mb;
-    String icon;
     String local_time_rfc822;
     String precip_1hr_string;
     String icon_url;
@@ -72,13 +72,127 @@ public class Current_observation  extends BaseObservable {
     String wind_string;
     String precip_today_in;
 
-
-
-
-
     public Current_observation() {
     }
 
+    @Bindable
+    public Long getDewpoint_f ()
+    {
+        return dewpoint_f;
+    }
+
+    public void setDewpoint_f (Long dewpoint_f)
+    {
+        this.dewpoint_f = dewpoint_f;
+        notifyPropertyChanged(BR.dewpoint_f);
+
+    }
+
+    @Bindable
+    public Long getWind_degrees ()
+    {
+        return wind_degrees;
+    }
+
+    public void setWind_degrees (Long wind_degrees)
+    {
+        this.wind_degrees = wind_degrees;
+        notifyPropertyChanged(BR.wind_degrees);
+
+    }
+
+    @Bindable
+    public Long getDewpoint_c ()
+    {
+        return dewpoint_c;
+    }
+
+    public void setDewpoint_c (Long dewpoint_c)
+    {
+        this.dewpoint_c = dewpoint_c;
+        notifyPropertyChanged(BR.dewpoint_c);
+
+    }
+
+
+    @Bindable
+    public Long getWind_kph ()
+    {
+        return wind_kph;
+    }
+
+    public void setWind_kph (Long wind_kph)
+    {
+        Log.e("-------","Current obser wind km");
+        this.wind_kph = wind_kph;
+        notifyPropertyChanged(BR.wind_kph);
+    }
+
+    @Bindable
+    public Long getWind_mph ()
+    {
+        return wind_mph;
+    }
+
+    public void setWind_mph (Long wind_mph)
+    {
+        Log.e("-------","Current obser wind pmh");
+        this.wind_mph = wind_mph;
+        notifyPropertyChanged(BR.wind_mph);
+    }
+
+    @Bindable
+    public Double getTemp_c ()
+    {
+        return temp_c;
+    }
+
+    public void setTemp_c (Double temp_c)
+    {
+        Log.e("-------","Current obser temp c");
+        this.temp_c = temp_c;
+        notifyPropertyChanged(BR.temp_c);
+    }
+
+    @Bindable
+    public Double getTemp_f ()
+    {
+        return temp_f;
+    }
+
+    public void setTemp_f (Double temp_f)
+    {
+        Log.e("-------","Current obser temp f");
+        this.temp_f = temp_f;
+        notifyPropertyChanged(BR.temp_f);
+    }
+
+    @Bindable
+    public String getIcon ()
+    {
+        return icon;
+    }
+
+    public void setIcon (String icon)
+    {
+        Log.e("-------","Current obser 35");
+        this.icon = icon;
+        notifyPropertyChanged(BR.icon);
+    }
+
+/*
+    @Bindable
+    public Long getWind_gust_kph ()
+    {
+        return wind_gust_kph;
+    }
+
+    public void setWind_gust_kph (Long wind_gust_kph)
+    {
+        Log.e("-------","Current obser windgustkm");
+        this.wind_gust_kph = wind_gust_kph;
+        notifyPropertyChanged(BR.wind_gust_kph);
+    }
 
     @Bindable
     public Long getWind_gust_mph ()
@@ -92,6 +206,8 @@ public class Current_observation  extends BaseObservable {
         this.wind_gust_mph = wind_gust_mph;
         notifyPropertyChanged(BR.wind_gust_mph);
     }
+
+
 
     @Bindable
     public String getPrecip_1hr_metric ()
@@ -219,18 +335,6 @@ public class Current_observation  extends BaseObservable {
         this.observation_epoch = observation_epoch;
     }
 
-    @Bindable
-    public Long getWind_gust_kph ()
-    {
-        return wind_gust_kph;
-    }
-
-    public void setWind_gust_kph (Long wind_gust_kph)
-    {
-        Log.e("-------","Current obser windgustkm");
-        this.wind_gust_kph = wind_gust_kph;
-        notifyPropertyChanged(BR.wind_gust_kph);
-    }
 
     @Bindable
     public String getPrecip_1hr_in ()
@@ -285,19 +389,6 @@ public class Current_observation  extends BaseObservable {
     }
 
     @Bindable
-    public Double getTemp_f ()
-    {
-        return temp_f;
-    }
-
-    public void setTemp_f (Double temp_f)
-    {
-        Log.e("-------","Current obser temp f");
-        this.temp_f = temp_f;
-        notifyPropertyChanged(BR.temp_f);
-    }
-
-    @Bindable
     public String getRelative_humidity ()
     {
         return relative_humidity;
@@ -310,18 +401,6 @@ public class Current_observation  extends BaseObservable {
         notifyPropertyChanged(BR.relative_humidity);
     }
 
-    @Bindable
-    public Double getTemp_c ()
-    {
-        return temp_c;
-    }
-
-    public void setTemp_c (Double temp_c)
-    {
-        Log.e("-------","Current obser temp c");
-        this.temp_c = temp_c;
-        notifyPropertyChanged(BR.temp_c);
-    }
 
     @Bindable
     public Image getImage ()
@@ -373,19 +452,6 @@ public class Current_observation  extends BaseObservable {
     {
         Log.e("-------","Current obser 19");
         this.observation_location = observation_location;
-    }
-
-    @Bindable
-    public Long getWind_mph ()
-    {
-        return wind_mph;
-    }
-
-    public void setWind_mph (Long wind_mph)
-    {
-        Log.e("-------","Current obser wind pmh");
-        this.wind_mph = wind_mph;
-        notifyPropertyChanged(BR.wind_mph);
     }
 
     @Bindable
@@ -516,18 +582,6 @@ public class Current_observation  extends BaseObservable {
         this.local_tz_offset = local_tz_offset;
     }
 
-    @Bindable
-    public Long getWind_kph ()
-    {
-        return wind_kph;
-    }
-
-    public void setWind_kph (Long wind_kph)
-    {
-        Log.e("-------","Current obser wind km");
-        this.wind_kph = wind_kph;
-        notifyPropertyChanged(BR.wind_kph);
-    }
 
     @Bindable
     public String getWindchill_f ()
@@ -569,33 +623,6 @@ public class Current_observation  extends BaseObservable {
 
     }
 
-    @Bindable
-    public Long getWind_degrees ()
-    {
-        return wind_degrees;
-    }
-
-    public void setWind_degrees (Long wind_degrees)
-    {
-        Log.e("-------","Current obser 33");
-        this.wind_degrees = wind_degrees;
-        notifyPropertyChanged(BR.wind_degrees);
-
-    }
-
-    @Bindable
-    public Long getDewpoint_c ()
-    {
-        return dewpoint_c;
-    }
-
-    public void setDewpoint_c (Long dewpoint_c)
-    {
-        Log.e("-------","Current obser dew c");
-        this.dewpoint_c = dewpoint_c;
-        notifyPropertyChanged(BR.dewpoint_c);
-
-    }
 
     @Bindable
     public String getPressure_mb ()
@@ -610,18 +637,6 @@ public class Current_observation  extends BaseObservable {
         notifyPropertyChanged(BR.pressure_mb);
     }
 
-    @Bindable
-    public String getIcon ()
-    {
-        return icon;
-    }
-
-    public void setIcon (String icon)
-    {
-        Log.e("-------","Current obser 35");
-        this.icon = icon;
-        notifyPropertyChanged(BR.icon);
-    }
 
     @Bindable
     public String getLocal_time_rfc822 ()
@@ -675,19 +690,6 @@ public class Current_observation  extends BaseObservable {
 
     }
 
-    @Bindable
-    public Long getDewpoint_f ()
-    {
-        return dewpoint_f;
-    }
-
-    public void setDewpoint_f (Long dewpoint_f)
-    {
-        Log.e("-------","Current obser dew f");
-        this.dewpoint_f = dewpoint_f;
-        notifyPropertyChanged(BR.dewpoint_f);
-
-    }
 
     @Bindable
     public String getNowcast ()
@@ -791,4 +793,5 @@ public class Current_observation  extends BaseObservable {
         this.precip_today_in = precip_today_in;
         notifyPropertyChanged(BR.precip_today_in);
     }
+    */
 }

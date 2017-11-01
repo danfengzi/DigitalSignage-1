@@ -32,8 +32,7 @@ public class Forecastday extends BaseObservable {
     Temp low;
     long maxhumidity;
 
-    public Forecastday() {        Log.d("-----","Forecastday:");
-
+    public Forecastday() {
     }
 
     @Bindable
@@ -44,7 +43,6 @@ public class Forecastday extends BaseObservable {
 
     public void setQpf_allday (Qpf qpf_allday)
     {
-        Log.d("-------","forecastday 1");
         this.qpf_allday = qpf_allday;
     }
 
@@ -56,7 +54,6 @@ public class Forecastday extends BaseObservable {
 
     public void setIcon (String icon)
     {
-        Log.d("-------","forecastday 2");
         this.icon = icon;
     }
 
@@ -68,7 +65,6 @@ public class Forecastday extends BaseObservable {
 
     public void setMaxwind (Wind maxwind)
     {
-        Log.d("-------","forecastday 3");
         this.maxwind = maxwind;
     }
 
@@ -80,7 +76,6 @@ public class Forecastday extends BaseObservable {
 
     public void setQpf_day (Qpf qpf_day)
     {
-        Log.d("-------","forecastday 4");
         this.qpf_day = qpf_day;
     }
 
@@ -92,7 +87,6 @@ public class Forecastday extends BaseObservable {
 
     public void setIcon_url (String icon_url)
     {
-        Log.d("-------","forecastday 5");
         this.icon_url = icon_url;
     }
 
@@ -104,7 +98,6 @@ public class Forecastday extends BaseObservable {
 
     public void setSkyicon (String skyicon)
     {
-        Log.d("-------","forecastday 6");
         this.skyicon = skyicon;
     }
 
@@ -116,7 +109,6 @@ public class Forecastday extends BaseObservable {
 
     public void setPop (int pop)
     {
-        Log.d("-------","forecastday 7");
         this.pop = pop;
         notifyPropertyChanged(BR.pop);
     }
@@ -129,7 +121,6 @@ public class Forecastday extends BaseObservable {
 
     public void setDate (Date date)
     {
-        Log.d("-------","forecastday 8");
         this.date = date;
     }
 
@@ -141,7 +132,6 @@ public class Forecastday extends BaseObservable {
 
     public void setPeriod (long period)
     {
-        Log.d("-------","forecastday 9");
         this.period = period;
     }
 
@@ -153,7 +143,6 @@ public class Forecastday extends BaseObservable {
 
     public void setSnow_night (Snow snow_night)
     {
-        Log.d("-------","forecastday 10");
         this.snow_night = snow_night;
     }
 
@@ -165,7 +154,6 @@ public class Forecastday extends BaseObservable {
 
     public void setConditions (String conditions)
     {
-        Log.d("-------","forecastday 11");
         this.conditions = conditions;
         notifyPropertyChanged(BR.conditions);
     }
@@ -178,8 +166,6 @@ public class Forecastday extends BaseObservable {
 
     public void setAvewind (Wind avewind)
     {
-        Log.d("-------","forecastday 12");
-
         this.avewind = avewind;
     }
 
@@ -191,7 +177,6 @@ public class Forecastday extends BaseObservable {
 
     public void setAvehumidity (long avehumidity)
     {
-        Log.d("-------","forecastday 13");
         this.avehumidity = avehumidity;
     }
 
@@ -203,7 +188,6 @@ public class Forecastday extends BaseObservable {
 
     public void setSnow_day (Snow snow_day)
     {
-        Log.d("-------","forecastday 14");
         this.snow_day = snow_day;
     }
 
@@ -215,7 +199,6 @@ public class Forecastday extends BaseObservable {
 
     public void setMinhumidity (long minhumidity)
     {
-        Log.d("-------","forecastday 15");
         this.minhumidity = minhumidity;
     }
 
@@ -227,7 +210,6 @@ public class Forecastday extends BaseObservable {
 
     public void setQpf_night (Qpf qpf_night)
     {
-        Log.d("-------","forecastday 16");
         this.qpf_night = qpf_night;
     }
 
@@ -239,7 +221,6 @@ public class Forecastday extends BaseObservable {
 
     public void setHigh (Temp high)
     {
-        Log.d("-------","forecastday 17");
         this.high = high;
     }
 
@@ -251,7 +232,6 @@ public class Forecastday extends BaseObservable {
 
     public void setSnow_allday (Snow snow_allday)
     {
-        Log.d("-------","forecastday 18");
         this.snow_allday = snow_allday;
     }
 
@@ -263,7 +243,6 @@ public class Forecastday extends BaseObservable {
 
     public void setLow (Temp low)
     {
-        Log.d("-------","forecastday 19");
         this.low = low;
     }
 
@@ -275,7 +254,6 @@ public class Forecastday extends BaseObservable {
 
     public void setMaxhumidity (long maxhumidity)
     {
-        Log.d("-------","forecastday 20");
         this.maxhumidity = maxhumidity;
     }
 

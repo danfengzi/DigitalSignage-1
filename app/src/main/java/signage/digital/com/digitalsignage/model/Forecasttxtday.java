@@ -15,7 +15,7 @@ public class Forecasttxtday extends BaseObservable{
     String fcttext_metric = "";
     String pop = "";
 
-    public Forecasttxtday() {          Log.d("-----","Forecasttxtday:");
+    public Forecasttxtday() {
     }
 
     @Bindable

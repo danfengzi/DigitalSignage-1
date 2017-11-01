@@ -12,8 +12,7 @@ class Qpf extends BaseObservable{
     long mm;
     double in;
 
-    public Qpf() {        Log.d("-----","Qpf:");
-
+    public Qpf() {
     }
 
     @Bindable

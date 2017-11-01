@@ -13,7 +13,7 @@ public class Image extends BaseObservable {
     private String link;
     private String url;
 
-    public Image() {          Log.d("-----","Image:");
+    public Image() {
     }
 
     @Bindable

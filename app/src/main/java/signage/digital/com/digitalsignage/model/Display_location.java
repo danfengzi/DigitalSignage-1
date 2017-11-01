@@ -23,8 +23,6 @@ public class Display_location extends BaseObservable {
     String city;
 
     public Display_location() {
-        Log.d("-----","Display Location:");
-
     }
 
     @Bindable

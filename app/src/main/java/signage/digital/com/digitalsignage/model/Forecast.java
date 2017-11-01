@@ -11,7 +11,7 @@ public class Forecast  extends BaseObservable {
     Txt_forecast txt_forecast;
     Simpleforecast simpleforecast;
 
-    public Forecast() {           Log.d("-----","Forecast:");
+    public Forecast() {
     }
 
     @Bindable

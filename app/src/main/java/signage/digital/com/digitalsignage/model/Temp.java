@@ -14,8 +14,7 @@ public class Temp extends BaseObservable{
     String celsius;
     String fahrenheit;
 
-    public Temp() {         Log.d("-----","Temperature:");
-
+    public Temp() {
     }
 
     @Bindable

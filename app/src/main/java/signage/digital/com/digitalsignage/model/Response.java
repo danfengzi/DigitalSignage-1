@@ -13,7 +13,7 @@ public class Response extends BaseObservable{
     String termsofService;
     String version;
 
-    public Response() {          Log.d("-----","Response:");
+    public Response() {
     }
 
     @Bindable
