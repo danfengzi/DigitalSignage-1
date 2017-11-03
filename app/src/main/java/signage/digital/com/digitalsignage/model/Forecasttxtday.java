@@ -8,12 +8,13 @@ import signage.digital.com.digitalsignage.BR;
 
 public class Forecasttxtday extends BaseObservable{
 
-    long period = 0;
-    String icon = "";
-    String title = "";
-    String fcttext = "";
-    String fcttext_metric = "";
-    String pop = "";
+    long period;
+    String icon;
+    String icon_url;
+    String title;
+    String fcttext;
+    String fcttext_metric;
+    String pop;
 
     public Forecasttxtday() {
     }
@@ -48,11 +49,6 @@ public class Forecasttxtday extends BaseObservable{
         return pop;
     }
 
-    public void setPeriod(int period) {
-        this.period = period;
-        notifyPropertyChanged(BR.period);
-    }
-
     public void setIcon(String icon) {
         this.icon = icon;
         notifyPropertyChanged(BR.icon);
@@ -76,5 +72,18 @@ public class Forecasttxtday extends BaseObservable{
     public void setPop(String pop) {
         this.pop = pop;
         notifyPropertyChanged(BR.pop);
+    }
+
+    public void setPeriod(long period) {
+        this.period = period;
+    }
+
+    @Bindable
+    public String getIcon_url() {
+        return icon_url;
+    }
+
+    public void setIcon_url(String icon_url) {
+        this.icon_url = icon_url;
     }
 }

@@ -34,7 +34,7 @@ public class Current_observation  extends BaseObservable {
     String windchill_string;
     String weather;
     String station_id;
-    String uv;
+    String UV;
     String observation_epoch;
     String precip_1hr_in;
     String feelslike_string;
@@ -45,12 +45,10 @@ public class Current_observation  extends BaseObservable {
     String solarradiation;
     String visibility_mi;
     Observation_location observation_location;
-    String heat_index_c;
     String precip_today_string;
     String feelslike_f;
     String observation_time_rfc822;
     String feelslike_c;
-    String heat_index_f;
     String heat_index_string;
     String ob_url;
     String dewpoint_string;
@@ -123,7 +121,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setWind_kph (Long wind_kph)
     {
-        Log.e("-------","Current obser wind km");
         this.wind_kph = wind_kph;
         notifyPropertyChanged(BR.wind_kph);
     }
@@ -136,7 +133,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setWind_mph (Long wind_mph)
     {
-        Log.e("-------","Current obser wind pmh");
         this.wind_mph = wind_mph;
         notifyPropertyChanged(BR.wind_mph);
     }
@@ -149,7 +145,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setTemp_c (Double temp_c)
     {
-        Log.e("-------","Current obser temp c");
         this.temp_c = temp_c;
         notifyPropertyChanged(BR.temp_c);
     }
@@ -162,7 +157,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setTemp_f (Double temp_f)
     {
-        Log.e("-------","Current obser temp f");
         this.temp_f = temp_f;
         notifyPropertyChanged(BR.temp_f);
     }
@@ -175,14 +169,13 @@ public class Current_observation  extends BaseObservable {
 
     public void setIcon (String icon)
     {
-        Log.e("-------","Current obser 35");
         this.icon = icon;
         notifyPropertyChanged(BR.icon);
     }
 
-/*
+
     @Bindable
-    public Long getWind_gust_kph ()
+    public Long getWind_gust_kph()
     {
         return wind_gust_kph;
     }
@@ -195,7 +188,7 @@ public class Current_observation  extends BaseObservable {
     }
 
     @Bindable
-    public Long getWind_gust_mph ()
+    public Long getWind_gust_mph()
     {
         return wind_gust_mph;
     }
@@ -208,7 +201,6 @@ public class Current_observation  extends BaseObservable {
     }
 
 
-
     @Bindable
     public String getPrecip_1hr_metric ()
     {
@@ -217,7 +209,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setPrecip_1hr_metric (String precip_1hr_metric)
     {
-        Log.e("-------","Current obser 1");
         this.precip_1hr_metric = precip_1hr_metric;
         notifyPropertyChanged(BR.precip_1hr_metric);
     }
@@ -230,7 +221,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setPrecip_today_metric (String precip_today_metric)
     {
-        Log.e("-------","Current obser 2");
         this.precip_today_metric = precip_today_metric;
         notifyPropertyChanged(BR.precip_today_metric);
     }
@@ -311,16 +301,16 @@ public class Current_observation  extends BaseObservable {
     }
 
     @Bindable
-    public String getUv ()
+    public String getUV ()
     {
-        return uv;
+        return UV;
     }
 
-    public void setUv (String uv)
+    public void setUV (String uv)
     {
         Log.e("-------","Current obser 9");
-        this.uv = uv;
-        notifyPropertyChanged(BR.uv);
+        this.UV = uv;
+        notifyPropertyChanged(BR.uV);
     }
 
     @Bindable
@@ -410,7 +400,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setImage (Image image)
     {
-        Log.e("-------","Current obser 16");
         this.image = image;
     }
 
@@ -422,11 +411,8 @@ public class Current_observation  extends BaseObservable {
 
     public void setSolarradiation (String solarradiation)
     {
-        Log.e("-------","Current obser 17");
         this.solarradiation = solarradiation;
-        Log.e("-------","Current obser 17");
         notifyPropertyChanged(BR.solarradiation);
-        Log.e("-------","Current obser 17");
     }
 
     @Bindable
@@ -452,19 +438,6 @@ public class Current_observation  extends BaseObservable {
     {
         Log.e("-------","Current obser 19");
         this.observation_location = observation_location;
-    }
-
-    @Bindable
-    public String getHeat_index_c ()
-    {
-        return heat_index_c;
-    }
-
-    public void setHeat_index_c (String heat_index_c)
-    {
-        Log.e("-------","Current obser 20");
-        this.heat_index_c = heat_index_c;
-        notifyPropertyChanged(BR.heat_index_c);
     }
 
     @Bindable
@@ -516,19 +489,6 @@ public class Current_observation  extends BaseObservable {
         Log.e("-------","Current obser 24");
         this.feelslike_c = feelslike_c;
         notifyPropertyChanged(BR.feelslike_c);
-    }
-
-    @Bindable
-    public String getHeat_index_f ()
-    {
-        return heat_index_f;
-    }
-
-    public void setHeat_index_f (String heat_index_f)
-    {
-        Log.e("-------","Current obser 25");
-        this.heat_index_f = heat_index_f;
-        notifyPropertyChanged(BR.heat_index_f);
     }
 
     @Bindable
@@ -793,5 +753,4 @@ public class Current_observation  extends BaseObservable {
         this.precip_today_in = precip_today_in;
         notifyPropertyChanged(BR.precip_today_in);
     }
-    */
 }

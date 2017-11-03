@@ -19,6 +19,8 @@ import java.util.List;
 import signage.digital.com.digitalsignage.Eventm;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.databinding.FragmentEventBinding;
+import signage.digital.com.digitalsignage.databinding.FragmentWeatherBinding;
+import signage.digital.com.digitalsignage.databinding.WeatherCurrentBinding;
 import signage.digital.com.digitalsignage.model.City;
 
 public class FragmentEvent extends BaseFragment {
@@ -55,9 +57,9 @@ public class FragmentEvent extends BaseFragment {
         citylistener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                City city = dataSnapshot.getValue(City.class);
-                cities.add(city);
 
+                City city = dataSnapshot.getValue(City.class);
+                //setupCityView(city);
             }
 
             @Override
@@ -97,14 +99,20 @@ public class FragmentEvent extends BaseFragment {
         };
     }
 
+    private void setupCityView(City city){
+        //LayoutInflater inflater = getLayoutInflater();
+        //ViewGroup container = this.getView().findViewById(R.id.flipperbanner);
+        //WeatherCurrentBinding binding = DataBindingUtil.inflate(inflater, R.layout.weather_current, container, false);
+        //binding.setCity(city);
+
+        //return binding.getRoot();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         FragmentEventBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event, container, false);
         binding.setEntries(events);
-        binding.setBanners(cities);
 
         View view =  binding.getRoot();
 

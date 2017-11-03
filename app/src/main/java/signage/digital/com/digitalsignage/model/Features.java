@@ -24,7 +24,6 @@ public class Features extends BaseObservable{
 
     public void setForecast (long forecast)
     {
-        Log.d("-------","features 1");
         this.forecast = forecast;
     }
 
@@ -33,7 +32,6 @@ public class Features extends BaseObservable{
     }
 
     public void setConditions(long conditions) {
-        Log.d("-------","features 2");
         this.conditions = conditions;
     }
 }

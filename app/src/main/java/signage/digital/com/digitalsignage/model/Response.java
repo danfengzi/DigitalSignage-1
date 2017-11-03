@@ -24,7 +24,6 @@ public class Response extends BaseObservable{
 
     public void setFeatures (Features features)
     {
-        Log.d("-------","response 1");
         this.features = features;
     }
 
@@ -36,7 +35,6 @@ public class Response extends BaseObservable{
 
     public void setTermsofService (String termsofservice)
     {
-        Log.d("-------","response 2");
         this.termsofService = termsofservice;
     }
 
@@ -48,7 +46,6 @@ public class Response extends BaseObservable{
 
     public void setVersion (String version)
     {
-        Log.d("-------","response 3");
         this.version = version;
     }
 

@@ -1,9 +1,6 @@
 <layout>
     <data>
         <variable
-            name="banners"
-            type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.model.City&gt;"/>
-        <variable
             name="entries"
             type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.Eventm&gt;"/>
     </data>
@@ -11,11 +8,11 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/relativeLayout"
-        android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#2E3152"
+        android:orientation="vertical"
         tools:context="signage.digital.com.digitalsignage.MainActivity">
 
         <ImageView
@@ -31,21 +28,16 @@
             android:id="@+id/l_event"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="188dp"
             android:orientation="vertical"
-            app:entries="@{entries}"
-            />
+            app:entries="@{entries}" />
 
         <ViewFlipper
             android:id="@+id/flipperbanner"
             android:layout_width="match_parent"
-            android:layout_height="768px"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            app:banners="@{banners}"
             android:autoStart="true"
-            android:flipInterval="5000"/>
-
+            android:flipInterval="5000" />
     </LinearLayout>
 </layout>

@@ -23,7 +23,6 @@ public class ForecastResponse extends BaseObservable{
 
     public void setResponse (Response response)
     {
-        Log.d("-------","forecastresponse 1");
         this.response = response;
     }
 
@@ -35,7 +34,6 @@ public class ForecastResponse extends BaseObservable{
 
     public void setForecast (Forecast forecast)
     {
-        Log.d("-------","forecastresponse 1");
         this.forecast = forecast;
     }
 

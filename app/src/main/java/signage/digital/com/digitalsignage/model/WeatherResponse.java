@@ -24,7 +24,6 @@ public class WeatherResponse extends BaseObservable{
 
     public void setResponse (Response response)
     {
-        Log.d("-------","weather response 1");
         this.response = response;
     }
 
@@ -36,7 +35,6 @@ public class WeatherResponse extends BaseObservable{
 
     public void setCurrent_observation (Current_observation current_observation)
     {
-        Log.d("-------","weather response 2");
         this.current_observation = current_observation;
     }
 }

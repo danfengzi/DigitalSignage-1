@@ -90,34 +90,6 @@ public class ListBindingAdapters {
         }
     }
 
-    @BindingAdapter({"banners"})
-    public static <T> void setBanners(ViewGroup viewGroup,
-                                      List<T> oldEntries, List<T> newEntries) {
-        if (oldEntries == newEntries) {
-            return; // nothing has changed
-        }
-        EntryChangeListener listener =
-                ListenerUtil.getListener(viewGroup, R.id.bannerListener);
-        if (oldEntries != newEntries && listener != null && oldEntries instanceof ObservableList) {
-            ((ObservableList)oldEntries).removeOnListChangedCallback(listener);
-        }
-        if (newEntries == null) {
-            viewGroup.removeAllViews();
-
-        } else {
-            if (newEntries instanceof ObservableList) {
-                if (listener == null) {
-                    listener = new EntryChangeListener(viewGroup, R.layout.weatherday, BR.banners);
-                    ListenerUtil.trackListener(viewGroup, listener,
-                            R.id.bannerListener);
-                }
-                if (newEntries != oldEntries) {
-                    ((ObservableList)newEntries).addOnListChangedCallback(listener);
-                }
-            }
-            resetViews(viewGroup, R.layout.weather_current, newEntries, BR.banners);
-        }
-    }
 
     @BindingAdapter({"imageUrl"})
     public static void setImageViewResource(ImageView imageView, String resource) {
