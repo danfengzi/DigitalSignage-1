@@ -15,33 +15,35 @@ import signage.digital.com.digitalsignage.BR;
  */
 public class Current_observation  extends BaseObservable {
 
-    Long dewpoint_c;
-    Long dewpoint_f;
+    //Long dewpoint_c;
+    //Long dewpoint_f;
     Double temp_f;
     Double temp_c;
-    Long wind_mph;
-    Long wind_kph;
-    Long wind_degrees;
-    Long wind_gust_mph;
-    Long wind_gust_kph;
+    //Long wind_mph;
+    //Long wind_kph;
+    //Long wind_degrees;
+    //Long wind_gust_mph;
+    //Long wind_gust_kph;
     String icon;
 
-    String precip_1hr_metric;
+/*    String precip_1hr_metric;
     String precip_today_metric;
     String pressure_trend;
     String forecast_url;
     String history_url;
     String windchill_string;
+    */
     String weather;
-    String station_id;
+/*    String station_id;
     String UV;
     String observation_epoch;
     String precip_1hr_in;
     String feelslike_string;
     String observation_time;
     String local_tz_long;
+    */
     String relative_humidity;
-    Image image;
+/*    Image image;
     String solarradiation;
     String visibility_mi;
     Observation_location observation_location;
@@ -69,10 +71,10 @@ public class Current_observation  extends BaseObservable {
     String local_epoch;
     String wind_string;
     String precip_today_in;
-
+*/
     public Current_observation() {
     }
-
+/*
     @Bindable
     public Long getDewpoint_f ()
     {
@@ -83,7 +85,6 @@ public class Current_observation  extends BaseObservable {
     {
         this.dewpoint_f = dewpoint_f;
         notifyPropertyChanged(BR.dewpoint_f);
-
     }
 
     @Bindable
@@ -136,7 +137,7 @@ public class Current_observation  extends BaseObservable {
         this.wind_mph = wind_mph;
         notifyPropertyChanged(BR.wind_mph);
     }
-
+*/
     @Bindable
     public Double getTemp_c ()
     {
@@ -173,7 +174,7 @@ public class Current_observation  extends BaseObservable {
         notifyPropertyChanged(BR.icon);
     }
 
-
+/*
     @Bindable
     public Long getWind_gust_kph()
     {
@@ -274,7 +275,7 @@ public class Current_observation  extends BaseObservable {
         this.windchill_string = windchill_string;
         notifyPropertyChanged(BR.windchill_string);
     }
-
+*/
     @Bindable
     public String getWeather ()
     {
@@ -287,7 +288,7 @@ public class Current_observation  extends BaseObservable {
         this.weather = weather;
         notifyPropertyChanged(BR.weather);
     }
-
+/*
     @Bindable
     public String getStation_id ()
     {
@@ -377,7 +378,7 @@ public class Current_observation  extends BaseObservable {
 
         this.local_tz_long = local_tz_long;
     }
-
+*/
     @Bindable
     public String getRelative_humidity ()
     {
@@ -391,7 +392,7 @@ public class Current_observation  extends BaseObservable {
         notifyPropertyChanged(BR.relative_humidity);
     }
 
-
+/*
     @Bindable
     public Image getImage ()
     {
@@ -753,4 +754,5 @@ public class Current_observation  extends BaseObservable {
         this.precip_today_in = precip_today_in;
         notifyPropertyChanged(BR.precip_today_in);
     }
+    */
 }

@@ -19,7 +19,6 @@ import java.util.List;
 import signage.digital.com.digitalsignage.Eventm;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.databinding.FragmentEventBinding;
-import signage.digital.com.digitalsignage.databinding.FragmentWeatherBinding;
 import signage.digital.com.digitalsignage.databinding.WeatherCurrentBinding;
 import signage.digital.com.digitalsignage.model.City;
 
@@ -59,7 +58,7 @@ public class FragmentEvent extends BaseFragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 City city = dataSnapshot.getValue(City.class);
-                //setupCityView(city);
+                flipper.addView(setupCityView(city));
             }
 
             @Override
@@ -97,15 +96,17 @@ public class FragmentEvent extends BaseFragment {
             @Override
             public void onCancelled(DatabaseError databaseError) {            }
         };
+        System.out.println("----------------onCreate Event");
+
     }
 
-    private void setupCityView(City city){
-        //LayoutInflater inflater = getLayoutInflater();
-        //ViewGroup container = this.getView().findViewById(R.id.flipperbanner);
-        //WeatherCurrentBinding binding = DataBindingUtil.inflate(inflater, R.layout.weather_current, container, false);
-        //binding.setCity(city);
+    private View setupCityView(City city){
+        LayoutInflater inflater = getLayoutInflater();
+        ViewGroup container = this.getView().findViewById(R.id.flipperbanner);
+        WeatherCurrentBinding binding = DataBindingUtil.inflate(inflater, R.layout.weather_current, container, false);
+        binding.setCity(city);
 
-        //return binding.getRoot();
+        return binding.getRoot();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,12 +114,19 @@ public class FragmentEvent extends BaseFragment {
 
         FragmentEventBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event, container, false);
         binding.setEntries(events);
-
+        flipper = binding.getRoot().findViewById(R.id.flipperbanner);
         View view =  binding.getRoot();
+        System.out.println("----------------onCreateView Event");
 
-        myRef.child("events").addValueEventListener(listener);
-        myRef.child("cities").addChildEventListener(citylistener);
 
         return view;
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        myRef.child("events").addValueEventListener(listener);
+        myRef.child("cities").addChildEventListener(citylistener);
+    }
+
 }

@@ -2,10 +2,14 @@ package signage.digital.com.digitalsignage;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import java.util.List;
+
+import signage.digital.com.digitalsignage.adapter.FragmentAdapter;
 import signage.digital.com.digitalsignage.fragment.FragmentAdv;
 import signage.digital.com.digitalsignage.fragment.FragmentEvent;
 
@@ -16,8 +20,9 @@ import signage.digital.com.digitalsignage.fragment.FragmentEvent;
 public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalendarChangeListener{
 
     private int numEvents = 0;
-    private FragmentAdv frag_adv;
-    private FragmentEvent frag_event;
+    ViewPager viewPager;
+    FragmentAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,29 +37,21 @@ public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalend
 
         setContentView(R.layout.activity_fullscreen2);
 
-        frag_adv = new FragmentAdv();
-        frag_event = new FragmentEvent();
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        adapter = new FragmentAdapter(getSupportFragmentManager());
+        adapter.add(new FragmentAdv());
+        adapter.add(new FragmentEvent());
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(frag_event,"event");
-        transaction.commit();
-    }
+        viewPager.setAdapter(adapter);
 
-    private void switchFragment(Fragment fragment, String tag){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
     @Override
     public void onCalendarChange(List<Eventm> list) {
         if(list.size()==0) {
-            switchFragment(frag_adv, "adv");
+            viewPager.setCurrentItem(0);
         } else {
-            if(list.size()!=numEvents){
-                switchFragment(frag_event, "event");
-            }
+            viewPager.setCurrentItem(1);
         }
         numEvents = list.size();
         Log.d("-----","List size: "+list.size());
