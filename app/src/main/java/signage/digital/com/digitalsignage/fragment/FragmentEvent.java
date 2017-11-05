@@ -102,8 +102,8 @@ public class FragmentEvent extends BaseFragment {
 
     private View setupCityView(City city){
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup container = this.getView().findViewById(R.id.flipperbanner);
-        WeatherCurrentBinding binding = DataBindingUtil.inflate(inflater, R.layout.weather_current, container, false);
+//        ViewGroup container = this.getView().findViewById(R.id.flipperbanner);
+        WeatherCurrentBinding binding = DataBindingUtil.inflate(inflater, R.layout.weather_current, flipper, false);
         binding.setCity(city);
 
         return binding.getRoot();
