@@ -15,7 +15,6 @@
  */
 package signage.digital.com.digitalsignage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;

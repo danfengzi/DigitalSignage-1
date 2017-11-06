@@ -1,10 +1,13 @@
 <layout>
     <data>
         <variable
+            name="cities"
+            type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.model.City&gt;"/>
+        <variable
             name="entries"
             type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.Eventm&gt;"/>
     </data>
-    <LinearLayout
+    <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -13,32 +16,32 @@
         android:background="#2E3152"
         android:orientation="vertical"
         tools:context="signage.digital.com.digitalsignage.MainActivity">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#2E3152"
-            >
+
             <ImageView
-                android:padding="16dp"
+                android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView"
-                android:src="@drawable/header"
-                android:scaleType="center"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
                 android:background="#2E3152"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
-        </LinearLayout>
+                android:padding="16dp"
+                android:scaleType="center"
+                android:src="@drawable/header" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView"
             android:orientation="vertical"
             app:entries="@{entries}" />
+
         <ViewFlipper
             android:id="@+id/flipperbanner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ViewFlipper>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:autoStart="true"
+            android:flipInterval="15000"
+            app:cities="@{cities}"></ViewFlipper>
+    </RelativeLayout>
 </layout>

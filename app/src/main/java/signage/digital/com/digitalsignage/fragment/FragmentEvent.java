@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ViewFlipper;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -58,7 +61,7 @@ public class FragmentEvent extends BaseFragment {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 City city = dataSnapshot.getValue(City.class);
-                flipper.addView(setupCityView(city));
+                cities.add(city);
             }
 
             @Override
@@ -114,10 +117,13 @@ public class FragmentEvent extends BaseFragment {
 
         FragmentEventBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_event, container, false);
         binding.setEntries(events);
+        binding.setCities(cities);
         flipper = binding.getRoot().findViewById(R.id.flipperbanner);
+        flipper.setInAnimation(inAnimation());
+        flipper.setOutAnimation(outAnimation());
+
         View view =  binding.getRoot();
         System.out.println("----------------onCreateView Event");
-
 
         return view;
     }
@@ -129,4 +135,17 @@ public class FragmentEvent extends BaseFragment {
         myRef.child("cities").addChildEventListener(citylistener);
     }
 
+    public static Animation inAnimation() {
+        Animation fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeIn.setDuration(1000);
+        return fadeIn;
+    }
+
+    public static Animation outAnimation() {
+        Animation fadeOut = new AlphaAnimation(1,0);
+        fadeOut.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeOut.setDuration(1000);
+        return fadeOut;
+    }
 }
