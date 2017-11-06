@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import java.util.List;
@@ -17,9 +18,8 @@ import signage.digital.com.digitalsignage.fragment.FragmentEvent;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalendarChangeListener{
+public class PlayActivity extends AppCompatActivity implements FragmentEvent.OnCalendarChangeListener{
 
-    private int numEvents = 0;
     ViewPager viewPager;
     FragmentAdapter adapter;
 
@@ -53,7 +53,5 @@ public class PlayActivity extends BaseActivity implements FragmentEvent.OnCalend
         } else {
             viewPager.setCurrentItem(1);
         }
-        numEvents = list.size();
-        Log.d("-----","List size: "+list.size());
     }
 }

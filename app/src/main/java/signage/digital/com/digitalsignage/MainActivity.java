@@ -3,6 +3,7 @@ package signage.digital.com.digitalsignage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
 
-public class MainActivity extends BaseActivity implements OnClickListener{
+public class MainActivity extends AppCompatActivity implements OnClickListener{
     private DatabaseReference myRef;
     private FirebaseAuth mAuth;
     private FirebaseStorage storage;
@@ -24,8 +25,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        MyApp.getInstance().setContext(this);
 
         storage = FirebaseStorage.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -41,7 +40,6 @@ public class MainActivity extends BaseActivity implements OnClickListener{
     @Override
     public void onStart() {
         super.onStart();
-        showProgress();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
@@ -51,11 +49,9 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         if (!isSignedIn) {
             signInAnonymously();
         }
-        hideProgress();
     }
 
     private void signInAnonymously() {
-        showProgress();
         mAuth.signInAnonymously()
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
