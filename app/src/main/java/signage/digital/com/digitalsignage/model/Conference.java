@@ -1,23 +1,25 @@
-package signage.digital.com.digitalsignage;
+package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+
+import signage.digital.com.digitalsignage.BR;
 
 /**
  * Created by everest on 24/10/2017.
  */
 
-public class Eventm extends BaseObservable {
+public class Conference extends BaseObservable {
 
     private String location;
     private String description;
 
-    public Eventm(String description, String location){
+    public Conference(String description, String location){
         this.description = description;
         this.location = location;
     }
 
-    public Eventm(){
+    public Conference(){
     }
 
     @Bindable

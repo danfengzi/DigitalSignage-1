@@ -284,7 +284,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setWeather (String weather)
     {
-        Log.e("-------","Current obser 7");
         this.weather = weather;
         notifyPropertyChanged(BR.weather);
     }
@@ -387,7 +386,6 @@ public class Current_observation  extends BaseObservable {
 
     public void setRelative_humidity (String relative_humidity)
     {
-        Log.e("-------","Current obser 15");
         this.relative_humidity = relative_humidity;
         notifyPropertyChanged(BR.relative_humidity);
     }

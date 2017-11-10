@@ -5,7 +5,7 @@
             type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.model.City&gt;"/>
         <variable
             name="entries"
-            type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.Eventm&gt;"/>
+            type="android.databinding.ObservableList&lt;signage.digital.com.digitalsignage.model.Conference&gt;"/>
     </data>
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

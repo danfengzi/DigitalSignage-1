@@ -2,7 +2,7 @@
 <data>
     <variable
         name="data"
-        type="signage.digital.com.digitalsignage.Eventm" />
+        type="signage.digital.com.digitalsignage.model.Conference" />
 </data>
 
 <LinearLayout

@@ -150,7 +150,7 @@
                 android:paddingLeft="16dp">
 
                 <TextView
-                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(0).date.weekday_short}"
+                    android:text="@{city.forecast.forecast.simpleforecast.forecastday.get(2).date.weekday_short}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"/>

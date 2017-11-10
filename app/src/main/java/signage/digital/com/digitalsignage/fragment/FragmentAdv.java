@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ObservableArrayList;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.databinding.FragmentWeatherBinding;
 import signage.digital.com.digitalsignage.model.City;
@@ -37,14 +35,12 @@ public class FragmentAdv extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("----------- onCreate ADV");
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
 
         citylistener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                System.out.println("datasnapshot:"+dataSnapshot.toString());
                 City city = dataSnapshot.getValue(City.class);
                 cities.add(city);
             }
@@ -52,7 +48,6 @@ public class FragmentAdv extends Fragment {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                 cities.set(Integer.valueOf(dataSnapshot.getKey()), dataSnapshot.getValue(City.class));
-                System.out.println("datasnapshot:"+dataSnapshot.toString());
             }
 
             @Override
@@ -74,6 +69,9 @@ public class FragmentAdv extends Fragment {
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                for(int i=1;i<flipper.getChildCount();i++){
+                    flipper.removeViewAt(i);
+                }
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     ImageView imageView = new ImageView(getContext());
                     imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -83,7 +81,6 @@ public class FragmentAdv extends Fragment {
                             .load(data.getValue().toString())
                             .into(imageView);
                     flipper.addView(imageView);
-                    Log.d("-----","URL:"+data.getValue().toString() );
                 }
             }
 
@@ -103,6 +100,7 @@ public class FragmentAdv extends Fragment {
         super.onPause();
         myRef.removeEventListener(listener);
         myRef.removeEventListener(citylistener);
+        cities.clear();
     }
 
     public static Animation inAnimation() {
@@ -122,7 +120,6 @@ public class FragmentAdv extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        System.out.println("----------------onCreateView ADV");
 
         View view =  inflater.inflate(R.layout.fragment_adv, container, false);
         flipper = (ViewFlipper)view.findViewById(R.id.flipper);
@@ -133,7 +130,6 @@ public class FragmentAdv extends Fragment {
         flipper.setFlipInterval(20000);
         flipper.setAutoStart(true);
 
-//        FragmentWeatherBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_weather);
         FragmentWeatherBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather, container, false);
         binding.setCities(cities);
         flipper.addView(binding.getRoot());
