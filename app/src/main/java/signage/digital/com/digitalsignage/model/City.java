@@ -2,8 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
-
 import signage.digital.com.digitalsignage.BR;
 
 /**
@@ -19,9 +17,6 @@ public class City  extends BaseObservable {
         this.city = city;
         this.weather = weatherresponse;
         this.forecast = forecastresponse;
-    }
-    public City() {
-
     }
 
     @Bindable

@@ -19,9 +19,6 @@ public class Conference extends BaseObservable {
         this.location = location;
     }
 
-    public Conference(){
-    }
-
     @Bindable
     public String getLocation() {
         return location;

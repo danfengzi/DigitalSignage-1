@@ -2,10 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
-
-import com.google.gson.annotations.SerializedName;
-
 
 /**
  * Created by fung.lam on 02/09/2015.
@@ -15,9 +11,6 @@ public class DisplayObservation  extends BaseObservable {
 
     private String full;
     private String city;
-
-    public DisplayObservation() {
-    }
 
     @Bindable
     public String getFull() {

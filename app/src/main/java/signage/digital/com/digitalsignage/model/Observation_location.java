@@ -2,12 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
-
-import com.google.gson.annotations.SerializedName;
-
-import signage.digital.com.digitalsignage.BR;
-
 
 /**
  * Created by fung.lam on 02/09/2015.
@@ -23,9 +17,6 @@ public class Observation_location extends BaseObservable {
     private String country_iso3166;
     private String country;
     private String city;
-
-    public Observation_location() {
-    }
 
     @Bindable
     public String getFull ()

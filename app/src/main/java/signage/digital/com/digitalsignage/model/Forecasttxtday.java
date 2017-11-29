@@ -2,8 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
-
 import signage.digital.com.digitalsignage.BR;
 
 public class Forecasttxtday extends BaseObservable{
@@ -15,9 +13,6 @@ public class Forecasttxtday extends BaseObservable{
     private String fcttext;
     private String fcttext_metric;
     private String pop;
-
-    public Forecasttxtday() {
-    }
 
     @Bindable
     public long getPeriod() {

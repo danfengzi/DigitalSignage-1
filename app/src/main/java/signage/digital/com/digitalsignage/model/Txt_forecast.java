@@ -12,8 +12,6 @@ public class Txt_forecast extends BaseObservable {
     private List<Forecasttxtday> forecastday;
     private String date;
 
-    public Txt_forecast() {  }
-
     @Bindable
     public List<Forecasttxtday> getForecastday ()
     {

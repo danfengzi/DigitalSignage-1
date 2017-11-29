@@ -67,10 +67,8 @@ public class Current_observation  extends BaseObservable {
     String local_epoch;
     String wind_string;
     String precip_today_in;
-*/
-    public Current_observation() {
-    }
-/*
+
+
     @Bindable
     public Long getDewpoint_f ()
     {

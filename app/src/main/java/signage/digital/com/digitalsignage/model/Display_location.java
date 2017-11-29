@@ -2,7 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
@@ -21,9 +20,6 @@ public class Display_location extends BaseObservable {
     private String country_iso3166;
     private String country;
     private String city;
-
-    public Display_location() {
-    }
 
     @Bindable
     public String getZip ()

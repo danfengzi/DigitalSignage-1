@@ -2,7 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
@@ -11,9 +10,6 @@ import android.util.Log;
 public class ForecastResponse extends BaseObservable{
     private Response response;
     private Forecast forecast;
-
-    public ForecastResponse() {
-    }
 
     @Bindable
     public Response getResponse ()

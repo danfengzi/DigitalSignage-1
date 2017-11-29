@@ -2,8 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
-import android.widget.BaseExpandableListAdapter;
 
 /**
  * Created by everest on 30/10/2017.
@@ -12,9 +10,6 @@ import android.widget.BaseExpandableListAdapter;
 public class Features extends BaseObservable{
     private long forecast;
     private long conditions;
-
-    public Features() {
-    }
 
     @Bindable
     public long getForecast ()
