@@ -13,14 +13,14 @@ public class Current_observation  extends BaseObservable {
 
     //Long dewpoint_c;
     //Long dewpoint_f;
-    Double temp_f;
-    Double temp_c;
+    private Double temp_f;
+    private Double temp_c;
     //Long wind_mph;
     //Long wind_kph;
     //Long wind_degrees;
     //Long wind_gust_mph;
     //Long wind_gust_kph;
-    String icon;
+    private String icon;
 
 /*    String precip_1hr_metric;
     String precip_today_metric;
@@ -29,7 +29,7 @@ public class Current_observation  extends BaseObservable {
     String history_url;
     String windchill_string;
     */
-    String weather;
+    private String weather;
 /*    String station_id;
     String UV;
     String observation_epoch;
@@ -38,7 +38,7 @@ public class Current_observation  extends BaseObservable {
     String observation_time;
     String local_tz_long;
     */
-    String relative_humidity;
+    private String relative_humidity;
 /*    Image image;
     String solarradiation;
     String visibility_mi;

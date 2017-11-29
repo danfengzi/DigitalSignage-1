@@ -22,7 +22,6 @@ import signage.digital.com.digitalsignage.model.Conference;
 public class MainActivity extends AppCompatActivity implements FragmentEvent.OnCalendarChangeListener{
     private FirebaseAuth mAuth;
     private ViewPager viewPager;
-    private FragmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements FragmentEvent.OnC
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new FragmentAdapter(getSupportFragmentManager());
+        FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         adapter.add(new FragmentAdv());
         adapter.add(new FragmentEvent());
         viewPager.setAdapter(adapter);
