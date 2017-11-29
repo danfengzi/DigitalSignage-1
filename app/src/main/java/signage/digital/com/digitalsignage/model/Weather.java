@@ -12,10 +12,6 @@ public class Weather extends BaseObservable{
     private Response response;
     private Current_observation current_observation;
 
-    public Weather() {
-
-    }
-
     @Bindable
     public Response getResponse ()
     {

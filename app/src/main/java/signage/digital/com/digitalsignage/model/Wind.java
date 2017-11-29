@@ -2,7 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
 
 /**
  * Created by everest on 31/10/2017.
@@ -13,10 +12,6 @@ class Wind extends BaseObservable{
     private String dir;
     private int degrees;
     private int kph;
-
-    public Wind() {
-
-    }
 
     @Bindable
     public int getMph ()

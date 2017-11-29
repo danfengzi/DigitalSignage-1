@@ -2,7 +2,6 @@ package signage.digital.com.digitalsignage.model;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
-import android.util.Log;
 
 /**
  * Created by everest on 30/10/2017.
@@ -12,9 +11,6 @@ public class Response extends BaseObservable{
     private Features features;
     private String termsofService;
     private String version;
-
-    public Response() {
-    }
 
     @Bindable
     public Features getFeatures ()
