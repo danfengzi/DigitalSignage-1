@@ -9,8 +9,8 @@ import android.util.Log;
  */
 
 class Snow extends BaseObservable {
-    int cm;
-    double in;
+    private int cm;
+    private double in;
 
     public Snow() {
     }

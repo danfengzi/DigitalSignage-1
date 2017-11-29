@@ -10,8 +10,8 @@ import android.util.Log;
 
 public class WeatherResponse extends BaseObservable{
 
-    Response response;
-    Current_observation current_observation;
+    private Response response;
+    private Current_observation current_observation;
 
     public WeatherResponse() {
     }

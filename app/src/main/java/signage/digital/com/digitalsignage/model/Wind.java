@@ -9,10 +9,10 @@ import android.util.Log;
  */
 
 class Wind extends BaseObservable{
-    int mph;
-    String dir;
-    int degrees;
-    int kph;
+    private int mph;
+    private String dir;
+    private int degrees;
+    private int kph;
 
     public Wind() {
 

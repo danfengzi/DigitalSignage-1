@@ -8,13 +8,13 @@ import signage.digital.com.digitalsignage.BR;
 
 public class Forecasttxtday extends BaseObservable{
 
-    long period;
-    String icon;
-    String icon_url;
-    String title;
-    String fcttext;
-    String fcttext_metric;
-    String pop;
+    private long period;
+    private String icon;
+    private String icon_url;
+    private String title;
+    private String fcttext;
+    private String fcttext_metric;
+    private String pop;
 
     public Forecasttxtday() {
     }

@@ -11,8 +11,8 @@ import signage.digital.com.digitalsignage.BR;
  */
 
 public class Temp extends BaseObservable{
-    String celsius;
-    String fahrenheit;
+    private String celsius;
+    private String fahrenheit;
 
     public Temp() {
     }

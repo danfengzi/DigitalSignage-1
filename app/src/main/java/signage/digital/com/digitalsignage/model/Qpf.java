@@ -9,8 +9,8 @@ import android.util.Log;
  */
 
 class Qpf extends BaseObservable{
-    long mm;
-    double in;
+    private long mm;
+    private double in;
 
     public Qpf() {
     }

@@ -15,14 +15,14 @@ import signage.digital.com.digitalsignage.BR;
  */
 public class Observation_location extends BaseObservable {
 
-     String full;
-     String elevation;
-     String state;
-     String longitude;
-     String latitude;
-     String country_iso3166;
-     String country;
-     String city;
+    private String full;
+    private String elevation;
+    private String state;
+    private String longitude;
+    private String latitude;
+    private String country_iso3166;
+    private String country;
+    private String city;
 
     public Observation_location() {
     }

@@ -9,18 +9,18 @@ import android.util.Log;
  */
 
 public class Display_location extends BaseObservable {
-    String zip;
-    String magic;
-    String full;
-    String elevation;
-    String state;
-    String wmo;
-    String longitude;
-    String latitude;
-    String state_name;
-    String country_iso3166;
-    String country;
-    String city;
+    private String zip;
+    private String magic;
+    private String full;
+    private String elevation;
+    private String state;
+    private String wmo;
+    private String longitude;
+    private String latitude;
+    private String state_name;
+    private String country_iso3166;
+    private String country;
+    private String city;
 
     public Display_location() {
     }

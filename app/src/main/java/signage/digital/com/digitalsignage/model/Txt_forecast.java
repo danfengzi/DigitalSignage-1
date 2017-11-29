@@ -11,12 +11,10 @@ import java.util.List;
  */
 
 public class Txt_forecast extends BaseObservable {
-    List<Forecasttxtday> forecastday;
-    String date;
+    private List<Forecasttxtday> forecastday;
+    private String date;
 
-    public Txt_forecast() {
-
-    }
+    public Txt_forecast() {  }
 
     @Bindable
     public List<Forecasttxtday> getForecastday ()

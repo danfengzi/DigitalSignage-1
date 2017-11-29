@@ -13,8 +13,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class DisplayObservation  extends BaseObservable {
 
-    String full;
-    String city;
+    private String full;
+    private String city;
 
     public DisplayObservation() {
     }

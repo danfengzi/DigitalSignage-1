@@ -8,8 +8,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Forecast  extends BaseObservable {
 
-    Txt_forecast txt_forecast;
-    Simpleforecast simpleforecast;
+    private Txt_forecast txt_forecast;
+    private Simpleforecast simpleforecast;
 
     public Forecast() {
     }

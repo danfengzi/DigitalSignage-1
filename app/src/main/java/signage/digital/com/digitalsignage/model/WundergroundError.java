@@ -8,40 +8,31 @@ package signage.digital.com.digitalsignage.model;
  */
 public class WundergroundError {
 
-    UndergroundResponse response;
+    private UndergroundResponse response;
 
     public UndergroundResponse getResponse() {
         return response;
     }
-
     public class UndergroundResponse{
-        String version;
-
-        String termsofService;
-
-        ErrorWunderground error;
+        private String version;
+        private String termsofService;
+        private ErrorWunderground error;
 
         public String getVersion() {
             return version;
         }
-
         public String getTermsofService() {
             return termsofService;
         }
-
         public ErrorWunderground getError() {
             return error;
         }
-
         public class ErrorWunderground{
-            String type;
-
-            String description;
-
+            private String type;
+            private String description;
             public String getType() {
                 return type;
             }
-
             public String getDescription() {
                 return description;
             }

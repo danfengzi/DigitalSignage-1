@@ -9,9 +9,9 @@ import android.util.Log;
  */
 
 public class Response extends BaseObservable{
-    Features features;
-    String termsofService;
-    String version;
+    private Features features;
+    private String termsofService;
+    private String version;
 
     public Response() {
     }

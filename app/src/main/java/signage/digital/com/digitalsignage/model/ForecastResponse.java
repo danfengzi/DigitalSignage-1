@@ -9,8 +9,8 @@ import android.util.Log;
  */
 
 public class ForecastResponse extends BaseObservable{
-    Response response;
-    Forecast forecast;
+    private Response response;
+    private Forecast forecast;
 
     public ForecastResponse() {
     }

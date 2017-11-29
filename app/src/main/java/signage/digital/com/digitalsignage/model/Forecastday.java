@@ -11,26 +11,26 @@ import signage.digital.com.digitalsignage.BR;
  */
 
 public class Forecastday extends BaseObservable {
-    Qpf qpf_allday;
-    String icon;
-    Wind maxwind;
-    Qpf qpf_day;
-    String icon_url;
-    String skyicon;
-    int pop;
-    Date date;
-    long period;
-    Snow snow_night;
-    String conditions;
-    Wind avewind;
-    long avehumidity;
-    Snow snow_day;
-    long minhumidity;
-    Qpf qpf_night;
-    Temp high;
-    Snow snow_allday;
-    Temp low;
-    long maxhumidity;
+    private Qpf qpf_allday;
+    private String icon;
+    private Wind maxwind;
+    private Qpf qpf_day;
+    private String icon_url;
+    private String skyicon;
+    private int pop;
+    private Date date;
+    private long period;
+    private Snow snow_night;
+    private String conditions;
+    private Wind avewind;
+    private long avehumidity;
+    private Snow snow_day;
+    private long minhumidity;
+    private Qpf qpf_night;
+    private Temp high;
+    private Snow snow_allday;
+    private Temp low;
+    private long maxhumidity;
 
     public Forecastday() {
     }

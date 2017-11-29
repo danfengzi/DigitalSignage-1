@@ -11,9 +11,9 @@ import signage.digital.com.digitalsignage.BR;
  */
 
 public class City  extends BaseObservable {
-    String city;
-    WeatherResponse weather;
-    ForecastResponse forecast;
+    private String city;
+    private WeatherResponse weather;
+    private ForecastResponse forecast;
 
     public City(String city, WeatherResponse weatherresponse, ForecastResponse forecastresponse) {
         this.city = city;
@@ -54,6 +54,6 @@ public class City  extends BaseObservable {
 
     @Bindable
     public String getCondition() {
-        return forecast.forecast.getSimpleforecast().forecastday.get(0).conditions;
+        return forecast.getForecast().getSimpleforecast().getForecastday().get(0).getConditions();
     }
 }

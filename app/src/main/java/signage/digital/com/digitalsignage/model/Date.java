@@ -9,23 +9,23 @@ import android.util.Log;
  */
 
 public class Date extends BaseObservable{
-    String min;
-    String epoch;
-    String tz_short;
-    String monthname;
-    String weekday_short;
-    long hour;
-    String pretty;
-    String monthname_short;
-    String isdst;
-    String weekday;
-    String ampm;
-    String tz_long;
-    long yday;
-    long sec;
-    long month;
-    long year;
-    long day;
+    private String min;
+    private String epoch;
+    private String tz_short;
+    private String monthname;
+    private String weekday_short;
+    private long hour;
+    private String pretty;
+    private String monthname_short;
+    private String isdst;
+    private String weekday;
+    private String ampm;
+    private String tz_long;
+    private long yday;
+    private long sec;
+    private long month;
+    private long year;
+    private long day;
 
     public Date() {
 
