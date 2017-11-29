@@ -23,9 +23,7 @@ import java.util.List;
 import signage.digital.com.digitalsignage.model.Conference;
 import signage.digital.com.digitalsignage.R;
 import signage.digital.com.digitalsignage.databinding.FragmentEventBinding;
-import signage.digital.com.digitalsignage.databinding.WeatherCurrentBinding;
 import signage.digital.com.digitalsignage.model.City;
-import signage.digital.com.digitalsignage.model.Forecastday;
 
 public class FragmentEvent extends Fragment {
     private DatabaseReference myRef;
@@ -34,7 +32,6 @@ public class FragmentEvent extends Fragment {
     private ObservableArrayList events = new ObservableArrayList();
     private ObservableArrayList cities = new ObservableArrayList();
     OnCalendarChangeListener mCallback;
-    private ViewFlipper flipper;
 
     public interface OnCalendarChangeListener {
         public void onCalendarChange(List<Conference> list);
@@ -111,7 +108,7 @@ public class FragmentEvent extends Fragment {
         binding.setEntries(events);
         binding.setCities(cities);
 
-        flipper = binding.getRoot().findViewById(R.id.flipperbanner);
+        ViewFlipper flipper = binding.getRoot().findViewById(R.id.flipperbanner);
         flipper.setInAnimation(inAnimation());
         flipper.setOutAnimation(outAnimation());
 

@@ -1,6 +1,5 @@
 package signage.digital.com.digitalsignage.model;
 
-import com.google.gson.annotations.SerializedName;
 
 
 /**
@@ -9,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class WundergroundError {
 
-    @SerializedName("response")
     UndergroundResponse response;
 
     public UndergroundResponse getResponse() {
@@ -17,13 +15,10 @@ public class WundergroundError {
     }
 
     public class UndergroundResponse{
-        @SerializedName("version")
         String version;
 
-        @SerializedName("termsofService")
         String termsofService;
 
-        @SerializedName("error")
         ErrorWunderground error;
 
         public String getVersion() {
@@ -39,10 +34,8 @@ public class WundergroundError {
         }
 
         public class ErrorWunderground{
-            @SerializedName("type")
             String type;
 
-            @SerializedName("description")
             String description;
 
             public String getType() {

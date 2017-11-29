@@ -63,6 +63,7 @@ public class FragmentAdv extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.e("Error Database: ",databaseError.getMessage());
 
             }
         };
