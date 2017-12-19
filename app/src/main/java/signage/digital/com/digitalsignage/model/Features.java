@@ -11,6 +11,9 @@ public class Features extends BaseObservable{
     private long forecast;
     private long conditions;
 
+    public Features() {
+    }
+
     @Bindable
     public long getForecast ()
     {

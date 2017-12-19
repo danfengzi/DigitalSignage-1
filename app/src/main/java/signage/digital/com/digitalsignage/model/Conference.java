@@ -14,6 +14,8 @@ public class Conference extends BaseObservable {
     private String location;
     private String description;
 
+    private Conference(){}
+
     public Conference(String description, String location){
         this.description = description;
         this.location = location;

@@ -26,6 +26,9 @@ public class Date extends BaseObservable{
     private long year;
     private long day;
 
+    public Date() {
+    }
+
     @Bindable
     public String getMin ()
     {

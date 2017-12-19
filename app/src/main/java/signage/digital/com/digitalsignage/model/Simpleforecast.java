@@ -11,6 +11,9 @@ import java.util.List;
 public class Simpleforecast extends BaseObservable{
     private List<Forecastday> forecastday;
 
+    public Simpleforecast() {
+    }
+
     @Bindable
     public List<Forecastday> getForecastday ()
     {

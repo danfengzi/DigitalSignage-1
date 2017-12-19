@@ -39,99 +39,103 @@ public class Current_observation  extends BaseObservable {
     String local_tz_long;
     */
     private String relative_humidity;
-/*    Image image;
-    String solarradiation;
-    String visibility_mi;
-    Observation_location observation_location;
-    String precip_today_string;
-    String feelslike_f;
-    String observation_time_rfc822;
-    String feelslike_c;
-    String heat_index_string;
-    String ob_url;
-    String dewpoint_string;
-    String local_tz_offset;
-    String windchill_f;
-    String windchill_c;
-    String pressure_in;
-    String pressure_mb;
-    String local_time_rfc822;
-    String precip_1hr_string;
-    String icon_url;
-    String wind_dir;
-    String nowcast;
-    Display_location display_location;
-    String visibility_km;
-    String temperature_string;
-    String local_tz_short;
-    String local_epoch;
-    String wind_string;
-    String precip_today_in;
 
-
-    @Bindable
-    public Long getDewpoint_f ()
-    {
-        return dewpoint_f;
+    public Current_observation() {
     }
 
-    public void setDewpoint_f (Long dewpoint_f)
-    {
-        this.dewpoint_f = dewpoint_f;
-        notifyPropertyChanged(BR.dewpoint_f);
-    }
-
-    @Bindable
-    public Long getWind_degrees ()
-    {
-        return wind_degrees;
-    }
-
-    public void setWind_degrees (Long wind_degrees)
-    {
-        this.wind_degrees = wind_degrees;
-        notifyPropertyChanged(BR.wind_degrees);
-
-    }
-
-    @Bindable
-    public Long getDewpoint_c ()
-    {
-        return dewpoint_c;
-    }
-
-    public void setDewpoint_c (Long dewpoint_c)
-    {
-        this.dewpoint_c = dewpoint_c;
-        notifyPropertyChanged(BR.dewpoint_c);
-
-    }
+    /*    Image image;
+        String solarradiation;
+        String visibility_mi;
+        Observation_location observation_location;
+        String precip_today_string;
+        String feelslike_f;
+        String observation_time_rfc822;
+        String feelslike_c;
+        String heat_index_string;
+        String ob_url;
+        String dewpoint_string;
+        String local_tz_offset;
+        String windchill_f;
+        String windchill_c;
+        String pressure_in;
+        String pressure_mb;
+        String local_time_rfc822;
+        String precip_1hr_string;
+        String icon_url;
+        String wind_dir;
+        String nowcast;
+        Display_location display_location;
+        String visibility_km;
+        String temperature_string;
+        String local_tz_short;
+        String local_epoch;
+        String wind_string;
+        String precip_today_in;
 
 
-    @Bindable
-    public Long getWind_kph ()
-    {
-        return wind_kph;
-    }
+        @Bindable
+        public Long getDewpoint_f ()
+        {
+            return dewpoint_f;
+        }
 
-    public void setWind_kph (Long wind_kph)
-    {
-        this.wind_kph = wind_kph;
-        notifyPropertyChanged(BR.wind_kph);
-    }
+        public void setDewpoint_f (Long dewpoint_f)
+        {
+            this.dewpoint_f = dewpoint_f;
+            notifyPropertyChanged(BR.dewpoint_f);
+        }
 
-    @Bindable
-    public Long getWind_mph ()
-    {
-        return wind_mph;
-    }
+        @Bindable
+        public Long getWind_degrees ()
+        {
+            return wind_degrees;
+        }
 
-    public void setWind_mph (Long wind_mph)
-    {
-        this.wind_mph = wind_mph;
-        notifyPropertyChanged(BR.wind_mph);
-    }
-*/
+        public void setWind_degrees (Long wind_degrees)
+        {
+            this.wind_degrees = wind_degrees;
+            notifyPropertyChanged(BR.wind_degrees);
+
+        }
+
+        @Bindable
+        public Long getDewpoint_c ()
+        {
+            return dewpoint_c;
+        }
+
+        public void setDewpoint_c (Long dewpoint_c)
+        {
+            this.dewpoint_c = dewpoint_c;
+            notifyPropertyChanged(BR.dewpoint_c);
+
+        }
+
+
+        @Bindable
+        public Long getWind_kph ()
+        {
+            return wind_kph;
+        }
+
+        public void setWind_kph (Long wind_kph)
+        {
+            this.wind_kph = wind_kph;
+            notifyPropertyChanged(BR.wind_kph);
+        }
+
+        @Bindable
+        public Long getWind_mph ()
+        {
+            return wind_mph;
+        }
+
+        public void setWind_mph (Long wind_mph)
+        {
+            this.wind_mph = wind_mph;
+            notifyPropertyChanged(BR.wind_mph);
+        }
+    */
     @Bindable
     public Double getTemp_c ()
     {

@@ -10,6 +10,9 @@ public class WundergroundError {
 
     private UndergroundResponse response;
 
+    public WundergroundError() {
+    }
+
     public UndergroundResponse getResponse() {
         return response;
     }
@@ -17,6 +20,9 @@ public class WundergroundError {
         private String version;
         private String termsofService;
         private ErrorWunderground error;
+
+        public UndergroundResponse() {
+        }
 
         public String getVersion() {
             return version;

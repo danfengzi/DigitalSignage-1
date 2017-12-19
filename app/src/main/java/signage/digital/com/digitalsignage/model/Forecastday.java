@@ -30,6 +30,9 @@ public class Forecastday extends BaseObservable {
     private Temp low;
     private long maxhumidity;
 
+    public Forecastday() {
+    }
+
     @Bindable
     public Qpf getQpf_allday ()
     {

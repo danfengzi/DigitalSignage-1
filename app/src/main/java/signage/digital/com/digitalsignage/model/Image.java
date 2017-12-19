@@ -12,6 +12,9 @@ public class Image extends BaseObservable {
     private String link;
     private String url;
 
+    public Image() {
+    }
+
     @Bindable
     public String getTitle ()
     {

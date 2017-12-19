@@ -14,6 +14,9 @@ public class Forecasttxtday extends BaseObservable{
     private String fcttext_metric;
     private String pop;
 
+    public Forecasttxtday() {
+    }
+
     @Bindable
     public long getPeriod() {
         return period;

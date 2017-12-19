@@ -12,6 +12,9 @@ public class Response extends BaseObservable{
     private String termsofService;
     private String version;
 
+    public Response() {
+    }
+
     @Bindable
     public Features getFeatures ()
     {

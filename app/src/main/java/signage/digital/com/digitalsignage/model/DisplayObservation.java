@@ -12,6 +12,9 @@ public class DisplayObservation  extends BaseObservable {
     private String full;
     private String city;
 
+    public DisplayObservation() {
+    }
+
     @Bindable
     public String getFull() {
         return full;

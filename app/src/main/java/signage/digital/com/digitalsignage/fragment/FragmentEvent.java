@@ -32,6 +32,7 @@ public class FragmentEvent extends Fragment {
     private ObservableArrayList events = new ObservableArrayList();
     private ObservableArrayList cities = new ObservableArrayList();
     OnCalendarChangeListener mCallback;
+    ViewFlipper flipper;
 
     public interface OnCalendarChangeListener {
         public void onCalendarChange(List<Conference> list);
@@ -86,12 +87,14 @@ public class FragmentEvent extends Fragment {
         listener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                flipper.stopFlipping();
                 events.clear();
                 for(DataSnapshot s:dataSnapshot.getChildren()){
                     Conference event = s.getValue(Conference.class);
                     events.add(event);
                 }
                 mCallback.onCalendarChange(events);
+                flipper.startFlipping();
             }
 
             @Override
@@ -108,10 +111,10 @@ public class FragmentEvent extends Fragment {
         binding.setEntries(events);
         binding.setCities(cities);
 
-        ViewFlipper flipper = binding.getRoot().findViewById(R.id.flipperbanner);
+        flipper = binding.getRoot().findViewById(R.id.flipperbanner);
         flipper.setInAnimation(inAnimation());
         flipper.setOutAnimation(outAnimation());
-
+        flipper.setFlipInterval(15000);
         View view =  binding.getRoot();
 
         myRef.child("events").addValueEventListener(listener);
@@ -127,8 +130,8 @@ public class FragmentEvent extends Fragment {
     }
 
     @Override
-    public void onStart(){
-        super.onStart();
+    public void onResume(){
+        super.onResume();
         myRef.child("cities").addChildEventListener(citylistener);
     }
 

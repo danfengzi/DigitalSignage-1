@@ -13,6 +13,8 @@ public class City  extends BaseObservable {
     private WeatherResponse weather;
     private ForecastResponse forecast;
 
+    public City(){}
+
     public City(String city, WeatherResponse weatherresponse, ForecastResponse forecastresponse) {
         this.city = city;
         this.weather = weatherresponse;

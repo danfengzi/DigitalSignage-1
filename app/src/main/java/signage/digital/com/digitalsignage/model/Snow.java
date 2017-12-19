@@ -11,6 +11,9 @@ class Snow extends BaseObservable {
     private int cm;
     private double in;
 
+    public Snow() {
+    }
+
     @Bindable
     public int getCm ()
     {

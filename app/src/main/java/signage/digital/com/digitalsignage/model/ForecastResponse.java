@@ -11,6 +11,9 @@ public class ForecastResponse extends BaseObservable{
     private Response response;
     private Forecast forecast;
 
+    public ForecastResponse() {
+    }
+
     @Bindable
     public Response getResponse ()
     {

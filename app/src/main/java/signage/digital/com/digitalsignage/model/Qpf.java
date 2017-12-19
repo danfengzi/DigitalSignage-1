@@ -11,6 +11,9 @@ class Qpf extends BaseObservable{
     private long mm;
     private double in;
 
+    public Qpf() {
+    }
+
     @Bindable
     public long getMm ()
     {

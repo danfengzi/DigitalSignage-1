@@ -21,6 +21,9 @@ public class Display_location extends BaseObservable {
     private String country;
     private String city;
 
+    public Display_location() {
+    }
+
     @Bindable
     public String getZip ()
     {

@@ -12,6 +12,9 @@ public class Temp extends BaseObservable{
     private String celsius;
     private String fahrenheit;
 
+    public Temp() {
+    }
+
     @Bindable
     public String getCelsius ()
     {

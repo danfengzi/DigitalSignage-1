@@ -13,6 +13,9 @@ class Wind extends BaseObservable{
     private int degrees;
     private int kph;
 
+    public Wind() {
+    }
+
     @Bindable
     public int getMph ()
     {

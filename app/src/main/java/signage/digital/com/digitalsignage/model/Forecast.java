@@ -8,6 +8,9 @@ public class Forecast  extends BaseObservable {
     private Txt_forecast txt_forecast;
     private Simpleforecast simpleforecast;
 
+    public Forecast() {
+    }
+
     @Bindable
     public Txt_forecast getTxt_forecast ()
     {

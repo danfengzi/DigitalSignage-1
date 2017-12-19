@@ -18,6 +18,9 @@ public class Observation_location extends BaseObservable {
     private String country;
     private String city;
 
+    public Observation_location() {
+    }
+
     @Bindable
     public String getFull ()
     {
