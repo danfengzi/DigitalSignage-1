@@ -94,6 +94,7 @@ public class FragmentAdv extends Fragment {
     @Override
     public void onResume(){
         super.onResume();
+        cities.clear();
         myRef.child("profile/flyers").addValueEventListener(listener);
         myRef.child("cities").addChildEventListener(citylistener);
     }
